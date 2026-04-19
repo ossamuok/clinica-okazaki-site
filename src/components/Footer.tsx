@@ -65,7 +65,7 @@ export function Footer() {
                   <span key={p} className="whitespace-nowrap">{p}</span>
                 ))}
                 {unit.mobile && (
-                  <span className="whitespace-nowrap">{unit.mobile} (cel.)</span>
+                  <span className="whitespace-nowrap">{unit.mobile}</span>
                 )}
               </p>
             </div>
