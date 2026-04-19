@@ -60,9 +60,14 @@ export function Footer() {
               <p className="text-xs text-paper/75 leading-relaxed">
                 {unit.address}, {unit.district}
               </p>
-              {unit.phones.map((p) => (
-                <p key={p} className="text-xs text-paper/60 mt-0.5">{p}</p>
-              ))}
+              <p className="mt-0.5 flex flex-wrap gap-x-3 text-xs text-paper/60">
+                {unit.phones.map((p) => (
+                  <span key={p} className="whitespace-nowrap">{p}</span>
+                ))}
+                {unit.mobile && (
+                  <span className="whitespace-nowrap">{unit.mobile} (cel.)</span>
+                )}
+              </p>
             </div>
           ))}
 

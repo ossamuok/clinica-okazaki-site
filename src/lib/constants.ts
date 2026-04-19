@@ -38,6 +38,7 @@ export type Unit = {
   cep: string;
   district: string;
   phones: string[];
+  mobile?: string;
   mapsUrl: string;
   mapsEmbed: string;
   geo: { lat: number; lng: number };
@@ -50,8 +51,9 @@ export const UNITS: Unit[] = [
     building: "Empresarial Renato Dias",
     address: "Av. Gov. Agamenon Magalhães, 4318, Sala 307",
     cep: "52010-040",
-    district: "Derby, Recife — PE",
+    district: "Derby, Recife-PE",
     phones: ["(81) 3221-4795", "(81) 3132-2972"],
+    mobile: "(81) 99954-0570",
     mapsUrl: "https://maps.app.goo.gl/jxM9VbSXHzOttaN6R",
     mapsEmbed:
       "https://www.google.com/maps?q=Empresarial+Renato+Dias+Av+Gov+Agamenon+Magalhaes+4318+Recife&output=embed",
@@ -63,8 +65,9 @@ export const UNITS: Unit[] = [
     building: "Boa Viagem Medical Center",
     address: "R. Visconde de Jequitinhonha, 1144, Sala 401",
     cep: "51130-020",
-    district: "Boa Viagem, Recife — PE",
+    district: "Boa Viagem, Recife-PE",
     phones: ["(81) 2129-1405", "(81) 2129-1406"],
+    mobile: "(81) 99954-0262",
     mapsUrl: "https://maps.app.goo.gl/dq7LZaFR5F98UQHEn",
     mapsEmbed:
       "https://www.google.com/maps?q=Boa+Viagem+Medical+Center+Rua+Visconde+de+Jequitinhonha+1144+Recife&output=embed",
@@ -304,9 +307,9 @@ export const TEAM: Doctor[] = [
     rqe: "16617",
     photo: "/assets/team/tatiana.jpg",
     formation: [
-      { label: "Endoscopia Digestiva", institution: "Hospital 9 de Julho — SP" },
+      { label: "Endoscopia Digestiva", institution: "Hospital 9 de Julho (SP)" },
       { label: "Cirurgia Geral", institution: "Hospital Barão de Lucena" },
-      { label: "Endoscopia Biliopancreática", institution: "Hospital 9 de Julho — SP" },
+      { label: "Endoscopia Biliopancreática", institution: "Hospital 9 de Julho (SP)" },
     ],
   },
   {
@@ -428,7 +431,7 @@ export const HOME_FAQS: HomeFaq[] = [
   },
   {
     q: "Precisa de jejum?",
-    a: "Sim. Jejum de 10 horas para alimentos sólidos e 4 horas para líquidos claros (água) antes do exame, tanto para endoscopia quanto para colonoscopia.",
+    a: "Sim. Jejum de 8 horas para alimentos sólidos e 4 horas para líquidos claros (água) antes do exame, tanto para endoscopia quanto para colonoscopia.",
   },
   {
     q: "Posso dirigir ou voltar sozinho?",
