@@ -68,7 +68,7 @@ export function Header() {
           <img
             src="/assets/logo-horizontal.png"
             alt={SITE.name}
-            className="h-16 md:h-20 w-auto transition-transform group-hover:scale-[1.02]"
+            className="h-20 md:h-24 w-auto transition-transform group-hover:scale-[1.02]"
             width="320"
             height="80"
           />
