@@ -82,7 +82,7 @@ const endoscopia: PageContent = {
         },
         {
           type: "p",
-          text: "Na sala de preparo, você troca de roupa, coloca uma veia no antebraço para a medicação e passa por avaliação do anestesista. Sinais vitais (pressão, saturação de oxigênio e frequência cardíaca) são monitorados continuamente a partir deste momento.",
+          text: "Na sala de preparo, você troca de roupa. Na sala de exames, é puncionada uma veia para a medicação e realizada avaliação do anestesista. Sinais vitais (pressão, saturação de oxigênio e frequência cardíaca) são monitorados continuamente a partir deste momento.",
         },
       ],
     },
