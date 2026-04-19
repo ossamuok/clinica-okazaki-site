@@ -110,10 +110,6 @@ const preparoEndoscopia: PageContent = {
         },
         {
           type: "p",
-          text: "Use roupas confortáveis e de fácil troca. Você vai trocar para um avental, então prefira peças simples — blusa aberta na frente ou camiseta e calça de moletom. Evite vestidos apertados ou roupas com muitos botões.",
-        },
-        {
-          type: "p",
           text: "Chegue 30 minutos antes do horário agendado. A recepção confere documentação, faz a abertura do prontuário e você assina o termo de consentimento informado. Esse tempo é usado também para repassar orientações e preparar você para o exame.",
         },
         {
@@ -123,7 +119,7 @@ const preparoEndoscopia: PageContent = {
             "Tome banho sem restrições",
             "Evite maquiagem pesada — o monitor de saturação precisa do dedo livre de esmalte muito escuro (tons claros são aceitáveis)",
             "Não use perfume forte — alguns pacientes têm náusea com cheiros intensos no pós-sedação",
-            "Retire joias, piercings e próteses dentárias removíveis antes do exame — você terá um local seguro para guardar",
+            "Retire joias, piercings e próteses dentárias removíveis antes do exame — deixe com seu acompanhante",
           ],
         },
       ],
@@ -174,7 +170,6 @@ const preparoEndoscopia: PageContent = {
             "Pedido médico original (não basta foto no celular)",
             "Exames anteriores relacionados, se houver: endoscopias prévias, biópsias, relatórios de cirurgias",
             "Lista dos medicamentos em uso, com doses e horários",
-            "Chinelos ou meias grossas para pós-exame (opcional)",
           ],
         },
         {
@@ -193,7 +188,7 @@ const preparoEndoscopia: PageContent = {
         },
         {
           type: "p",
-          text: "Pacientes acima de 75 anos ou com múltiplas comorbidades podem precisar de avaliação pré-exame. Comumente são solicitados eletrocardiograma e exames laboratoriais básicos. O protocolo de sedação também é adaptado.",
+          text: "Pacientes acima de 75 anos ou com múltiplas comorbidades podem precisar de avaliação pré-exame. O protocolo de sedação também é adaptado.",
         },
         {
           type: "p",
