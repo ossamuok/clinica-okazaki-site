@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-size: 16px;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    @apply text-ink;
+    font-weight: 600;
+  }
+  a {
+    @apply transition-colors;
+  }
+  :focus-visible {
+    outline: 2px solid #0d8b7e;
+    outline-offset: 2px;
+  }
+  ::selection {
+    @apply bg-teal-wash text-teal-ink;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply max-w-page mx-auto px-5 md:px-8;
+  }
+  .section {
+    padding-top: clamp(3rem, 8vw, 6rem);
+    padding-bottom: clamp(3rem, 8vw, 6rem);
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-eyebrow uppercase font-medium text-teal-deep;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-8 bg-teal-deep inline-block;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-teal text-white font-medium rounded-full px-6 py-3 shadow-sm transition-all hover:bg-teal-deep hover:-translate-y-px active:translate-y-0;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-teal text-teal-deep font-medium rounded-full px-6 py-3 transition-all hover:bg-teal-wash hover:-translate-y-px;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-1 text-teal-deep font-medium transition-colors hover:text-teal-ink;
+  }
+  .btn-dark {
+    @apply inline-flex items-center justify-center gap-2 bg-ink text-white font-medium rounded-full px-6 py-3 transition-all hover:bg-ink-soft;
+  }
+
+  .card {
+    @apply bg-paper border border-line rounded-card p-6 md:p-8 transition-all;
+  }
+  .card-hover {
+    @apply hover:border-teal hover:shadow-md hover:-translate-y-0.5;
+  }
+
+  .pill {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-wash text-teal-ink border border-teal/20 text-xs font-medium uppercase tracking-wider;
+  }
+  .pill-solid {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal text-white text-xs font-medium uppercase tracking-wider;
+  }
+
+  .callout {
+    @apply rounded-2xl bg-teal-wash border border-teal/20 p-5 text-ink-soft flex gap-3;
+  }
+  .warning {
+    @apply rounded-2xl bg-red-50 border border-redBrand/30 p-5 text-ink-soft flex gap-3;
+  }
+  .inline-cta {
+    @apply rounded-2xl bg-gradient-to-br from-teal-wash to-cream border border-teal/25 p-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between;
+  }
+
+  .prose-page p {
+    @apply text-ink-soft leading-relaxed mb-5;
+  }
+  .prose-page h2 {
+    @apply text-h2-fluid mt-14 mb-5 scroll-mt-24;
+  }
+  .prose-page h3 {
+    @apply text-h3-fluid mt-10 mb-4 scroll-mt-24;
+  }
+  .prose-page ul {
+    @apply list-none space-y-2.5 mb-6 pl-0;
+  }
+  .prose-page ul li {
+    @apply relative pl-7 text-ink-soft;
+  }
+  .prose-page ul li::before {
+    content: "";
+    @apply absolute left-0 top-2.5 h-2 w-2 rounded-full bg-teal;
+  }
+  .prose-page strong {
+    @apply text-ink font-semibold;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+  .dot-pattern {
+    background-image:
+      radial-gradient(
+        circle at 1px 1px,
+        rgba(13, 139, 126, 0.14) 1px,
+        transparent 0
+      );
+    background-size: 22px 22px;
+  }
+  .hero-gradient {
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(13, 139, 126, 0.10), transparent 55%),
+      radial-gradient(ellipse at 85% 100%, rgba(199, 62, 58, 0.06), transparent 45%),
+      radial-gradient(ellipse at 50% 50%, rgba(242, 234, 215, 0.35), transparent 70%);
+  }
+  .cta-gradient {
+    background:
+      radial-gradient(ellipse at 0% 0%, rgba(255, 255, 255, 0.10), transparent 55%),
+      radial-gradient(ellipse at 100% 100%, rgba(199, 62, 58, 0.18), transparent 50%),
+      linear-gradient(135deg, #053f39 0%, #0a6b61 55%, #0d8b7e 100%);
+  }
+  .perspective-book {
+    perspective: 1600px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+}
