@@ -82,7 +82,7 @@ export function Header() {
           </span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-ink-soft">
+        <nav className="hidden lg:flex items-center gap-5 text-base font-medium text-ink-soft">
           {HEADER_LINKS.map((link) => (
             <a
               key={link.href}
