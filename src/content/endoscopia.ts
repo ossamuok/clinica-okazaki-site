@@ -151,6 +151,14 @@ const endoscopia: PageContent = {
           type: "p",
           text: "Medicamentos de pressão arterial, doenças da tireoide, antidepressivos e remédios para convulsão devem ser tomados normalmente com um pequeno gole de água, mesmo em jejum — salvo orientação médica em contrário. Medicamentos para diabetes (hipoglicemiantes orais e insulina) precisam ser ajustados por causa do jejum; converse com seu médico.",
         },
+        {
+          type: "warning",
+          text: "Medicamentos para perda de peso ou controle glicêmico da classe GLP-1 — como Ozempic, Wegovy, Mounjaro, Zepbound, Saxenda, Victoza, Trulicity, Rybelsus e similares — retardam o esvaziamento gástrico e aumentam o risco de broncoaspiração durante a sedação. É obrigatório suspendê-los antes do exame. Ao agendar, você recebe as orientações detalhadas sobre quando suspender.",
+        },
+        {
+          type: "warning",
+          text: "Anticoagulantes (varfarina/Marevan, rivaroxabana/Xarelto, apixabana/Eliquis, dabigatrana/Pradaxa) e antiagregantes plaquetários (AAS/Aspirina, clopidogrel/Plavix, ticagrelor/Brilinta) precisam ser suspensos antes do exame — mas somente com o aval do médico assistente que acompanha você. Nunca suspenda por conta própria.",
+        },
       ],
     },
     {
