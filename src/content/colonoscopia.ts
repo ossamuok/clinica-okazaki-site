@@ -1,10 +1,11 @@
+import { CLINIC_AGE } from "../lib/constants";
 import type { PageContent } from "./types";
 
 const colonoscopia: PageContent = {
   slug: "colonoscopia",
   title: "Colonoscopia em Recife com CO₂ e Sedação | Clínica Okazaki",
   description:
-    "Colonoscopia em Recife com CO₂ e sedação por anestesista. Clínica Okazaki: 38 anos, duas unidades (Derby e Boa Viagem). Agende pelo WhatsApp.",
+    `Colonoscopia em Recife com CO₂ e sedação por anestesista. Clínica Okazaki: ${CLINIC_AGE} anos, duas unidades (Derby e Boa Viagem). Agende pelo WhatsApp.`,
   keywords:
     "colonoscopia recife, colonoscopia com co2, colonoscopia com sedação, colonoscopia boa viagem, colonoscopia derby, quanto custa colonoscopia recife, onde fazer colonoscopia recife, colonoscopia unimed ",
   h1: "Colonoscopia em Recife: exame com CO₂ para mais conforto no pós-exame",
@@ -275,7 +276,7 @@ const colonoscopia: PageContent = {
         },
         {
           type: "callout",
-          text: "Conforto no pós-exame com CO₂, sedação por anestesista e equipe com 38 anos de experiência em Recife.",
+          text: `Conforto no pós-exame com CO₂, sedação por anestesista e equipe com ${CLINIC_AGE} anos de experiência em Recife.`,
         },
       ],
     },

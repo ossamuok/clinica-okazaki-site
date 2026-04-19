@@ -1,11 +1,19 @@
+function calcClinicAge(): number {
+  const now = new Date();
+  const years = now.getFullYear() - 1987;
+  return now.getMonth() + 1 >= 9 ? years : years - 1; // aniversário em setembro
+}
+
+export const CLINIC_AGE = calcClinicAge();
+
 export const SITE = {
   name: "Centro Clínico Okazaki",
   shortName: "Clínica Okazaki",
   url: "https://www.clinicaokazaki.com",
   description:
-    "Endoscopia, colonoscopia e gastroenterologia em Recife há 38 anos. Sedação por anestesista, Olympus EVIS X1, duas unidades (Derby e Boa Viagem).",
+    `Endoscopia, colonoscopia e gastroenterologia em Recife há ${CLINIC_AGE} anos. Sedação por anestesista, Olympus EVIS X1, duas unidades (Derby e Boa Viagem).`,
   foundingYear: 1987,
-  age: 38,
+  age: CLINIC_AGE,
   reviewsCount: 2500,
   rating: 5.0,
   instagram: "https://www.instagram.com/centro_clinico_okazaki/",

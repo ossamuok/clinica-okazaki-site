@@ -1,6 +1,6 @@
 import { motion, type Variants } from "framer-motion";
 import { MessageCircle, ArrowRight } from "lucide-react";
-import { PHONE_DISPLAY, WHATSAPP_URL } from "../lib/constants";
+import { CLINIC_AGE, PHONE_DISPLAY, WHATSAPP_URL } from "../lib/constants";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -46,7 +46,7 @@ export function Hero() {
         >
           Há{" "}
           <em className="not-italic relative inline-block text-teal-deep">
-            <span className="relative z-10">{38} anos</span>
+            <span className="relative z-10">{CLINIC_AGE} anos</span>
             <span
               className="absolute bottom-1 left-0 right-0 h-2.5 bg-cream -z-0"
               aria-hidden

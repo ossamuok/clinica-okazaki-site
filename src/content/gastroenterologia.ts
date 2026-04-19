@@ -1,3 +1,4 @@
+import { CLINIC_AGE } from "../lib/constants";
 import type { PageContent } from "./types";
 
 const gastroenterologia: PageContent = {
@@ -163,7 +164,7 @@ const gastroenterologia: PageContent = {
       blocks: [
         {
           type: "p",
-          text: "A Clínica Okazaki conta com profissionais com formação sólida em gastroenterologia clínica, endoscopia digestiva e hepatologia. Mais do que títulos, cultivamos há 38 anos uma prática centrada no tempo de consulta, na comunicação clara com o paciente e na continuidade do cuidado.",
+          text: `A Clínica Okazaki conta com profissionais com formação sólida em gastroenterologia clínica, endoscopia digestiva e hepatologia. Mais do que títulos, cultivamos há ${CLINIC_AGE} anos uma prática centrada no tempo de consulta, na comunicação clara com o paciente e na continuidade do cuidado.`,
         },
         {
           type: "p",

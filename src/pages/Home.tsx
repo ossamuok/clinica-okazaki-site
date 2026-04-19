@@ -1,6 +1,6 @@
 import { Seo } from "../lib/seo";
 import { HOME_SCHEMAS } from "../lib/schemas";
-import { SITE } from "../lib/constants";
+import { CLINIC_AGE, SITE } from "../lib/constants";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { WhatsAppFloat } from "../components/WhatsAppFloat";
@@ -20,7 +20,7 @@ import { ComplianceBlock } from "../components/ComplianceBlock";
 export default function Home() {
   const title = `${SITE.name} · Endoscopia, Colonoscopia e Gastroenterologia em Recife`;
   const description =
-    "Clínica de endoscopia e colonoscopia em Recife há 38 anos. Sedação por anestesista, Olympus EVIS X1, CO₂, duas unidades (Derby e Boa Viagem). 2.500+ avaliações 5 estrelas.";
+    `Clínica de endoscopia e colonoscopia em Recife há ${CLINIC_AGE} anos. Sedação por anestesista, Olympus EVIS X1, CO₂, duas unidades (Derby e Boa Viagem). 2.500+ avaliações 5 estrelas.`;
   const keywords =
     "endoscopia recife, colonoscopia recife, gastroenterologista recife, clínica endoscopia boa viagem, clínica endoscopia derby, endoscopia com sedação, colonoscopia com CO2, clínica okazaki";
 

@@ -14,7 +14,7 @@ export default function NotFound() {
         path="/404"
       />
       <Header />
-      <main id="main" className="pt-16 md:pt-20">
+      <main id="main" className="pt-20 md:pt-24">
         <section className="container-page min-h-[60vh] flex items-center py-20">
           <div className="max-w-xl">
             <p className="eyebrow mb-5">Erro 404</p>

@@ -1,10 +1,11 @@
+import { CLINIC_AGE } from "../lib/constants";
 import type { PageContent } from "./types";
 
 const endoscopia: PageContent = {
   slug: "endoscopia",
   title: "Endoscopia Digestiva Alta em Recife com Sedação | Clínica Okazaki",
   description:
-    "Endoscopia digestiva alta em Recife com sedação por anestesista e Olympus EVIS X1. Clínica Okazaki: 38 anos, laudo no mesmo dia. Agende.",
+    `Endoscopia digestiva alta em Recife com sedação por anestesista e Olympus EVIS X1. Clínica Okazaki: ${CLINIC_AGE} anos, laudo no mesmo dia. Agende.`,
   keywords:
     "endoscopia recife, endoscopia digestiva alta recife, endoscopia com sedação, endoscopia boa viagem, endoscopia derby, quanto custa endoscopia recife, onde fazer endoscopia recife, endoscopia unimed re",
   h1: "Endoscopia Digestiva Alta em Recife: exame com sedação e alta definição",

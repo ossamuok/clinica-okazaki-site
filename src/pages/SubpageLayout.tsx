@@ -53,7 +53,7 @@ export function SubpageLayout({ content }: Props) {
       />
       <Header />
 
-      <main id="main" className="pt-16 md:pt-20">
+      <main id="main" className="pt-20 md:pt-24">
         <Breadcrumb
           items={[
             { label: "Início", href: "/" },
