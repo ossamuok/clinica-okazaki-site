@@ -19,7 +19,14 @@ export function Hero() {
   return (
     <section className="relative pt-32 md:pt-40 pb-20 md:pb-28 overflow-hidden hero-gradient">
       <div className="absolute inset-0 dot-pattern opacity-70" aria-hidden />
-      <div className="container-page relative">
+      <img
+        src="/assets/logo-vertical.png"
+        alt=""
+        aria-hidden
+        className="pointer-events-none select-none absolute -right-16 top-20 w-[34rem] h-auto opacity-[0.07] lg:hidden"
+      />
+      <div className="container-page relative grid lg:grid-cols-12 gap-10 items-center">
+        <div className="lg:col-span-7 xl:col-span-7">
         <motion.span
           custom={0}
           initial="hidden"
@@ -37,14 +44,31 @@ export function Hero() {
           variants={fadeUp}
           className="mt-6 text-h1-fluid font-semibold text-ink text-balance max-w-4xl leading-[1.02]"
         >
-          Cuidado digestivo em Recife há{" "}
+          Há{" "}
           <em className="not-italic relative inline-block text-teal-deep">
-            <span className="relative z-10">{38} anos.</span>
+            <span className="relative z-10">{38} anos</span>
             <span
               className="absolute bottom-1 left-0 right-0 h-2.5 bg-cream -z-0"
               aria-hidden
             />
           </em>
+          , diagnóstico{" "}
+          <em className="not-italic relative inline-block text-teal-deep">
+            <span className="relative z-10">preciso,</span>
+            <span
+              className="absolute bottom-1 left-0 right-0 h-2.5 bg-cream -z-0"
+              aria-hidden
+            />
+          </em>{" "}
+          cuidado{" "}
+          <em className="not-italic relative inline-block text-teal-deep">
+            <span className="relative z-10">humano</span>
+            <span
+              className="absolute bottom-1 left-0 right-0 h-2.5 bg-cream -z-0"
+              aria-hidden
+            />
+          </em>
+          .
         </motion.h1>
 
         <motion.p
@@ -83,6 +107,21 @@ export function Hero() {
           <span className="hidden md:inline text-sm text-muted ml-2">
             ou ligue {PHONE_DISPLAY}
           </span>
+        </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] as [number, number, number, number], delay: 0.2 }}
+          className="hidden lg:flex lg:col-span-5 xl:col-span-5 justify-center relative"
+          aria-hidden
+        >
+          <img
+            src="/assets/logo-vertical.png"
+            alt=""
+            className="relative w-[22rem] xl:w-[26rem] h-auto"
+          />
         </motion.div>
       </div>
     </section>

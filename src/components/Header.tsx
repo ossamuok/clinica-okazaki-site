@@ -9,6 +9,25 @@ import {
   WHATSAPP_URL,
 } from "../lib/constants";
 
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
+    </svg>
+  );
+}
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -36,23 +55,31 @@ export function Header() {
     <header
       className={`fixed top-0 inset-x-0 z-40 transition-all ${
         scrolled
-          ? "bg-paper/85 backdrop-blur-md border-b border-line shadow-sm"
-          : "bg-transparent border-b border-transparent"
+          ? "bg-paper/95 backdrop-blur-md border-b border-line shadow-sm"
+          : "bg-paper/70 backdrop-blur-sm border-b border-transparent"
       }`}
     >
-      <div className="container-page flex items-center justify-between h-16 md:h-20">
+      <div className="container-page flex items-center justify-between h-24 md:h-28">
         <Link
           to="/"
           aria-label={SITE.name}
-          className="flex items-center gap-2 shrink-0"
+          className="flex items-center gap-3 shrink-0 group"
         >
           <img
-            src="/assets/logo-horizontal.webp"
+            src="/assets/logo-horizontal.png"
             alt={SITE.name}
-            className="h-8 md:h-9 w-auto"
-            width="180"
-            height="36"
+            className="h-16 md:h-20 w-auto transition-transform group-hover:scale-[1.02]"
+            width="320"
+            height="80"
           />
+          <span className="hidden md:flex flex-col leading-tight border-l border-line pl-3">
+            <span className="text-[10px] tracking-[0.18em] uppercase text-teal-deep font-semibold">
+              Desde 1987
+            </span>
+            <span className="text-[11px] tracking-wide text-muted">
+              Recife · PE
+            </span>
+          </span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-ink-soft">
@@ -74,6 +101,15 @@ export function Header() {
           >
             <Phone className="h-3.5 w-3.5" aria-hidden />
             {PHONE_DISPLAY}
+          </a>
+          <a
+            href={SITE.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram Centro Clínico Okazaki"
+            className="h-10 w-10 inline-flex items-center justify-center rounded-full border border-line text-ink-soft hover:border-teal hover:text-teal-deep transition-colors"
+          >
+            <InstagramIcon className="h-4 w-4" />
           </a>
           <a
             href={WHATSAPP_URL}
@@ -102,7 +138,7 @@ export function Header() {
       </div>
 
       {open ? (
-        <div className="lg:hidden fixed inset-0 top-16 z-40 bg-paper/98 backdrop-blur-md border-t border-line animate-fade-up">
+        <div className="lg:hidden fixed inset-0 top-20 z-40 bg-paper/98 backdrop-blur-md border-t border-line animate-fade-up">
           <div className="container-page py-8 flex flex-col gap-1">
             {HEADER_LINKS.map((link) => (
               <a
@@ -130,6 +166,15 @@ export function Header() {
               >
                 <Phone className="h-4 w-4" aria-hidden />
                 {PHONE_DISPLAY}
+              </a>
+              <a
+                href={SITE.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline w-full justify-center"
+              >
+                <InstagramIcon className="h-4 w-4" />
+                @centro_clinico_okazaki
               </a>
             </div>
           </div>

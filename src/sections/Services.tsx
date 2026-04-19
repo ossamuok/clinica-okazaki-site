@@ -18,10 +18,10 @@ export function Services() {
           title={
             <>
               Diagnóstico e cuidado especializado,{" "}
-              <span className="text-teal-deep">do exame à consulta</span>
+              <span className="text-teal-deep">da consulta ao exame</span>
             </>
           }
-          subtitle="Procedimentos endoscópicos de alta definição e consultas com gastroenterologistas, hepatologistas e geriatras — tudo em dois endereços em Recife."
+          subtitle="Procedimentos endoscópicos com equipamentos de alta definição e consultas com gastroenterologistas, hepatologistas, geriatras e cirurgiões — tudo em dois endereços em Recife."
         />
 
         <div className="mt-12 md:mt-16 grid gap-6 md:grid-cols-3">

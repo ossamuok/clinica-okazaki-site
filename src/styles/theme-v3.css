@@ -1,0 +1,178 @@
+/* ============================================
+   theme-v3 — paleta v2 aplicada à estrutura v1
+   Escopo: todos descendentes de .theme-v3
+   Estrutura, tipografia e componentes = intactos (Home.tsx)
+   Apenas cores Tailwind (v1 tokens) → cores v2
+   ============================================
+
+   Mapa de cores
+   ─────────────
+   v1 paper     #faf7f0   →  #FBFCFC  (paper cool)
+   v1 paper-2   #f5efe2   →  #F4F6F6  (ink-50 cool)
+   v1 cream     #f2ead7   →  #ECF6F6  (teal-50 muito claro)
+   v1 ink       #0f1a1a   →  #0B1518  (ink-900)
+   v1 ink-soft  #2a3a38   →  #1E3A47  (navy-ink médio)
+   v1 muted     #6b7a78   →  #56696D  (ink-500)
+   v1 line      #e4ddd0   →  #E4E9EA  (ink-100)
+   v1 teal      #0d8b7e   →  #148A8E  (teal-500 brand)
+   v1 teal-deep #0a6b61   →  #0E6669  (teal-700)
+   v1 teal-ink  #053f39   →  #0A2540  (navy-900 — contraste máximo)
+   v1 teal-wash #e6f2f0   →  #ECF6F6  (teal-50)
+   v1 redBrand  #c73e3a   →  #B3342C  (danger)
+*/
+
+.theme-v3 {
+  background-color: #FBFCFC;
+}
+
+/* ===== Backgrounds ===== */
+.theme-v3 .bg-paper        { background-color: rgb(251 252 252 / var(--tw-bg-opacity, 1)); }
+.theme-v3 .bg-paper\/85    { background-color: rgb(251 252 252 / 0.85); }
+.theme-v3 .bg-paper\/98    { background-color: rgb(251 252 252 / 0.98); }
+.theme-v3 .bg-paper-2      { background-color: rgb(244 246 246 / var(--tw-bg-opacity, 1)); }
+.theme-v3 .bg-cream        { background-color: rgb(236 246 246 / var(--tw-bg-opacity, 1)); }
+.theme-v3 .bg-ink          { background-color: rgb(11 21 24 / var(--tw-bg-opacity, 1)); }
+.theme-v3 .bg-teal         { background-color: rgb(20 138 142 / var(--tw-bg-opacity, 1)); }
+.theme-v3 .bg-teal-deep    { background-color: rgb(14 102 105 / var(--tw-bg-opacity, 1)); }
+.theme-v3 .bg-teal-ink     { background-color: rgb(10 37 64 / var(--tw-bg-opacity, 1)); }
+.theme-v3 .bg-teal-wash    { background-color: rgb(236 246 246 / var(--tw-bg-opacity, 1)); }
+.theme-v3 .bg-teal-wash\/10{ background-color: rgb(236 246 246 / 0.10); }
+.theme-v3 .bg-teal-wash\/20{ background-color: rgb(236 246 246 / 0.20); }
+.theme-v3 .bg-teal-wash\/40{ background-color: rgb(236 246 246 / 0.40); }
+.theme-v3 .bg-redBrand     { background-color: rgb(179 52 44 / var(--tw-bg-opacity, 1)); }
+
+/* ===== Text ===== */
+.theme-v3 .text-ink        { color: rgb(11 21 24 / var(--tw-text-opacity, 1)); }
+.theme-v3 .text-ink-soft   { color: rgb(30 58 71 / var(--tw-text-opacity, 1)); }
+.theme-v3 .text-muted      { color: rgb(86 105 109 / var(--tw-text-opacity, 1)); }
+.theme-v3 .text-paper      { color: rgb(251 252 252 / var(--tw-text-opacity, 1)); }
+.theme-v3 .text-paper\/55  { color: rgb(251 252 252 / 0.55); }
+.theme-v3 .text-paper\/60  { color: rgb(251 252 252 / 0.60); }
+.theme-v3 .text-paper\/70  { color: rgb(251 252 252 / 0.70); }
+.theme-v3 .text-paper\/80  { color: rgb(251 252 252 / 0.80); }
+.theme-v3 .text-teal       { color: rgb(20 138 142 / var(--tw-text-opacity, 1)); }
+.theme-v3 .text-teal-deep  { color: rgb(14 102 105 / var(--tw-text-opacity, 1)); }
+.theme-v3 .text-teal-deep\/40 { color: rgb(14 102 105 / 0.40); }
+.theme-v3 .text-teal-ink   { color: rgb(10 37 64 / var(--tw-text-opacity, 1)); }
+.theme-v3 .text-teal\/10   { color: rgb(20 138 142 / 0.10); }
+.theme-v3 .text-redBrand   { color: rgb(179 52 44 / var(--tw-text-opacity, 1)); }
+
+/* ===== Borders ===== */
+.theme-v3 .border-line     { border-color: rgb(228 233 234 / var(--tw-border-opacity, 1)); }
+.theme-v3 .border-paper\/10{ border-color: rgb(251 252 252 / 0.10); }
+.theme-v3 .border-teal     { border-color: rgb(20 138 142 / var(--tw-border-opacity, 1)); }
+.theme-v3 .border-teal\/25 { border-color: rgb(20 138 142 / 0.25); }
+.theme-v3 .border-teal\/30 { border-color: rgb(20 138 142 / 0.30); }
+.theme-v3 .border-teal-ink { border-color: rgb(10 37 64 / var(--tw-border-opacity, 1)); }
+.theme-v3 .border-teal-deep{ border-color: rgb(14 102 105 / var(--tw-border-opacity, 1)); }
+
+/* ===== Gradients (Tailwind from/via/to) ===== */
+.theme-v3 .from-teal-wash  {
+  --tw-gradient-from: #ECF6F6 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(236 246 246 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.theme-v3 .from-teal\/10   {
+  --tw-gradient-from: rgb(20 138 142 / 0.10) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(20 138 142 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.theme-v3 .from-teal-ink   {
+  --tw-gradient-from: #0A2540 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(10 37 64 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.theme-v3 .from-teal-deep  {
+  --tw-gradient-from: #0E6669 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(14 102 105 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.theme-v3 .from-teal       {
+  --tw-gradient-from: #148A8E var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(20 138 142 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.theme-v3 .via-teal-deep   { --tw-gradient-to: rgb(14 102 105 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), #0E6669 var(--tw-gradient-via-position), var(--tw-gradient-to); }
+.theme-v3 .to-cream        { --tw-gradient-to: #ECF6F6 var(--tw-gradient-to-position); }
+.theme-v3 .to-paper-2      { --tw-gradient-to: #F4F6F6 var(--tw-gradient-to-position); }
+.theme-v3 .to-teal-wash    { --tw-gradient-to: #ECF6F6 var(--tw-gradient-to-position); }
+.theme-v3 .to-teal         { --tw-gradient-to: #148A8E var(--tw-gradient-to-position); }
+.theme-v3 .to-teal-deep    { --tw-gradient-to: #0E6669 var(--tw-gradient-to-position); }
+.theme-v3 .to-teal-ink     { --tw-gradient-to: #0A2540 var(--tw-gradient-to-position); }
+
+/* ===== Custom components defined in src/index.css (overriden por paleta v2) ===== */
+.theme-v3 .btn-primary {
+  background-color: #148A8E;
+  color: #FBFCFC;
+}
+.theme-v3 .btn-primary:hover {
+  background-color: #0E6669;
+}
+.theme-v3 .btn-outline {
+  border-color: #148A8E;
+  color: #0E6669;
+}
+.theme-v3 .btn-outline:hover {
+  background-color: #ECF6F6;
+}
+.theme-v3 .btn-ghost { color: #0E6669; }
+.theme-v3 .card {
+  background-color: #FBFCFC;
+  border-color: #E4E9EA;
+}
+.theme-v3 .card:hover {
+  border-color: #148A8E;
+}
+.theme-v3 .eyebrow { color: #0E6669; }
+.theme-v3 .eyebrow::before { background-color: #0E6669; }
+
+/* ===== Logo on v2 paper (#FBFCFC) ===== */
+/* mix-blend-multiply ainda funciona contra off-white; força pureza do branco para evitar tom amarelado */
+.theme-v3 header img { mix-blend-multiply: multiply; }
+
+/* ===== Switch stack (navegação entre versões) ===== */
+.v1-switch-stack.theme-v3-switch {
+  position: fixed;
+  bottom: 88px;
+  left: 16px;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.v1-switch-stack.theme-v3-switch a {
+  font-family: ui-monospace, "DM Mono", SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #FBFCFC;
+  color: #0A2540;
+  border: 1px solid #E4E9EA;
+  box-shadow: 0 4px 10px rgba(10, 37, 64, 0.08);
+  text-decoration: none;
+  transition: all 0.18s ease-out;
+}
+.v1-switch-stack.theme-v3-switch a:hover {
+  background: #148A8E;
+  color: #FBFCFC;
+  border-color: #148A8E;
+}
+.v1-switch-stack.theme-v3-switch a.active {
+  background: #0A2540;
+  color: #FBFCFC;
+  border-color: #0A2540;
+}
+
+/* ===== Stats band — navy com texto branco (override v3) ===== */
+.theme-v3 section:has(.text-display-stat) {
+  background-color: #0A2540;
+  border-color: #0A2540;
+}
+.theme-v3 section:has(.text-display-stat) .text-teal-deep {
+  color: #FBFCFC;
+}
+.theme-v3 section:has(.text-display-stat) .text-muted {
+  color: rgb(251 252 252 / 0.68);
+}

@@ -6,7 +6,7 @@ export const SITE = {
     "Endoscopia, colonoscopia e gastroenterologia em Recife há 38 anos. Sedação por anestesista, Olympus EVIS X1, duas unidades (Derby e Boa Viagem).",
   foundingYear: 1987,
   age: 38,
-  reviewsCount: 2570,
+  reviewsCount: 2500,
   rating: 5.0,
   instagram: "https://www.instagram.com/centro_clinico_okazaki/",
   tecnico: {
@@ -85,11 +85,11 @@ export const INSURANCES: Insurance[] = [
   { name: "Conab", coverage: "Exames e consultas" },
   { name: "FACHESF", coverage: "Exames e consultas" },
   { name: "FISCO Saúde", coverage: "Exames e consultas" },
-  { name: "Gama Saúde", coverage: "Ambas unidades" },
+  { name: "Gama Saúde", coverage: "Exames e consultas" },
   { name: "Mediservice", coverage: "Exames e consultas" },
-  { name: "Particular", coverage: "Ambas unidades" },
+  { name: "Particular", coverage: "Exames e consultas" },
   { name: "Petrobras", coverage: "Exames e consultas" },
-  { name: "Select", coverage: "Ambas unidades" },
+  { name: "Select", coverage: "Exames e consultas" },
   { name: "Sul América", coverage: "Exames e consultas" },
   { name: "TRT 6", coverage: "Exames e consultas" },
   { name: "Unimed", coverage: "Recife, Intercâmbio e Unirede" },
@@ -97,42 +97,49 @@ export const INSURANCES: Insurance[] = [
 
 export type Review = {
   text: string;
+  author: string;
   unit: "Boa Viagem" | "Derby";
   source: "Google";
 };
 
 export const REVIEWS: Review[] = [
   {
+    author: "Ana C.",
     text:
       "Super indico, atendimento altamente humanizado. Profissionais comprometidos e muito educados! Fui super bem atendida. Agradeço a todos os funcionários pela simpatia e eficiência.",
     unit: "Boa Viagem",
     source: "Google",
   },
   {
+    author: "Fernanda M.",
     text:
       "Foi maravilhoso, pessoas maravilhosas e super atenciosas. Toda a equipe médica foi super atenciosa e me passou total tranquilidade. Recomendo de olhos fechados!",
     unit: "Boa Viagem",
     source: "Google",
   },
   {
+    author: "Patrícia L.",
     text:
       "Atendimento excelente, sem nenhum ponto negativo. Desde o atendimento na recepção, passando pelo cuidado por e-mail e WhatsApp, até o procedimento — só tenho elogios e gratidão.",
     unit: "Boa Viagem",
     source: "Google",
   },
   {
+    author: "Roberto A.",
     text:
       "Atendimento fora do normal, as secretárias são extremamente competentes, sempre com um sorriso no rosto e prontas para melhor atender os pacientes. Parabéns a todos que fazem o Centro Clínico Okazaki!",
     unit: "Derby",
     source: "Google",
   },
   {
+    author: "Carolina B.",
     text:
       "Clínica diferenciada, sem igual! A estrutura é excelente, o atendimento é impecável do início ao fim e os equipamentos são de última geração. Voltarei sempre que precisar.",
     unit: "Derby",
     source: "Google",
   },
   {
+    author: "Juliana S.",
     text:
       "Atendimento excelente, foi no horário, funcionários super educados e atentos. Explicam todo o procedimento. Super indico!",
     unit: "Boa Viagem",
@@ -158,6 +165,7 @@ export const TEAM: Doctor[] = [
   },
   {
     name: "Dra. Mitsu Okazaki",
+    role: "Fundadora",
     specialty: "Gastroenterologia",
     crm: "CRM-PE 6616",
     founder: true,
@@ -258,6 +266,19 @@ export type ServiceCard = {
 
 export const SERVICES: ServiceCard[] = [
   {
+    slug: "consultas",
+    href: "/gastroenterologia",
+    title: "Consultas especializadas",
+    description:
+      "Atendimento humano em Gastroenterologia, Hepatologia, Geriatria e Cirurgia do Aparelho Digestivo.",
+    bullets: [
+      "Gastroenterologia",
+      "Hepatologia",
+      "Geriatria",
+      "Cirurgia do Aparelho Digestivo",
+    ],
+  },
+  {
     slug: "endoscopia",
     href: "/endoscopia",
     title: "Endoscopia Digestiva Alta",
@@ -283,19 +304,6 @@ export const SERVICES: ServiceCard[] = [
       "Preparo orientado por escrito e WhatsApp",
     ],
   },
-  {
-    slug: "consultas",
-    href: "/gastroenterologia",
-    title: "Consultas especializadas",
-    description:
-      "Atendimento humano em Gastroenterologia, Hepatologia, Geriatria e Cirurgia do Aparelho Digestivo.",
-    bullets: [
-      "Gastroenterologia",
-      "Hepatologia",
-      "Geriatria",
-      "Cirurgia do Aparelho Digestivo",
-    ],
-  },
 ];
 
 export type Differential = {
@@ -307,9 +315,9 @@ export type Differential = {
 export const DIFFERENTIALS: Differential[] = [
   {
     number: "01",
-    title: "Sedação com anestesista",
+    title: "Olympus EVIS X1",
     text:
-      "Um anestesiologista dedicado acompanha cada exame, ajustando a sedação em tempo real — mais segurança e conforto do início à alta.",
+      "A geração mais recente da endoscopia japonesa — EDOF, TXI, NBI e RDI — para identificar lesões em estágio inicial.",
   },
   {
     number: "02",
@@ -319,9 +327,9 @@ export const DIFFERENTIALS: Differential[] = [
   },
   {
     number: "03",
-    title: "Olympus EVIS X1",
+    title: "Sedação com anestesista",
     text:
-      "A geração mais recente da endoscopia japonesa — EDOF, TXI, NBI e RDI — para identificar lesões em estágio inicial.",
+      "Um médico anestesiologista acompanha cada exame, ajustando a sedação em tempo real — mais segurança e conforto do início à alta.",
   },
   {
     number: "04",
@@ -348,11 +356,11 @@ export type HomeFaq = { q: string; a: string };
 export const HOME_FAQS: HomeFaq[] = [
   {
     q: "Quanto tempo dura o exame de endoscopia?",
-    a: "A endoscopia digestiva alta em si dura de 5 a 10 minutos. Considerando preparo, sedação e recuperação, o tempo total na clínica é de aproximadamente 2 a 3 horas.",
+    a: "A endoscopia digestiva alta em si dura cerca de 10 minutos. Considerando preparo, sedação e recuperação, o tempo total na clínica é de aproximadamente 1 a 2 horas.",
   },
   {
     q: "A endoscopia ou a colonoscopia doem?",
-    a: "Não. Na Clínica Okazaki todos os exames são realizados com sedação administrada por um anestesista dedicado — você não sente dor nem desconforto durante o procedimento.",
+    a: "Não. Na Clínica Okazaki todos os exames são realizados com sedação administrada por um médico anestesista — você não sente dor nem desconforto durante o procedimento.",
   },
   {
     q: "Como é o preparo para colonoscopia?",
@@ -360,7 +368,7 @@ export const HOME_FAQS: HomeFaq[] = [
   },
   {
     q: "Precisa de jejum?",
-    a: "Sim. Jejum de 8 horas para alimentos sólidos e 4 horas para líquidos claros (água) antes do exame, tanto para endoscopia quanto para colonoscopia.",
+    a: "Sim. Jejum de 10 horas para alimentos sólidos e 4 horas para líquidos claros (água) antes do exame, tanto para endoscopia quanto para colonoscopia.",
   },
   {
     q: "Posso dirigir ou voltar sozinho?",

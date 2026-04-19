@@ -12,7 +12,7 @@ export function Stats() {
     <section className="py-10 md:py-14 border-y border-line bg-paper-2">
       <div className="container-page grid grid-cols-2 md:grid-cols-4 gap-8">
         {STATS.map((s) => (
-          <div key={s.label} className="text-center md:text-left">
+          <div key={s.label} className="text-center">
             <p className="text-display-stat font-semibold text-teal-deep tracking-tight">
               {s.value}
             </p>

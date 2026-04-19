@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
+import HomeV2 from "./pages/HomeV2";
+import HomeV2Full from "./pages/HomeV2Full";
+import HomeV3 from "./pages/HomeV3";
 import Endoscopia from "./pages/Endoscopia";
 import Colonoscopia from "./pages/Colonoscopia";
 import PreparoEndoscopia from "./pages/PreparoEndoscopia";
@@ -25,6 +28,9 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/v2" element={<HomeV2 />} />
+        <Route path="/v2-full" element={<HomeV2Full />} />
+        <Route path="/v3" element={<HomeV3 />} />
         <Route path="/endoscopia" element={<Endoscopia />} />
         <Route path="/colonoscopia" element={<Colonoscopia />} />
         <Route path="/preparo-endoscopia" element={<PreparoEndoscopia />} />

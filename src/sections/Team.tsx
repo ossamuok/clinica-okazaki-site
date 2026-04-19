@@ -8,7 +8,7 @@ export function Team() {
       <div className="container-page">
         <SectionTitle
           eyebrow="quem cuida de você"
-          title="19 médicos, uma filosofia de cuidado"
+          title="Excelência no corpo clínico, cuidado em cada detalhe"
           subtitle="Gastroenterologistas, endoscopistas, hepatologistas, geriatras e cirurgiões do aparelho digestivo — da família fundadora à nova geração."
         />
 

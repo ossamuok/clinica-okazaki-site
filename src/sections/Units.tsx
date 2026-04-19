@@ -1,6 +1,47 @@
-import { MapPin, Phone, Clock, MessageCircle, ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import {
+  MapPin,
+  Phone,
+  Clock,
+  MessageCircle,
+  ArrowUpRight,
+  Play,
+} from "lucide-react";
 import { SectionTitle } from "../components/SectionTitle";
 import { HOURS, UNITS, WHATSAPP_URL } from "../lib/constants";
+import type { Unit } from "../lib/constants";
+
+function LazyMap({ unit }: { unit: Unit }) {
+  const [loaded, setLoaded] = useState(false);
+  if (loaded) {
+    return (
+      <iframe
+        src={unit.mapsEmbed}
+        title={`Mapa ${unit.name}`}
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        className="absolute inset-0 h-full w-full"
+        allowFullScreen
+      />
+    );
+  }
+  return (
+    <button
+      type="button"
+      onClick={() => setLoaded(true)}
+      aria-label={`Carregar mapa ${unit.name}`}
+      className="absolute inset-0 h-full w-full flex items-center justify-center bg-gradient-to-br from-teal-wash to-paper-2 hover:from-teal/10 hover:to-teal-wash transition-colors group"
+    >
+      <div className="absolute inset-0 dot-pattern opacity-50" aria-hidden />
+      <div className="relative flex flex-col items-center gap-3 text-teal-deep">
+        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-md group-hover:scale-110 transition-transform">
+          <Play className="h-5 w-5 ml-0.5" aria-hidden />
+        </span>
+        <span className="text-sm font-medium">Carregar mapa</span>
+      </div>
+    </button>
+  );
+}
 
 export function Units() {
   return (
@@ -19,14 +60,7 @@ export function Units() {
               className="rounded-unit border border-line overflow-hidden bg-paper flex flex-col"
             >
               <div className="relative aspect-[16/9] bg-paper-2">
-                <iframe
-                  src={unit.mapsEmbed}
-                  title={`Mapa ${unit.name}`}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="absolute inset-0 h-full w-full"
-                  allowFullScreen
-                />
+                <LazyMap unit={unit} />
               </div>
               <div className="p-6 md:p-8 flex-1 flex flex-col">
                 <span className="pill self-start">{unit.name}</span>

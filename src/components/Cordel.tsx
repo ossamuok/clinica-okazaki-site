@@ -53,14 +53,14 @@ export function Cordel() {
     <section id="historia" className="section bg-paper-2">
       <div className="container-page">
         <div className="max-w-3xl">
-          <Eyebrow>Bônus · história ilustrada</Eyebrow>
+          <Eyebrow>Conheça nossa história</Eyebrow>
           <h2 className="text-h2-fluid mt-5 text-balance">
-            Cordel: quase quatro décadas em 10 páginas
+            Cordel Okazaki: raiz oriental traduzida pela cultura pernambucana
           </h2>
           <p className="mt-5 text-lg text-ink-soft max-w-prose leading-relaxed">
-            De uma clínica nos fundos do consultório do Dr. Masaichi à sede
-            histórica no Derby e à moderna unidade em Boa Viagem — a história
-            do Centro Clínico Okazaki, ilustrada em cordel.
+            De uma clínica nos fundos da casa de Dr. Masaichi e Naruko
+            à sede no Derby e à filial em Boa Viagem — a história do
+            Centro Clínico Okazaki, ilustrada em cordel.
           </p>
         </div>
 
