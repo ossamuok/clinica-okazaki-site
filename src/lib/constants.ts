@@ -195,8 +195,16 @@ export const TEAM: Doctor[] = [
     ],
   },
   {
-    name: "Dra. Ana Beatriz Portela",
-    specialty: "Gastroenterologia",
+    name: "Dra. Ana Beatriz Sacerdote",
+    specialty: "Gastroenterologia · Hepatologia",
+    crm: "CRM-PE 19243",
+    rqe: "3381",
+    photo: "/assets/team/anabeatriz.jpg",
+    formation: [
+      { label: "Gastroenterologia / Hepatologia", institution: "HC-UFPE" },
+      { label: "Clínica Médica", institution: "HC-UFPE" },
+      { label: "Mestrado", institution: "CCS-UFPE" },
+    ],
   },
   {
     name: "Dra. Aya Angelica Sakaguchi",
@@ -223,6 +231,14 @@ export const TEAM: Doctor[] = [
     name: "Dr. Henrique Sivini de Farias",
     specialty: "Gastroenterologia · Endoscopia",
     crm: "CRM-PE 24079",
+    rqe: "16612",
+    photo: "/assets/team/henrique.jpg",
+    formation: [
+      { label: "Medicina", institution: "UFPE" },
+      { label: "Clínica Médica", institution: "HGV-PE" },
+      { label: "Gastroenterologia", institution: "HC-UFPE" },
+      { label: "Endoscopia", institution: "RHP-PE" },
+    ],
   },
   {
     name: "Dra. Ingrid Laís Vieira Rodrigues",
