@@ -187,7 +187,7 @@ const endoscopia: PageContent = {
         },
         {
           type: "warning",
-          text: "Dor intensa no peito ou abdome, febre, vômitos com sangue, fezes muito escuras, falta de ar ou dificuldade para respirar nas 48 horas após o exame. Ligue (81) 99954-0570 ou dirija-se ao serviço de urgência mais próximo.",
+          text: "Dor intensa no peito ou abdome, febre, vômitos com sangue, fezes muito escuras, falta de ar ou dificuldade para respirar nas 48 horas após o exame. Ligue (81) 99954-0570 e dirija-se ao serviço de urgência mais próximo.",
         },
         {
           type: "ul",

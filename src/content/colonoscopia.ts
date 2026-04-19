@@ -230,7 +230,7 @@ const colonoscopia: PageContent = {
         },
         {
           type: "warning",
-          text: "Dor abdominal intensa e progressiva, sangramento retal abundante, febre, náuseas e vômitos persistentes, ou falta de ar nas 72 horas após o exame. Ligue (81) 99954-0570 ou dirija-se ao serviço de urgência mais próximo.",
+          text: "Dor abdominal intensa e progressiva, sangramento retal abundante, febre, náuseas e vômitos persistentes, ou falta de ar nas 72 horas após o exame. Ligue (81) 99954-0570 e dirija-se ao serviço de urgência mais próximo.",
         },
         {
           type: "ul",

@@ -206,7 +206,7 @@ const preparoEndoscopia: PageContent = {
         },
         {
           type: "warning",
-          text: "Dor intensa no peito, abdome ou garganta; febre; vômitos com sangue; fezes pretas; falta de ar; dificuldade para respirar; sangramento oral persistente nas 48 horas após o exame. Ligue (81) 99954-0570 ou procure serviço de urgência.",
+          text: "Dor intensa no peito, abdome ou garganta; febre; vômitos com sangue; fezes pretas; falta de ar; dificuldade para respirar; sangramento oral persistente nas 48 horas após o exame. Ligue (81) 99954-0570 e dirija-se ao serviço de urgência mais próximo.",
         },
         {
           type: "inline-cta",
