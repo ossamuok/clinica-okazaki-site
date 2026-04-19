@@ -1,6 +1,15 @@
-import { UserRound } from "lucide-react";
 import { SectionTitle } from "../components/SectionTitle";
 import { TEAM } from "../lib/constants";
+
+function initials(name: string) {
+  return name
+    .replace(/^Dr[a]?\.\s*/i, "")
+    .split(" ")
+    .filter((p) => p.length > 2)
+    .slice(0, 2)
+    .map((p) => p[0].toUpperCase())
+    .join("");
+}
 
 export function Team() {
   return (
@@ -12,34 +21,60 @@ export function Team() {
           subtitle="Gastroenterologistas, endoscopistas, hepatologistas, geriatras e cirurgiões do aparelho digestivo — da família fundadora à nova geração."
         />
 
-        <div className="mt-12 md:mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 md:mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {TEAM.map((doc) => (
             <article
               key={doc.name}
-              className="bg-paper border border-line rounded-card p-6 hover:border-teal hover:shadow-md transition-all flex gap-4"
+              className="bg-paper border border-line rounded-card p-5 hover:border-teal hover:shadow-md transition-all flex gap-4"
             >
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-teal-wash text-teal-deep">
-                <UserRound className="h-5 w-5" strokeWidth={1.6} aria-hidden />
-              </span>
-              <div className="min-w-0">
-                {doc.role ? (
-                  <span className="text-eyebrow uppercase font-medium text-teal-deep">
-                    {doc.role}
-                  </span>
+              {/* Avatar */}
+              <div className="shrink-0 h-14 w-14 rounded-full overflow-hidden bg-teal-wash flex items-center justify-center ring-2 ring-line">
+                {doc.photo ? (
+                  <img
+                    src={doc.photo}
+                    alt=""
+                    className="h-full w-full object-cover object-top"
+                    loading="lazy"
+                  />
                 ) : (
-                  <span className="text-eyebrow uppercase font-medium text-muted">
-                    {doc.specialty.split(" · ")[0]}
+                  <span className="text-sm font-bold text-teal-deep select-none">
+                    {initials(doc.name)}
                   </span>
                 )}
-                <h3 className="mt-1.5 text-base font-semibold text-ink leading-tight">
+              </div>
+
+              {/* Info */}
+              <div className="min-w-0 flex-1">
+                <span className="block text-eyebrow uppercase font-medium text-teal-deep truncate">
+                  {doc.role ?? doc.specialty.split(" · ")[0]}
+                </span>
+                <h3 className="mt-1 text-sm font-semibold text-ink leading-tight">
                   {doc.name}
                 </h3>
-                <p className="mt-1 text-sm text-ink-soft leading-snug">
-                  {doc.specialty}
-                </p>
-                {doc.crm ? (
-                  <p className="mt-1 text-xs text-muted">{doc.crm}</p>
-                ) : null}
+                {(doc.crm || doc.rqe) && (
+                  <p className="mt-0.5 text-xs text-muted">
+                    {[doc.crm, doc.rqe && `RQE ${doc.rqe}`]
+                      .filter(Boolean)
+                      .join(" · ")}
+                  </p>
+                )}
+                {doc.formation && doc.formation.length > 0 && (
+                  <ul className="mt-2.5 space-y-1 border-t border-line pt-2.5">
+                    {doc.formation.map((f, i) => (
+                      <li key={i} className="flex gap-1.5 text-xs leading-snug">
+                        <span className="text-teal shrink-0 mt-0.5" aria-hidden>
+                          ·
+                        </span>
+                        <span>
+                          <span className="font-medium text-ink-soft">{f.label}</span>
+                          {f.institution && (
+                            <span className="text-muted"> — {f.institution}</span>
+                          )}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </article>
           ))}

@@ -147,11 +147,19 @@ export const REVIEWS: Review[] = [
   },
 ];
 
+export type Formation = {
+  label: string;
+  institution: string;
+};
+
 export type Doctor = {
   name: string;
   role?: string;
   specialty: string;
   crm?: string;
+  rqe?: string;
+  photo?: string;
+  formation?: Formation[];
   founder?: boolean;
 };
 
@@ -173,9 +181,15 @@ export const TEAM: Doctor[] = [
   {
     name: "Dr. Ossamu Okazaki",
     role: "Diretor Técnico",
-    specialty: "Gastroenterologia · Endoscopia",
-    crm: "CRM-PE 19246 · RQE 8449",
+    specialty: "Endoscopia Digestiva · Oncológica",
+    crm: "CRM-PE 19246",
+    rqe: "8449",
     founder: true,
+    formation: [
+      { label: "Endoscopia Digestiva", institution: "HC-USP" },
+      { label: "Endoscopia Oncológica", institution: "ICESP-USP" },
+      { label: "Fellow em Endoscopia Digestiva", institution: "Juntendo University Tokyo" },
+    ],
   },
   {
     name: "Dra. Ana Beatriz Portela",
@@ -189,6 +203,13 @@ export const TEAM: Doctor[] = [
   {
     name: "Dr. Carlos Esdras Almeida Moraes",
     specialty: "Cirurgia do Aparelho Digestivo",
+    crm: "CRM-PE 19242",
+    rqe: "13822",
+    photo: "/assets/team/carlos.jpg",
+    formation: [
+      { label: "Cirurgia Geral", institution: "HOF-PE" },
+      { label: "Cirurgia do Aparelho Digestivo", institution: "HGV-PE" },
+    ],
   },
   {
     name: "Dr. Guilherme Pompílio Paranhos",
@@ -202,8 +223,15 @@ export const TEAM: Doctor[] = [
   },
   {
     name: "Dra. Ingrid Laís Vieira Rodrigues",
-    specialty: "Gastroenterologia",
+    specialty: "Gastrohepatologia",
     crm: "CRM-PE 24689",
+    rqe: "13385",
+    photo: "/assets/team/ingrid.jpg",
+    formation: [
+      { label: "Gastrohepatologia", institution: "Univ. de Pernambuco — H. Osvaldo Cruz" },
+      { label: "Clínica Médica", institution: "Hospital Maria Lucinda" },
+      { label: "Pós-grad. em Cuidados Paliativos", institution: "Univ. de Pernambuco" },
+    ],
   },
   {
     name: "Dra. Isabela Aquino",
@@ -213,6 +241,13 @@ export const TEAM: Doctor[] = [
     name: "Dra. Jane Erika Frazão Okazaki",
     specialty: "Geriatria",
     crm: "CRM-PE 19351",
+    rqe: "8791",
+    photo: "/assets/team/jane.jpg",
+    formation: [
+      { label: "Geriatria", institution: "UNIFESP" },
+      { label: "Mestrado em Saúde", institution: "UNIFESP" },
+      { label: "Pesquisa Clínica — PPCR", institution: "Harvard University" },
+    ],
   },
   {
     name: "Dra. Liliane de Andrade Carvalho",
@@ -221,13 +256,25 @@ export const TEAM: Doctor[] = [
   },
   {
     name: "Dra. Lívia Braz",
-    specialty: "Gastroenterologia · Endoscopia",
+    specialty: "Endoscopia Digestiva · Gastroenterologia",
     crm: "CRM-PE 24662",
+    rqe: "11263",
+    photo: "/assets/team/livia.jpg",
+    formation: [
+      { label: "Endoscopia Digestiva", institution: "RHP-PE" },
+      { label: "Gastroenterologia", institution: "HC-UFPE" },
+    ],
   },
   {
     name: "Dra. Mariana de Lira Fonte",
-    specialty: "Gastroenterologia · Endoscopia",
+    specialty: "Gastroenterologia · Endoscopia Digestiva",
     crm: "CRM-PE 27024",
+    rqe: "16671",
+    photo: "/assets/team/mariana.jpg",
+    formation: [
+      { label: "Gastroenterologia", institution: "USP" },
+      { label: "Endoscopia Digestiva", institution: "USP" },
+    ],
   },
   {
     name: "Dra. Marília Novaes",
@@ -241,13 +288,26 @@ export const TEAM: Doctor[] = [
   },
   {
     name: "Dra. Sylene Coutinho Rampche",
-    specialty: "Gastroenterologia",
+    specialty: "Gastrohepatologia",
     crm: "CRM-PE 11715",
+    rqe: "1780",
+    photo: "/assets/team/sylene.jpg",
+    formation: [
+      { label: "Gastrohepatologia", institution: "Universidade de Pernambuco" },
+      { label: "Doutorado em Gastroenterologia", institution: "Universidade de São Paulo" },
+    ],
   },
   {
     name: "Dra. Tatiana Bezerra Regueira",
-    specialty: "Endoscopia",
+    specialty: "Endoscopia Digestiva",
     crm: "CRM-PE 28993",
+    rqe: "16617",
+    photo: "/assets/team/tatiana.jpg",
+    formation: [
+      { label: "Endoscopia Digestiva", institution: "Hospital 9 de Julho — SP" },
+      { label: "Cirurgia Geral", institution: "Hospital Barão de Lucena" },
+      { label: "Endoscopia Biliopancreática", institution: "Hospital 9 de Julho — SP" },
+    ],
   },
   {
     name: "Dra. Zenaide Planzo",
