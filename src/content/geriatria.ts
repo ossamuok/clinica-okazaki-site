@@ -198,7 +198,7 @@ const geriatria: PageContent = {
       blocks: [
         {
           type: "p",
-          text: "Na Clínica Okazaki, a consulta geriátrica segue o modelo de avaliação geriátrica ampla. A primeira consulta dura de 60 a 90 minutos — tempo necessário para cobrir todas as dimensões que mencionamos.",
+          text: "Na Clínica Okazaki, a consulta geriátrica com a Dra. Jane Erika Frazão Okazaki segue o modelo de avaliação geriátrica ampla. A primeira consulta dura de 60 a 90 minutos — tempo necessário para cobrir todas as dimensões que mencionamos.",
         },
         {
           type: "p",
