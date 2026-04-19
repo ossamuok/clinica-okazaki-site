@@ -129,7 +129,7 @@ const colonoscopia: PageContent = {
         {
           type: "ul",
           items: [
-            "O propofol, principal medicação usada, tem ação ultrarrápida e recuperação igualmente veloz, mas exige monitorização rigorosa",
+            "A sedação tem ação ultrarrápida e recuperação veloz, com monitorização rigorosa durante todo o procedimento",
             "Um profissional dedicado apenas à sedação libera o endoscopista para se concentrar totalmente no exame",
             "Eventos adversos — queda de saturação, bradicardia, hipotensão — são detectados e tratados imediatamente",
             "O ajuste em tempo real evita tanto despertar durante o exame quanto sedação excessiva",
@@ -205,7 +205,7 @@ const colonoscopia: PageContent = {
       blocks: [
         {
           type: "p",
-          text: "Graças ao CO₂ e à sedação curta com propofol, a recuperação da colonoscopia é geralmente tranquila. As orientações são essenciais nas 12 horas seguintes:",
+          text: "Graças ao CO₂ e à sedação curta administrada pelo anestesista, a recuperação da colonoscopia é geralmente tranquila. As orientações são essenciais nas 12 horas seguintes:",
         },
         {
           type: "ul",

@@ -96,7 +96,7 @@ const endoscopia: PageContent = {
         },
         {
           type: "callout",
-          text: "A medicação mais usada é o propofol, um anestésico de ação rápida e recuperação igualmente rápida. Você dorme em segundos e desperta sem a sensação de ressaca típica de sedações mais antigas.",
+          text: "A sedação tem ação rápida: você dorme em segundos e desperta sem a sensação de ressaca típica de sedações mais antigas.",
         },
         {
           type: "ul",
