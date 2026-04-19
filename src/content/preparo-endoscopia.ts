@@ -63,6 +63,14 @@ const preparoEndoscopia: PageContent = {
           ],
         },
         { type: "p", text: "Estes podem ser consumidos até 4 horas antes:" },
+        {
+          type: "ul",
+          items: [
+            "Água",
+            "Chá sem leite (camomila, hortelã, erva-cidreira)",
+            "Água de coco natural coada",
+          ],
+        },
       ],
     },
     {
