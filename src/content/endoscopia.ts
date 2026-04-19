@@ -91,7 +91,7 @@ const endoscopia: PageContent = {
       blocks: [
         {
           type: "p",
-          text: "Todas as endoscopias da Clínica Okazaki são realizadas com sedação administrada por um anestesiologista dedicado. Essa escolha não é a mais comum no mercado — muitas clínicas fazem sedação com medicação aplicada pelo próprio endoscopista ou por enfermeiro. Para nós, porém, é um ponto inegociável por três razões:",
+          text: "Todas as endoscopias da Clínica Okazaki são realizadas com sedação administrada por um anestesiologista dedicado, presente do início ao fim do procedimento. Para nós, essa é uma escolha inegociável por três razões:",
         },
         {
           type: "callout",
