@@ -127,7 +127,7 @@ const preparoColonoscopia: PageContent = {
           items: [
             "Pressão arterial, tireoide, antidepressivos, anticonvulsivantes: tomar normalmente com um pequeno gole de água",
             "Diabetes: avisar no agendamento — a medicação precisa de ajuste por causa do jejum",
-            "Anticoagulantes e AAS: avisar no agendamento — o manejo é planejado com o médico que prescreveu",
+            "Anticoagulantes: avisar no agendamento — o manejo é planejado com o médico que prescreveu",
             "Documento de identidade com foto e carteira do convênio",
             "Pedido médico original",
             "Exames anteriores, se tiver (colonoscopias prévias, biópsias)",
@@ -193,7 +193,7 @@ const preparoColonoscopia: PageContent = {
         },
         {
           type: "warning",
-          text: "Anticoagulantes (varfarina/Marevan, rivaroxabana/Xarelto, apixabana/Eliquis, dabigatrana/Pradaxa) e antiagregantes plaquetários (AAS/Aspirina, clopidogrel/Plavix, ticagrelor/Brilinta) precisam ser suspensos antes do exame — mas somente com o aval do médico assistente que acompanha você. Nunca suspenda por conta própria, principalmente se a medicação foi indicada após AVC, infarto, fibrilação atrial ou colocação de stent.",
+          text: "Anticoagulantes (varfarina/Marevan, rivaroxabana/Xarelto, apixabana/Eliquis, dabigatrana/Pradaxa) e antiagregantes plaquetários (clopidogrel/Plavix, ticagrelor/Brilinta) precisam ser suspensos antes do exame — mas somente com o aval do médico assistente que acompanha você. Nunca suspenda por conta própria, principalmente se a medicação foi indicada após AVC, infarto, fibrilação atrial ou colocação de stent.",
         },
         {
           type: "p",
