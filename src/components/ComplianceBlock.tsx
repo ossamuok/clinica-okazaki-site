@@ -2,7 +2,7 @@ import { SITE } from "../lib/constants";
 
 export function ComplianceBlock() {
   return (
-    <div className="mt-16 pt-8 border-t border-line text-xs text-muted leading-relaxed">
+    <div className="pt-8 border-t border-line text-xs text-muted leading-relaxed">
       <p>
         <strong className="text-ink-soft font-medium">
           Responsável técnico:
