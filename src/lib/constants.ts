@@ -228,9 +228,9 @@ export const TEAM: Doctor[] = [
     rqe: "13385",
     photo: "/assets/team/ingrid.jpg",
     formation: [
-      { label: "Gastrohepatologia", institution: "Univ. de Pernambuco — H. Osvaldo Cruz" },
+      { label: "Gastrohepatologia", institution: "HUOC-UPE" },
       { label: "Clínica Médica", institution: "Hospital Maria Lucinda" },
-      { label: "Pós-grad. em Cuidados Paliativos", institution: "Univ. de Pernambuco" },
+      { label: "Pós-grad. em Cuidados Paliativos", institution: "UPE" },
     ],
   },
   {
@@ -293,8 +293,8 @@ export const TEAM: Doctor[] = [
     rqe: "1780",
     photo: "/assets/team/sylene.jpg",
     formation: [
-      { label: "Gastrohepatologia", institution: "Universidade de Pernambuco" },
-      { label: "Doutorado em Gastroenterologia", institution: "Universidade de São Paulo" },
+      { label: "Gastrohepatologia", institution: "UPE" },
+      { label: "Doutorado em Gastroenterologia", institution: "USP" },
     ],
   },
   {
