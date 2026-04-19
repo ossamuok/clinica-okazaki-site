@@ -25,57 +25,57 @@ export function Team() {
           {TEAM.map((doc) => (
             <article
               key={doc.name}
-              className="bg-paper border border-line rounded-card p-5 hover:border-teal hover:shadow-md transition-all flex gap-4"
+              className="bg-paper border border-line rounded-card p-5 hover:border-teal hover:shadow-md transition-all"
             >
-              {/* Avatar */}
-              <div className="shrink-0 h-14 w-14 rounded-full overflow-hidden bg-teal-wash flex items-center justify-center ring-2 ring-line">
-                {doc.photo ? (
-                  <img
-                    src={doc.photo}
-                    alt=""
-                    className="h-full w-full object-cover object-top"
-                    loading="lazy"
-                  />
-                ) : (
-                  <span className="text-sm font-bold text-teal-deep select-none">
-                    {initials(doc.name)}
+              {/* Top row: avatar + name/crm */}
+              <div className="flex gap-4">
+                <div className="shrink-0 h-14 w-14 rounded-full overflow-hidden bg-teal-wash flex items-center justify-center ring-2 ring-line">
+                  {doc.photo ? (
+                    <img
+                      src={doc.photo}
+                      alt=""
+                      className="h-full w-full object-cover object-top"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <span className="text-sm font-bold text-teal-deep select-none">
+                      {initials(doc.name)}
+                    </span>
+                  )}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <span className="block text-eyebrow uppercase font-medium text-teal-deep truncate">
+                    {doc.role ?? doc.specialty.split(" · ")[0]}
                   </span>
-                )}
+                  <h3 className="mt-1 text-sm font-semibold text-ink leading-tight">
+                    {doc.name}
+                  </h3>
+                  {(doc.crm || doc.rqe) && (
+                    <p className="mt-0.5 text-xs text-muted">
+                      {[doc.crm, doc.rqe && `RQE ${doc.rqe}`]
+                        .filter(Boolean)
+                        .join(" · ")}
+                    </p>
+                  )}
+                </div>
               </div>
 
-              {/* Info */}
-              <div className="min-w-0 flex-1">
-                <span className="block text-eyebrow uppercase font-medium text-teal-deep truncate">
-                  {doc.role ?? doc.specialty.split(" · ")[0]}
-                </span>
-                <h3 className="mt-1 text-sm font-semibold text-ink leading-tight">
-                  {doc.name}
-                </h3>
-                {(doc.crm || doc.rqe) && (
-                  <p className="mt-0.5 text-xs text-muted">
-                    {[doc.crm, doc.rqe && `RQE ${doc.rqe}`]
-                      .filter(Boolean)
-                      .join(" · ")}
-                  </p>
-                )}
-                {doc.formation && doc.formation.length > 0 && (
-                  <ul className="mt-2.5 space-y-1 border-t border-line pt-2.5">
-                    {doc.formation.map((f, i) => (
-                      <li key={i} className="flex gap-1.5 text-xs leading-snug">
-                        <span className="text-teal shrink-0 mt-0.5" aria-hidden>
-                          ·
-                        </span>
-                        <span>
-                          <span className="font-medium text-ink-soft">{f.label}</span>
-                          {f.institution && (
-                            <span className="text-muted"> — {f.institution}</span>
-                          )}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
+              {/* Formation — full width below */}
+              {doc.formation && doc.formation.length > 0 && (
+                <ul className="mt-3 pt-3 border-t border-line space-y-1">
+                  {doc.formation.map((f, i) => (
+                    <li key={i} className="flex gap-1.5 text-xs leading-snug">
+                      <span className="text-teal shrink-0 mt-0.5" aria-hidden>·</span>
+                      <span className="min-w-0 break-words">
+                        <span className="font-medium text-ink-soft">{f.label}</span>
+                        {f.institution && (
+                          <span className="text-muted"> — {f.institution}</span>
+                        )}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </article>
           ))}
         </div>
