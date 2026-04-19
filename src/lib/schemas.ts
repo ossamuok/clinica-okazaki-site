@@ -126,7 +126,7 @@ export const faqEndoscopiaHomeSchema: JsonLd = {
       acceptedAnswer: {
         "@type": "Answer",
         text:
-          "A endoscopia digestiva alta em si dura de 5 a 10 minutos. Considerando preparo, sedação e recuperação, o tempo total na clínica é de aproximadamente 2 a 3 horas.",
+          "A endoscopia digestiva alta em si dura cerca de 10 minutos. Considerando preparo, sedação e recuperação, o tempo total na clínica é de aproximadamente 1 a 2 horas.",
       },
     },
     {
