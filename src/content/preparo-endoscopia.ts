@@ -144,8 +144,12 @@ const preparoEndoscopia: PageContent = {
           text: "Estes precisam ser conversados com seu médico ANTES do dia do exame:",
         },
         {
-          type: "p",
-          text: "Grupo que exige maior cuidado. Se você usa anticoagulantes, antiagregantes plaquetários ou hipoglicemiantes, avise no agendamento para que a conduta seja definida em conjunto com o médico que prescreveu.",
+          type: "warning",
+          text: "Medicamentos para perda de peso ou controle glicêmico da classe GLP-1 — como Ozempic, Wegovy, Mounjaro, Zepbound, Saxenda, Victoza, Trulicity, Rybelsus e similares — retardam o esvaziamento gástrico e aumentam o risco de broncoaspiração durante a sedação. É obrigatório suspendê-los antes do exame. Ao agendar, você recebe as orientações detalhadas sobre quando suspender.",
+        },
+        {
+          type: "warning",
+          text: "Anticoagulantes (varfarina/Marevan, rivaroxabana/Xarelto, apixabana/Eliquis, dabigatrana/Pradaxa) e antiagregantes plaquetários (AAS/Aspirina, clopidogrel/Plavix, ticagrelor/Brilinta) precisam ser suspensos antes do exame — mas somente com o aval do médico assistente que acompanha você. Nunca suspenda por conta própria.",
         },
       ],
     },

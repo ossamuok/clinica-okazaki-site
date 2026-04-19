@@ -188,8 +188,12 @@ const preparoColonoscopia: PageContent = {
           text: "Este é um dos pontos que mais gera dúvida. Informe sempre no agendamento todas as medicações que você usa — especialmente:",
         },
         {
-          type: "p",
-          text: "Varfarina (Marevan), rivaroxabana (Xarelto), apixabana (Eliquis), dabigatrana (Pradaxa), AAS (Aspirina), clopidogrel (Plavix), ticagrelor (Brilinta): a suspensão ou ajuste deve ser feita pelo médico que prescreveu, considerando o risco individual. Nunca suspenda por conta própria — principalmente se a medicação foi indicada após AVC, infarto, fibrilação atrial ou colocação de stent.",
+          type: "warning",
+          text: "Medicamentos para perda de peso ou controle glicêmico da classe GLP-1 — como Ozempic, Wegovy, Mounjaro, Zepbound, Saxenda, Victoza, Trulicity, Rybelsus e similares — retardam o esvaziamento gástrico e aumentam o risco de broncoaspiração durante a sedação. É obrigatório suspendê-los antes do exame. Ao agendar, você recebe as orientações detalhadas sobre quando suspender.",
+        },
+        {
+          type: "warning",
+          text: "Anticoagulantes (varfarina/Marevan, rivaroxabana/Xarelto, apixabana/Eliquis, dabigatrana/Pradaxa) e antiagregantes plaquetários (AAS/Aspirina, clopidogrel/Plavix, ticagrelor/Brilinta) precisam ser suspensos antes do exame — mas somente com o aval do médico assistente que acompanha você. Nunca suspenda por conta própria, principalmente se a medicação foi indicada após AVC, infarto, fibrilação atrial ou colocação de stent.",
         },
         {
           type: "p",
