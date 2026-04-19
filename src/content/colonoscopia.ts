@@ -300,7 +300,7 @@ const colonoscopia: PageContent = {
     },
     {
       q: "Como é o preparo para colonoscopia?",
-      a: "O preparo começa 2 a 3 dias antes com dieta pobre em fibras, evolui para dieta líquida no dia anterior e inclui um laxante prescrito. Na Clínica Okazaki você recebe orientação detalhada por escrito e pode tirar dúvidas por telefone ou WhatsApp a qualquer momento.",
+      a: "O preparo começa 2 dias antes com dieta pobre em fibras, evolui para dieta líquida no dia anterior e inclui um laxante prescrito. Na Clínica Okazaki você recebe orientação detalhada por escrito e pode tirar dúvidas por telefone ou WhatsApp a qualquer momento.",
     },
     {
       q: "A colonoscopia é feita com sedação?",

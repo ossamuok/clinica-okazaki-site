@@ -4,16 +4,16 @@ const preparoColonoscopia: PageContent = {
   slug: "preparo-colonoscopia",
   title: "Preparo para Colonoscopia: Dieta e Laxante | Clínica Okazaki",
   description:
-    "Preparo para colonoscopia: dieta nos 3 dias anteriores, laxantes, jejum e medicamentos. Guia completo da Clínica Okazaki, Recife.",
+    "Preparo para colonoscopia: dieta nos 2 dias anteriores, laxantes, jejum e medicamentos. Guia completo da Clínica Okazaki, Recife.",
   keywords:
     "preparo para colonoscopia, preparo colonoscopia, como preparar colonoscopia, dieta antes da colonoscopia, o que comer antes colonoscopia, laxante colonoscopia, pode beber água antes colonoscopia, prep",
-  h1: "Preparo para colonoscopia: dieta, laxante e jejum em 3 dias",
-  lead: "O preparo é a parte mais importante da colonoscopia — um intestino bem preparado faz o exame ser rápido, seguro e preciso. Este guia detalha cada passo, da dieta dos 3 dias anteriores até o jejum no dia do exame, com respostas às dúvidas mais frequentes.",
+  h1: "Preparo para colonoscopia: dieta, laxante e jejum em 2 dias",
+  lead: "O preparo é a parte mais importante da colonoscopia — um intestino bem preparado faz o exame ser rápido, seguro e preciso. Este guia detalha cada passo, da dieta dos 2 dias anteriores até o jejum no dia do exame, com respostas às dúvidas mais frequentes.",
   eyebrow: "PREPARO · COLONOSCOPIA",
   breadcrumbLabel: "Preparo da colonoscopia",
   about: "Preparo para Colonoscopia",
   metaChips: [
-    { label: "Dieta", value: "3 dias" },
+    { label: "Dieta", value: "2 dias" },
     { label: "Laxante", value: "Prescrito" },
     { label: "Acompanhante", value: "Obrigatório" },
   ],
@@ -43,13 +43,14 @@ const preparoColonoscopia: PageContent = {
       ],
     },
     {
-      id: "tres-dias-antes",
-      h2: "3 dias antes: ajustes iniciais na dieta",
+      id: "dois-dias-antes",
+      h2: "2 dias antes: dieta com baixo teor de fibras",
       blocks: [
         {
           type: "p",
-          text: "A partir de 3 dias antes da colonoscopia, você começa a ajustar a alimentação para reduzir progressivamente a quantidade de fibras e resíduos no intestino. O objetivo é evitar acúmulo de resíduos que o laxante teria dificuldade em eliminar.",
+          text: "A partir de 2 dias antes da colonoscopia, ajuste a alimentação para reduzir fibras e resíduos no intestino. O objetivo é facilitar a ação do laxante e garantir um preparo eficiente.",
         },
+        { type: "p", text: "Evite completamente:" },
         {
           type: "ul",
           items: [
@@ -61,13 +62,7 @@ const preparoColonoscopia: PageContent = {
             "Milho, pipoca, ervilha — especialmente problemáticos",
           ],
         },
-      ],
-    },
-    {
-      id: "dois-dias-antes",
-      h2: "2 dias antes: consolidando a dieta pobre em fibras",
-      blocks: [
-        { type: "p", text: "Mantenha a mesma restrição do dia anterior. Priorize:" },
+        { type: "p", text: "Priorize:" },
         {
           type: "ul",
           items: [
@@ -140,20 +135,20 @@ const preparoColonoscopia: PageContent = {
       ],
     },
     {
-      id: "tipos-de-laxante",
-      h2: "Tipos de laxante mais usados no preparo",
+      id: "laxante-preparo",
+      h2: "O laxante: o que esperar e por que seguir à risca",
       blocks: [
         {
           type: "p",
-          text: "A escolha do laxante depende do perfil do paciente, tolerância e preferência do médico. Os três mais comuns no Brasil são:",
+          text: "O laxante para colonoscopia é prescrito pelo médico conforme o perfil de cada paciente — tipo, volume, horário de início e modo de preparo variam. As instruções detalhadas são enviadas no momento do agendamento.",
         },
         {
           type: "p",
-          text: "Tradicional no Brasil, barato e eficaz. Sabor adocicado pode ser enjoativo — é muito melhor tomado gelado. Dose padrão: 1.000 mL diluídos em suco coado. Pode causar náusea e cólica em alguns pacientes. Cuidado: pode provocar explosão durante cauterização em polipectomia — informe na clínica se houver essa indicação.",
+          text: "O mais importante é seguir rigorosamente o protocolo prescrito: tomar na dose, no horário e do modo indicado. Não substitua por laxantes caseiros, chás ou produtos naturais — eles não têm potência nem previsibilidade suficientes para limpar o intestino adequadamente.",
         },
         {
-          type: "p",
-          text: "Considerado o padrão-ouro internacional. Volume maior (até 4 L), mas melhor tolerado por pacientes com insuficiência renal ou cardíaca. Sabor neutro/salgado. Tende a causar menos náusea que o manitol.",
+          type: "callout",
+          text: "Hidratação é essencial durante o laxante. Beba bastante água e líquidos claros ao longo de todo o processo — o laxante elimina muito líquido e a desidratação é o efeito adverso mais comum.",
         },
       ],
     },
@@ -273,15 +268,11 @@ const preparoColonoscopia: PageContent = {
   howTo: {
     name: "Como se preparar para a colonoscopia",
     description:
-      "Preparo em 3 dias: ajuste de dieta, dieta pobre em fibras, dieta líquida e laxante, jejum no dia do exame.",
+      "Preparo em 2 dias: dieta pobre em fibras, dieta líquida e laxante no dia anterior, jejum no dia do exame.",
     steps: [
       {
-        name: "3 dias antes: reduzir fibras",
-        text: "Reduza frutas com casca, verduras cruas, cereais integrais, sementes, castanhas, milho e pipoca. O objetivo é evitar acúmulo de resíduos que o laxante teria dificuldade em eliminar.",
-      },
-      {
         name: "2 dias antes: dieta pobre em fibras",
-        text: "Priorize carboidratos refinados (arroz branco, pão branco), proteínas magras, laticínios claros, frutas sem casca, legumes cozidos e bebidas claras.",
+        text: "Evite frutas com casca, verduras cruas, cereais integrais, sementes, castanhas, milho e pipoca. Priorize arroz branco, pão branco, proteínas magras, laticínios claros, legumes cozidos e bebidas claras.",
       },
       {
         name: "Dia anterior: dieta líquida e laxante",
