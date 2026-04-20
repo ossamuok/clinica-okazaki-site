@@ -31,11 +31,11 @@ const colonoscopia: PageContent = {
         },
         {
           type: "p",
-          text: "Diferentemente de outros exames de imagem (tomografia, ultrassom ou enema opaco), a colonoscopia combina diagnóstico com tratamento. Durante o mesmo procedimento, é possível coletar biópsias, remover pólipos e cauterizar pequenos pontos de sangramento — tudo sem uma segunda sedação e sem novas internações.",
+          text: "Diferentemente de outros exames de imagem (tomografia, ultrassom ou enema opaco), a colonoscopia combina diagnóstico com tratamento. Durante o mesmo procedimento, é possível coletar biópsias, remover pólipos e cauterizar pequenos pontos de sangramento.",
         },
         {
           type: "p",
-          text: "É, hoje, o exame de escolha para o rastreamento do câncer colorretal — segundo tumor mais diagnosticado no Brasil, segundo dados do INCA — e também para investigação de uma ampla gama de sintomas intestinais.",
+          text: "É, hoje, o exame de escolha para o rastreamento do câncer colorretal e para a investigação de sintomas intestinais.",
         },
       ],
     },
@@ -50,10 +50,6 @@ const colonoscopia: PageContent = {
         {
           type: "p",
           text: "Atualmente, a recomendação das principais sociedades médicas é:",
-        },
-        {
-          type: "callout",
-          text: "Nossa recepção confere a cobertura do seu convênio, explica o preparo em detalhes e agenda o exame em até 7 dias úteis.",
         },
         {
           type: "ul",
@@ -74,7 +70,7 @@ const colonoscopia: PageContent = {
       blocks: [
         {
           type: "p",
-          text: "Durante a colonoscopia, o intestino precisa ser insuflado para que suas paredes se afastem e o médico consiga examinar toda a mucosa. Tradicionalmente, clínicas utilizam ar ambiente para essa insuflação. O problema é que o ar permanece preso no intestino por horas após o exame, causando os desconfortos que muitos pacientes relatam como a pior parte da experiência: cólicas, sensação de inchaço abdominal e gases prolongados.",
+          text: "Durante a colonoscopia, o intestino precisa ser insuflado para que suas paredes se afastem e o médico consiga examinar toda a mucosa. O ar permanece preso no intestino por horas após o exame, causando os desconfortos que muitos pacientes relatam como a pior parte da experiência: cólicas, sensação de inchaço abdominal e gases prolongados.",
         },
         {
           type: "p",
@@ -106,11 +102,11 @@ const colonoscopia: PageContent = {
         },
         {
           type: "p",
-          text: "Na sala de preparo, você troca de roupa, coloca uma veia no antebraço e é avaliado pelo anestesista. O monitoramento de sinais vitais começa aqui e segue até a alta.",
+          text: "Na sala de preparo, você troca de roupa, é realizado um acesso venoso e é avaliado pelo anestesista. O monitoramento de sinais vitais começa aqui e segue até a alta.",
         },
         {
           type: "p",
-          text: "Deitado sobre o lado esquerdo, você recebe a sedação e dorme em segundos. O endoscopista então introduz o colonoscópio pelo reto e navega por toda a extensão do cólon — reto, sigmoide, cólon descendente, transverso, ascendente, ceco e, em geral, os últimos centímetros do íleo. A insuflação é feita com CO₂ e o exame é registrado em vídeo e imagens. Se forem identificados pólipos, na grande maioria dos casos são removidos no mesmo momento (polipectomia).",
+          text: "Deitado sobre o lado esquerdo, você recebe a sedação e dorme em segundos. O endoscopista então introduz o colonoscópio pelo reto e navega por toda a extensão do cólon — reto, sigmoide, cólon descendente, transverso, ascendente, ceco e, em geral, os últimos centímetros do íleo. A insuflação é feita com CO₂ e o exame é registrado em imagens. Se forem identificados pólipos, na grande maioria dos casos são removidos no mesmo momento (polipectomia).",
         },
       ],
     },
@@ -131,7 +127,6 @@ const colonoscopia: PageContent = {
           items: [
             "A sedação tem ação ultrarrápida e recuperação veloz, com monitorização rigorosa durante todo o procedimento",
             "Um profissional dedicado apenas à sedação libera o endoscopista para se concentrar totalmente no exame",
-            "Eventos adversos — queda de saturação, bradicardia, hipotensão — são detectados e tratados imediatamente",
             "O ajuste em tempo real evita tanto despertar durante o exame quanto sedação excessiva",
           ],
         },
@@ -183,7 +178,7 @@ const colonoscopia: PageContent = {
         },
         {
           type: "p",
-          text: "A polipectomia é feita com alças metálicas, pinças ou cauterização, dependendo do tamanho e do tipo da lesão. O procedimento é indolor (paciente sedado), rápido e, na imensa maioria dos casos, interrompe a cadeia que levaria ao câncer colorretal. Os pólipos removidos são enviados ao laboratório de patologia para análise detalhada.",
+          text: "A polipectomia é feita com alças metálicas, ou pinças, dependendo do tamanho e do tipo da lesão. O procedimento é indolor (paciente sedado), rápido e, na imensa maioria dos casos, interrompe a cadeia que levaria ao câncer colorretal. Os pólipos removidos são enviados ao laboratório de patologia para análise detalhada.",
         },
         {
           type: "p",
@@ -197,7 +192,7 @@ const colonoscopia: PageContent = {
       blocks: [
         {
           type: "p",
-          text: "O câncer colorretal é o segundo tumor maligno mais diagnosticado no Brasil e uma das principais causas de morte por câncer no país. A boa notícia é que, entre todos os tumores, é um dos mais preveníveis — desde que haja rastreamento em tempo adequado.",
+          text: "O câncer colorretal é o segundo tumor maligno mais diagnosticado no Brasil, de acordo com dados do INCA, e uma das principais causas de morte por câncer no país. A boa notícia é que, entre todos os tumores, é um dos mais preveníveis — desde que haja rastreamento em tempo adequado.",
         },
         {
           type: "p",
@@ -330,7 +325,7 @@ const colonoscopia: PageContent = {
     },
     {
       q: "Posso fazer endoscopia e colonoscopia no mesmo dia?",
-      a: "Sim. É muito comum realizar os dois exames na mesma sessão, com uma única sedação. Reduz o tempo de preparo, o número de visitas e o custo total.",
+      a: "Sim. É muito comum realizar os dois exames na mesma sessão, com uma única sedação — o que também reduz o risco de broncoaspiração em comparação com dois procedimentos anestésicos separados. Reduz ainda o tempo de preparo, o número de visitas e o custo total.",
     },
     {
       q: "Quais convênios cobrem colonoscopia na Clínica Okazaki?",
