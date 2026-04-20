@@ -116,7 +116,7 @@ export const medicalClinicBoaViagemSchema: JsonLd = {
   hasMap: UNITS[1].mapsUrl,
 };
 
-export const faqEndoscopiaHomeSchema: JsonLd = {
+export const faqHomeSchema: JsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
@@ -156,13 +156,6 @@ export const faqEndoscopiaHomeSchema: JsonLd = {
           "Não. Como o exame é feito com sedação, você não pode dirigir no dia e precisa estar acompanhado de um adulto responsável.",
       },
     },
-  ],
-};
-
-export const faqColonoscopiaHomeSchema: JsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
     {
       "@type": "Question",
       name: "A partir de que idade fazer colonoscopia?",
@@ -273,6 +266,5 @@ export const HOME_SCHEMAS: JsonLd[] = [
   medicalOrganizationSchema,
   medicalClinicDerbySchema,
   medicalClinicBoaViagemSchema,
-  faqEndoscopiaHomeSchema,
-  faqColonoscopiaHomeSchema,
+  faqHomeSchema,
 ];
