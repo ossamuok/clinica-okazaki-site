@@ -1,12 +1,13 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { MotionConfig } from "framer-motion";
 import "./index.css";
 import App from "./App";
 
-createRoot(document.getElementById("root")!).render(
+const rootEl = document.getElementById("root")!;
+const AppTree = (
   <StrictMode>
     <HelmetProvider>
       <BrowserRouter>
@@ -15,5 +16,11 @@ createRoot(document.getElementById("root")!).render(
         </MotionConfig>
       </BrowserRouter>
     </HelmetProvider>
-  </StrictMode>,
+  </StrictMode>
 );
+
+if (rootEl.hasChildNodes()) {
+  hydrateRoot(rootEl, AppTree);
+} else {
+  createRoot(rootEl).render(AppTree);
+}
