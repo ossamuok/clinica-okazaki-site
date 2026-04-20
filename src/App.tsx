@@ -1,14 +1,15 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import Home from "./pages/Home";
-import Endoscopia from "./pages/Endoscopia";
-import Colonoscopia from "./pages/Colonoscopia";
-import PreparoEndoscopia from "./pages/PreparoEndoscopia";
-import PreparoColonoscopia from "./pages/PreparoColonoscopia";
-import Gastroenterologia from "./pages/Gastroenterologia";
-import Hepatologia from "./pages/Hepatologia";
-import Geriatria from "./pages/Geriatria";
-import NotFound from "./pages/NotFound";
+
+const Home = lazy(() => import("./pages/Home"));
+const Endoscopia = lazy(() => import("./pages/Endoscopia"));
+const Colonoscopia = lazy(() => import("./pages/Colonoscopia"));
+const PreparoEndoscopia = lazy(() => import("./pages/PreparoEndoscopia"));
+const PreparoColonoscopia = lazy(() => import("./pages/PreparoColonoscopia"));
+const Gastroenterologia = lazy(() => import("./pages/Gastroenterologia"));
+const Hepatologia = lazy(() => import("./pages/Hepatologia"));
+const Geriatria = lazy(() => import("./pages/Geriatria"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -23,6 +24,7 @@ export default function App() {
   return (
     <>
       <ScrollToTop />
+      <Suspense fallback={null}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/endoscopia" element={<Endoscopia />} />
@@ -34,6 +36,7 @@ export default function App() {
         <Route path="/geriatria" element={<Geriatria />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </Suspense>
     </>
   );
 }

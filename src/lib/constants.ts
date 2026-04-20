@@ -340,6 +340,12 @@ export const TEAM: Doctor[] = [
     name: "Dra. Zenaide Planzo",
     specialty: "Gastroenterologia",
     crm: "CRM-PE 4672",
+    photo: "/assets/team/zenaide.jpg",
+    formation: [
+      { label: "Gastroenterologia", institution: "UFP-PE / IBPGE-SP" },
+      { label: "Clínica Geral", institution: "Hospital Pedro II" },
+      { label: "Atualização em Clínica Médica", institution: "UNICAMP" },
+    ],
   },
 ];
 

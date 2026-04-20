@@ -47,6 +47,9 @@ export function Seo({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImageAbs} />
+      <meta property="og:image:width" content="800" />
+      <meta property="og:image:height" content="448" />
+      <meta property="og:image:type" content="image/webp" />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
