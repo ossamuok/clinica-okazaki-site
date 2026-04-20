@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import Home from "./pages/Home";
 import Endoscopia from "./pages/Endoscopia";
 import Colonoscopia from "./pages/Colonoscopia";
@@ -34,6 +35,7 @@ export default function App() {
         <Route path="/geriatria" element={<Geriatria />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Analytics />
     </>
   );
 }
