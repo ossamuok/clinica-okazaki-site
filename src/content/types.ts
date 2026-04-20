@@ -4,7 +4,9 @@ export type Block =
   | { type: "ul"; items: string[] }
   | { type: "callout"; text: string }
   | { type: "warning"; text: string }
-  | { type: "inline-cta"; text: string; label?: string };
+  | { type: "inline-cta"; text: string; label?: string }
+  | { type: "video"; youtubeId: string; caption?: string }
+  | { type: "link"; href: string; label: string };
 
 export type Section = {
   id: string;

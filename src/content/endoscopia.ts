@@ -159,6 +159,11 @@ const endoscopia: PageContent = {
           type: "warning",
           text: "Anticoagulantes (varfarina/Marevan, rivaroxabana/Xarelto, apixabana/Eliquis, dabigatrana/Pradaxa) e antiagregantes plaquetários (clopidogrel/Plavix, ticagrelor/Brilinta) precisam ser suspensos antes do exame — mas somente com o aval do médico assistente que acompanha você. Nunca suspenda por conta própria.",
         },
+        {
+          type: "link",
+          href: "/preparo-endoscopia",
+          label: "Ver guia completo de preparo",
+        },
       ],
     },
     {

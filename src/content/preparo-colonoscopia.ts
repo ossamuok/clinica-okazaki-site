@@ -220,6 +220,11 @@ const preparoColonoscopia: PageContent = {
           type: "callout",
           text: "Em casos excepcionais, o exame é adiado por algumas horas ou reagendado. É sempre melhor adiar e fazer um exame de qualidade do que insistir em um preparo incompleto.",
         },
+        {
+          type: "video",
+          youtubeId: "5efcPRzo_Wk",
+          caption: "Preparo para colonoscopia — Clínica Okazaki",
+        },
       ],
     },
   ],

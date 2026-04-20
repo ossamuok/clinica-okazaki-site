@@ -189,6 +189,32 @@ function BlockRenderer({ block }: { block: Block }) {
           </a>
         </div>
       );
+    case "video":
+      return (
+        <div className="my-8">
+          <div className="relative w-full rounded-card overflow-hidden shadow-md" style={{ paddingBottom: "56.25%" }}>
+            <iframe
+              src={`https://www.youtube.com/embed/${block.youtubeId}`}
+              title={block.caption ?? "Vídeo"}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 w-full h-full"
+            />
+          </div>
+          {block.caption && (
+            <p className="mt-2 text-sm text-muted text-center">{block.caption}</p>
+          )}
+        </div>
+      );
+    case "link":
+      return (
+        <div className="my-6">
+          <a href={block.href} className="btn-outline inline-flex items-center gap-2">
+            {block.label}
+            <ArrowUpRight className="h-4 w-4" aria-hidden />
+          </a>
+        </div>
+      );
   }
 }
 
