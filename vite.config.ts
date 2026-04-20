@@ -16,34 +16,49 @@ const saveHomeHtml: Plugin = {
   },
 }
 
-export default defineConfig({
-  plugins: [react(), saveHomeHtml],
-  build: {
-    rollupOptions: {
-      plugins: [
-        prerender({
-          routes: [
-            '/',
-            '/endoscopia',
-            '/colonoscopia',
-            '/preparo-endoscopia',
-            '/preparo-colonoscopia',
-            '/gastroenterologia',
-            '/hepatologia',
-            '/geriatria',
-          ],
-          renderer: '@prerenderer/renderer-puppeteer',
-          rendererOptions: {
-            renderAfterTime: 2000,
-            headless: true,
-          },
-          postProcess(renderedRoute) {
-            if (renderedRoute.route === '/') {
-              homeHtml = renderedRoute.html
-            }
-          },
-        }),
-      ],
+async function resolveLaunchOptions() {
+  if (process.platform !== 'linux') return undefined
+  const chromium = (await import('@sparticuz/chromium')).default
+  return {
+    args: chromium.args,
+    executablePath: await chromium.executablePath(),
+    headless: true,
+  }
+}
+
+export default defineConfig(async () => {
+  const launchOptions = await resolveLaunchOptions()
+
+  return {
+    plugins: [react(), saveHomeHtml],
+    build: {
+      rollupOptions: {
+        plugins: [
+          prerender({
+            routes: [
+              '/',
+              '/endoscopia',
+              '/colonoscopia',
+              '/preparo-endoscopia',
+              '/preparo-colonoscopia',
+              '/gastroenterologia',
+              '/hepatologia',
+              '/geriatria',
+            ],
+            renderer: '@prerenderer/renderer-puppeteer',
+            rendererOptions: {
+              renderAfterTime: 2000,
+              headless: true,
+              ...(launchOptions ? { launchOptions } : {}),
+            },
+            postProcess(renderedRoute) {
+              if (renderedRoute.route === '/') {
+                homeHtml = renderedRoute.html
+              }
+            },
+          }),
+        ],
+      },
     },
-  },
+  }
 })
