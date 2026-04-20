@@ -70,7 +70,7 @@ const colonoscopia: PageContent = {
       blocks: [
         {
           type: "p",
-          text: "Durante a colonoscopia, o intestino precisa ser insuflado para que suas paredes se afastem e o médico consiga examinar toda a mucosa. O ar permanece preso no intestino por horas após o exame, causando os desconfortos que muitos pacientes relatam como a pior parte da experiência: cólicas, sensação de inchaço abdominal e gases prolongados.",
+          text: "Durante a colonoscopia, o intestino precisa ser insuflado para que suas paredes se afastem e o médico consiga examinar toda a mucosa. Tradicionalmente, se utiliza ar ambiente para essa insuflação. O ar permanece preso no intestino por horas após o exame, causando os desconfortos que muitos pacientes relatam como a pior parte da experiência: cólicas, sensação de inchaço abdominal e gases prolongados.",
         },
         {
           type: "p",
