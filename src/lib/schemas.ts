@@ -4,6 +4,16 @@ type JsonLd = Record<string, unknown>;
 
 const ORG_ID = `${SITE.url}/#organization`;
 
+function slugify(value: string): string {
+  return value
+    .replace(/^(Dra?\.?\s+)/i, "")
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
 export const medicalOrganizationSchema: JsonLd = {
   "@context": "https://schema.org",
   "@type": "MedicalOrganization",
@@ -38,8 +48,10 @@ export const medicalOrganizationSchema: JsonLd = {
     }
     const entry: JsonLd = {
       "@type": "Physician",
+      "@id": `${SITE.url}/#dr-${slugify(d.name)}`,
       name: d.name,
       medicalSpecialty: d.specialty,
+      worksFor: { "@id": ORG_ID },
     };
     if (d.role) entry.jobTitle = d.role;
     if (identifier.length) entry.identifier = identifier;

@@ -18,7 +18,7 @@ export function Seo({
   description,
   path = "/",
   keywords,
-  ogImage = "/assets/logo-horizontal.webp",
+  ogImage = "/assets/og-image.webp",
   schemas = [],
   ogType = "website",
 }: SeoProps) {
@@ -47,8 +47,9 @@ export function Seo({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImageAbs} />
-      <meta property="og:image:width" content="800" />
-      <meta property="og:image:height" content="448" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={`${SITE.name} — ${description}`} />
       <meta property="og:image:type" content="image/webp" />
 
       <meta name="twitter:card" content="summary_large_image" />

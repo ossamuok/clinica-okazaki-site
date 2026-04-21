@@ -33,7 +33,7 @@ export function Team() {
                   {doc.photo ? (
                     <img
                       src={doc.photo}
-                      alt=""
+                      alt={`${doc.name} — ${doc.specialty}`}
                       className="h-full w-full object-cover object-top"
                       loading="lazy"
                     />
