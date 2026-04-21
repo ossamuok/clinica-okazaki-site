@@ -6,9 +6,9 @@ const gastroenterologia: PageContent = {
   title:
     "Gastroenterologista em Recife: Consulta e Tratamento | Clínica Okazaki",
   description:
-    "Gastroenterologista em Recife na Clínica Okazaki. Refluxo, gastrite, H. pylori, intestino irritável. Duas unidades, principais convênios.",
+    "Gastroenterologista em Recife na Clínica Okazaki há 38 anos. Consulta para refluxo, gastrite e H. pylori com integração direta a endoscopia e colonoscopia. Duas unidades.",
   keywords:
-    "gastroenterologista recife, gastroenterologia recife, gastro recife, gastroenterologista boa viagem, gastroenterologista derby, consulta gastroenterologia recife, médico gastro recife, refluxo gastroe",
+    "gastroenterologista recife, gastroenterologia recife, gastro recife, gastroenterologista boa viagem, gastroenterologista derby, consulta gastroenterologia recife, médico gastro recife, refluxo gastroesofágico recife, h. pylori recife, intestino irritável recife",
   h1: "Gastroenterologista em Recife: consulta para diagnóstico e tratamento digestivo",
   lead:
     "A gastroenterologia é a especialidade que cuida de todo o sistema digestivo — do esôfago ao reto, passando por fígado, vias biliares e pâncreas. Na Clínica Okazaki, oferecemos consultas com profissionais experientes e, quando necessário, integração direta com endoscopia e colonoscopia realizadas na própria clínica.",
@@ -76,12 +76,52 @@ const gastroenterologia: PageContent = {
           text: "A gastroenterologia abrange um universo amplo de condições. Veja as mais frequentes na prática clínica:",
         },
         {
+          type: "h3",
+          text: "Doença do refluxo gastroesofágico (DRGE)",
+        },
+        {
           type: "p",
           text: "Refluxo ácido do estômago para o esôfago que causa azia, queimação e regurgitação. Afeta cerca de 20% da população adulta. O tratamento envolve mudanças no estilo de vida, medicações (inibidores de bomba de prótons) e, em casos selecionados, cirurgia. A endoscopia ajuda a definir a gravidade e excluir complicações como esôfago de Barrett.",
         },
         {
+          type: "h3",
+          text: "Gastrite e infecção por H. pylori",
+        },
+        {
           type: "p",
-          text: "Inflamação da mucosa do estômago (gastrite) ou lesões mais profundas (úlceras). A principal causa hoje é a bactéria Helicobacter pylori. O tratamento da gastrite associada ao H. pylori envolve esquema com antibióticos por 14 dias, com taxas de cura elevadas.",
+          text: "Inflamação da mucosa do estômago (gastrite) ou lesões mais profundas (úlceras). A principal causa hoje é a bactéria Helicobacter pylori. O tratamento envolve esquema com antibióticos por 14 dias, com taxas de cura elevadas.",
+        },
+        {
+          type: "h3",
+          text: "Síndrome do intestino irritável (SII)",
+        },
+        {
+          type: "p",
+          text: "Distúrbio funcional crônico que causa dor abdominal, distensão e alteração do hábito intestinal (diarreia, constipação ou alternância). O diagnóstico é clínico, feito pelos critérios de Roma IV. O tratamento combina orientação alimentar, manejo do estresse e, quando necessário, medicações.",
+        },
+        {
+          type: "h3",
+          text: "Doença inflamatória intestinal",
+        },
+        {
+          type: "p",
+          text: "A doença de Crohn e a colite ulcerativa são condições autoimunes que causam inflamação crônica do trato digestivo. Exigem acompanhamento especializado de longo prazo, com colonoscopia de vigilância e, frequentemente, uso de imunobiológicos.",
+        },
+        {
+          type: "h3",
+          text: "Outras condições frequentes",
+        },
+        {
+          type: "ul",
+          items: [
+            "Doença celíaca e intolerâncias alimentares",
+            "Constipação crônica e diarreia crônica",
+            "Doenças do fígado: hepatites virais (B e C), esteatose hepática (gordura no fígado), cirrose",
+            "Doenças da vesícula biliar e vias biliares",
+            "Pancreatite aguda e crônica",
+            "Pólipos do cólon e rastreamento de câncer colorretal",
+            "Hemorragia digestiva alta e baixa",
+          ],
         },
       ],
     },
@@ -94,12 +134,24 @@ const gastroenterologia: PageContent = {
           text: "Uma consulta gastroenterológica bem feita exige tempo. Na Clínica Okazaki, a primeira consulta dura cerca de 40 minutos e segue uma estrutura consagrada:",
         },
         {
+          type: "h3",
+          text: "Anamnese detalhada",
+        },
+        {
           type: "p",
           text: "O médico investiga os sintomas em profundidade: quando começaram, como evoluem, fatores que melhoram ou pioram, relação com alimentos, horários, estresse. Também revisa histórico pessoal (cirurgias, doenças, medicações) e familiar (câncer, doenças hepáticas, doença celíaca).",
         },
         {
+          type: "h3",
+          text: "Exame físico",
+        },
+        {
           type: "p",
           text: "Avaliação geral (peso, pressão, sinais vitais), palpação abdominal, exame de fígado e baço, inspeção da pele, olhos e mucosas em busca de sinais sistêmicos.",
+        },
+        {
+          type: "h3",
+          text: "O que levar na primeira consulta",
         },
         {
           type: "ul",
@@ -118,12 +170,34 @@ const gastroenterologia: PageContent = {
       h2: "Exames mais solicitados pelo gastro",
       blocks: [
         {
-          type: "p",
-          text: "Padrão-ouro para avaliar esôfago, estômago e duodeno. Realizada na própria Clínica Okazaki com sedação por anestesista e equipamentos Olympus EVIS X1. Saiba mais sobre a endoscopia →",
+          type: "h3",
+          text: "Endoscopia digestiva alta",
         },
         {
           type: "p",
-          text: "Essencial para rastreamento de câncer colorretal e investigação de sintomas intestinais baixos. Na Clínica Okazaki fazemos com insuflação de CO₂ para mais conforto. Saiba mais sobre a colonoscopia →",
+          text: "Padrão-ouro para avaliar esôfago, estômago e duodeno. Realizada na própria Clínica Okazaki com sedação por anestesista e equipamentos Olympus EVIS X1.",
+        },
+        {
+          type: "link",
+          href: "/endoscopia",
+          label: "Saiba mais sobre endoscopia digestiva alta",
+        },
+        {
+          type: "h3",
+          text: "Colonoscopia",
+        },
+        {
+          type: "p",
+          text: "Essencial para rastreamento de câncer colorretal e investigação de sintomas intestinais baixos. Na Clínica Okazaki fazemos com insuflação de CO₂ para mais conforto.",
+        },
+        {
+          type: "link",
+          href: "/colonoscopia",
+          label: "Saiba mais sobre colonoscopia",
+        },
+        {
+          type: "h3",
+          text: "Exames laboratoriais e de imagem",
         },
         {
           type: "ul",
@@ -178,7 +252,12 @@ const gastroenterologia: PageContent = {
       blocks: [
         {
           type: "p",
-          text: "Atendemos consultas em gastroenterologia pelos principais convênios: Unimed (Recife, Intercâmbio, Unirede), Sul América, Bradesco Saúde (unidade Derby), Select, Gama, AMEPE/CAMPE, CAPE Saúde, FACHESF, FISCO Saúde, TRT 6 e particular. Antes do agendamento, nossa recepção confirma a cobertura do seu plano. Ver lista completa de convênios →",
+          text: "Atendemos consultas em gastroenterologia pelos principais convênios: Unimed (Recife, Intercâmbio, Unirede), Sul América, Bradesco Saúde (unidade Derby), Select, Gama, AMEPE/CAMPE, CAPE Saúde, FACHESF, FISCO Saúde, TRT 6 e particular. Antes do agendamento, nossa recepção confirma a cobertura do seu plano.",
+        },
+        {
+          type: "link",
+          href: "/#convenios",
+          label: "Ver lista completa de convênios aceitos",
         },
         {
           type: "p",
@@ -186,7 +265,7 @@ const gastroenterologia: PageContent = {
         },
         {
           type: "callout",
-          text: "Horários: segunda a sexta das 7h30 às 18h e sábados das 8h às 12h. Ver endereços completos e mapas →",
+          text: "Horários: segunda a sexta das 7h30 às 18h e sábados das 8h às 12h.",
         },
         {
           type: "ul",
@@ -194,6 +273,11 @@ const gastroenterologia: PageContent = {
             "Unidade Derby: Empresarial Renato Dias — Av. Gov. Agamenon Magalhães, 4318, Sala 307",
             "Unidade Boa Viagem: Boa Viagem Medical Center — R. Visconde de Jequitinhonha, 1144, Sala 401",
           ],
+        },
+        {
+          type: "link",
+          href: "/#unidades",
+          label: "Ver endereços completos e mapas",
         },
       ],
     },
