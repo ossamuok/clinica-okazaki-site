@@ -216,8 +216,15 @@ export const TEAM: Doctor[] = [
   },
   {
     name: "Dra. Aya Angelica Sakaguchi",
-    specialty: "Endoscopia",
+    specialty: "Endoscopia Digestiva",
     crm: "CRM-PE 10701",
+    rqe: "18491",
+    photo: "/assets/team/aya.webp",
+    formation: [
+      { label: "Endoscopia Digestiva", institution: "FESP/UPE" },
+      { label: "Clínica Médica", institution: "Hospital Barão de Lucena" },
+      { label: "Estágio em Endoscopia", institution: "Universidade de Keio, Tokyo" },
+    ],
   },
   {
     name: "Dr. Carlos Esdras Almeida Moraes",
