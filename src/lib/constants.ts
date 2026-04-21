@@ -207,7 +207,7 @@ export const TEAM: Doctor[] = [
     specialty: "Gastroenterologia · Hepatologia",
     crm: "CRM-PE 19243",
     rqe: "3381",
-    photo: "/assets/team/anabeatriz.jpg",
+    photo: "/assets/team/anabeatriz.webp",
     formation: [
       { label: "Gastroenterologia / Hepatologia", institution: "HC-UFPE" },
       { label: "Clínica Médica", institution: "HC-UFPE" },
@@ -224,7 +224,7 @@ export const TEAM: Doctor[] = [
     specialty: "Cirurgia do Aparelho Digestivo",
     crm: "CRM-PE 19242",
     rqe: "13822",
-    photo: "/assets/team/carlos.jpg",
+    photo: "/assets/team/carlos.webp",
     formation: [
       { label: "Cirurgia Geral", institution: "HOF-PE" },
       { label: "Cirurgia do Aparelho Digestivo", institution: "HGV-PE" },
@@ -240,7 +240,7 @@ export const TEAM: Doctor[] = [
     specialty: "Gastroenterologia · Endoscopia",
     crm: "CRM-PE 24079",
     rqe: "16612",
-    photo: "/assets/team/henrique.jpg",
+    photo: "/assets/team/henrique.webp",
     formation: [
       { label: "Medicina", institution: "UFPE" },
       { label: "Clínica Médica", institution: "HGV-PE" },
@@ -253,7 +253,7 @@ export const TEAM: Doctor[] = [
     specialty: "Gastrohepatologia",
     crm: "CRM-PE 24689",
     rqe: "13385",
-    photo: "/assets/team/ingrid.jpg",
+    photo: "/assets/team/ingrid.webp",
     formation: [
       { label: "Gastrohepatologia", institution: "HUOC-UPE" },
       { label: "Clínica Médica", institution: "Hospital Maria Lucinda" },
@@ -269,7 +269,7 @@ export const TEAM: Doctor[] = [
     specialty: "Geriatria",
     crm: "CRM-PE 19351",
     rqe: "8791",
-    photo: "/assets/team/jane.jpg",
+    photo: "/assets/team/jane.webp",
     formation: [
       { label: "Geriatria", institution: "UNIFESP" },
       { label: "Mestrado em Saúde", institution: "UNIFESP" },
@@ -286,7 +286,7 @@ export const TEAM: Doctor[] = [
     specialty: "Endoscopia Digestiva · Gastroenterologia",
     crm: "CRM-PE 24662",
     rqe: "11263",
-    photo: "/assets/team/livia.jpg",
+    photo: "/assets/team/livia.webp",
     formation: [
       { label: "Endoscopia Digestiva", institution: "RHP-PE" },
       { label: "Gastroenterologia", institution: "HC-UFPE" },
@@ -297,7 +297,7 @@ export const TEAM: Doctor[] = [
     specialty: "Gastroenterologia · Endoscopia Digestiva",
     crm: "CRM-PE 27024",
     rqe: "16671",
-    photo: "/assets/team/mariana.jpg",
+    photo: "/assets/team/mariana.webp",
     formation: [
       { label: "Gastroenterologia", institution: "USP" },
       { label: "Endoscopia Digestiva", institution: "USP" },
@@ -318,7 +318,7 @@ export const TEAM: Doctor[] = [
     specialty: "Gastrohepatologia",
     crm: "CRM-PE 11715",
     rqe: "1780",
-    photo: "/assets/team/sylene.jpg",
+    photo: "/assets/team/sylene.webp",
     formation: [
       { label: "Gastrohepatologia", institution: "UPE" },
       { label: "Doutorado em Gastroenterologia", institution: "USP" },
@@ -329,7 +329,7 @@ export const TEAM: Doctor[] = [
     specialty: "Endoscopia Digestiva",
     crm: "CRM-PE 28993",
     rqe: "16617",
-    photo: "/assets/team/tatiana.jpg",
+    photo: "/assets/team/tatiana.webp",
     formation: [
       { label: "Endoscopia Digestiva", institution: "Hospital 9 de Julho (SP)" },
       { label: "Cirurgia Geral", institution: "Hospital Barão de Lucena" },
@@ -340,7 +340,7 @@ export const TEAM: Doctor[] = [
     name: "Dra. Zenaide Planzo",
     specialty: "Gastroenterologia",
     crm: "CRM-PE 4672",
-    photo: "/assets/team/zenaide.jpg",
+    photo: "/assets/team/zenaide.webp",
     formation: [
       { label: "Gastroenterologia", institution: "UFP-PE / IBPGE-SP" },
       { label: "Clínica Geral", institution: "Hospital Pedro II" },

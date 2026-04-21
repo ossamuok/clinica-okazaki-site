@@ -1,4 +1,4 @@
-import { SITE, UNITS } from "./constants";
+import { SITE, TEAM, UNITS } from "./constants";
 
 type JsonLd = Record<string, unknown>;
 
@@ -20,16 +20,32 @@ export const medicalOrganizationSchema: JsonLd = {
     "Geriatric Medicine",
     "Digestive Surgery",
   ],
-  member: {
-    "@type": "Physician",
-    name: SITE.tecnico.nome,
-    jobTitle: "Diretor Técnico",
-    medicalSpecialty: "Endoscopia Digestiva",
-    identifier: [
-      { "@type": "PropertyValue", propertyID: "CRM-PE", value: "19246" },
-      { "@type": "PropertyValue", propertyID: "RQE", value: "8449" },
-    ],
-  },
+  member: TEAM.map((d) => {
+    const identifier: JsonLd[] = [];
+    if (d.crm) {
+      identifier.push({
+        "@type": "PropertyValue",
+        propertyID: "CRM-PE",
+        value: d.crm.replace(/^CRM-PE\s*/i, ""),
+      });
+    }
+    if (d.rqe) {
+      identifier.push({
+        "@type": "PropertyValue",
+        propertyID: "RQE",
+        value: d.rqe,
+      });
+    }
+    const entry: JsonLd = {
+      "@type": "Physician",
+      name: d.name,
+      medicalSpecialty: d.specialty,
+    };
+    if (d.role) entry.jobTitle = d.role;
+    if (identifier.length) entry.identifier = identifier;
+    if (d.photo) entry.image = `${SITE.url}${d.photo}`;
+    return entry;
+  }),
   availableService: [
     { "@type": "MedicalProcedure", name: "Endoscopia Digestiva Alta" },
     { "@type": "MedicalProcedure", name: "Colonoscopia" },
