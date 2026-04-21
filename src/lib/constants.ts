@@ -195,6 +195,7 @@ export const TEAM: Doctor[] = [
     specialty: "Endoscopia Digestiva · Oncológica",
     crm: "CRM-PE 19246",
     rqe: "8449",
+    photo: "/assets/team/ossamu.webp",
     founder: true,
     formation: [
       { label: "Endoscopia Digestiva", institution: "HC-USP" },
@@ -219,7 +220,6 @@ export const TEAM: Doctor[] = [
     specialty: "Endoscopia Digestiva",
     crm: "CRM-PE 10701",
     rqe: "18491",
-    photo: "/assets/team/aya.webp",
     formation: [
       { label: "Endoscopia Digestiva", institution: "FESP/UPE" },
       { label: "Clínica Médica", institution: "Hospital Barão de Lucena" },
