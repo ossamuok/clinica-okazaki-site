@@ -44,35 +44,44 @@ export function Hero() {
           variants={fadeUp}
           className="mt-6 text-h1-fluid font-semibold text-ink text-balance max-w-4xl leading-[1.02]"
         >
-          Há{" "}
+          Clínica de{" "}
           <em className="not-italic relative inline-block text-teal-deep">
-            <span className="relative z-10">{CLINIC_AGE} anos</span>
-            <span
-              className="absolute bottom-1 left-0 right-0 h-2.5 bg-cream -z-0"
-              aria-hidden
-            />
-          </em>
-          , diagnóstico{" "}
-          <em className="not-italic relative inline-block text-teal-deep">
-            <span className="relative z-10">preciso,</span>
+            <span className="relative z-10">Endoscopia</span>
             <span
               className="absolute bottom-1 left-0 right-0 h-2.5 bg-cream -z-0"
               aria-hidden
             />
           </em>{" "}
-          cuidado{" "}
+          e{" "}
           <em className="not-italic relative inline-block text-teal-deep">
-            <span className="relative z-10">humano</span>
+            <span className="relative z-10">Colonoscopia</span>
+            <span
+              className="absolute bottom-1 left-0 right-0 h-2.5 bg-cream -z-0"
+              aria-hidden
+            />
+          </em>{" "}
+          em{" "}
+          <em className="not-italic relative inline-block text-teal-deep">
+            <span className="relative z-10">Recife</span>
             <span
               className="absolute bottom-1 left-0 right-0 h-2.5 bg-cream -z-0"
               aria-hidden
             />
           </em>
-          .
         </motion.h1>
 
         <motion.p
           custom={2}
+          initial="hidden"
+          animate="show"
+          variants={fadeUp}
+          className="mt-4 text-xl md:text-2xl text-ink-soft max-w-3xl font-medium text-balance"
+        >
+          Há {CLINIC_AGE} anos, diagnóstico preciso, cuidado humano.
+        </motion.p>
+
+        <motion.p
+          custom={3}
           initial="hidden"
           animate="show"
           variants={fadeUp}
@@ -85,7 +94,7 @@ export function Hero() {
         </motion.p>
 
         <motion.div
-          custom={3}
+          custom={4}
           initial="hidden"
           animate="show"
           variants={fadeUp}
