@@ -305,7 +305,7 @@ export const TEAM: Doctor[] = [
     name: "Dra. Lívia Braz",
     specialty: "Endoscopia Digestiva · Gastroenterologia",
     crm: "CRM-PE 24662",
-    rqe: "11263",
+    rqe: "11263 · 18619",
     photo: "/assets/team/livia.webp",
     formation: [
       { label: "Endoscopia Digestiva", institution: "RHP-PE" },
