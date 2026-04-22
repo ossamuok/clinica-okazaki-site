@@ -316,7 +316,7 @@ export const TEAM: Doctor[] = [
     name: "Dra. Mariana de Lira Fonte",
     specialty: "Gastroenterologia · Endoscopia Digestiva",
     crm: "CRM-PE 27024",
-    rqe: "16671",
+    rqe: "16671 · 16672",
     photo: "/assets/team/mariana.webp",
     formation: [
       { label: "Gastroenterologia", institution: "USP" },
