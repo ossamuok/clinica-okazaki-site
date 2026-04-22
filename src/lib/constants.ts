@@ -239,8 +239,15 @@ export const TEAM: Doctor[] = [
   },
   {
     name: "Dr. Guilherme Pompílio Paranhos",
-    specialty: "Gastroenterologia",
+    specialty: "Gastrohepatologia",
     crm: "CRM-PE 26215",
+    rqe: "13840",
+    photo: "/assets/team/guilherme.webp",
+    formation: [
+      { label: "Gastrohepatologia", institution: "HUOC" },
+      { label: "Clínica Médica", institution: "HR" },
+      { label: "Fellow em Transplante Hepático", institution: "RHP" },
+    ],
   },
   {
     name: "Dr. Henrique Sivini de Farias",
@@ -285,8 +292,14 @@ export const TEAM: Doctor[] = [
   },
   {
     name: "Dra. Liliane de Andrade Carvalho",
-    specialty: "Gastroenterologia · Endoscopia",
+    specialty: "Endoscopia Digestiva · Gastroenterologia",
     crm: "CRM-PE 22370",
+    rqe: "13134",
+    photo: "/assets/team/liliane.webp",
+    formation: [
+      { label: "Endoscopia Digestiva", institution: "RHP" },
+      { label: "Gastroenterologia", institution: "HC-UFPE" },
+    ],
   },
   {
     name: "Dra. Lívia Braz",
