@@ -222,7 +222,7 @@ export const TEAM: Doctor[] = [
     formation: [
       { label: "Endoscopia Digestiva", institution: "FESP/UPE" },
       { label: "Clínica Médica", institution: "Hospital Barão de Lucena" },
-      { label: "Estágio em Endoscopia", institution: "Universidade de Keio, Tokyo" },
+      { label: "Estágio em Endoscopia Digestiva", institution: "Universidade de Keio, Tokyo" },
     ],
   },
   {
@@ -258,7 +258,7 @@ export const TEAM: Doctor[] = [
       { label: "Medicina", institution: "UFPE" },
       { label: "Clínica Médica", institution: "HGV-PE" },
       { label: "Gastroenterologia", institution: "HC-UFPE" },
-      { label: "Endoscopia", institution: "RHP-PE" },
+      { label: "Endoscopia Digestiva", institution: "RHP-PE" },
     ],
   },
   {
@@ -324,7 +324,7 @@ export const TEAM: Doctor[] = [
   },
   {
     name: "Dra. Marília Novaes",
-    specialty: "Endoscopia",
+    specialty: "Endoscopia Digestiva",
     crm: "CRM-PE 21897",
   },
   {
