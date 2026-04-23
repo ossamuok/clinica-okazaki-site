@@ -222,7 +222,7 @@ export const TEAM: Doctor[] = [
     formation: [
       { label: "Endoscopia Digestiva", institution: "FESP/UPE" },
       { label: "Clínica Médica", institution: "Hospital Barão de Lucena" },
-      { label: "Estágio em Endoscopia Digestiva", institution: "Universidade de Keio, Tokyo" },
+      { label: "Endoscopia Digestiva", institution: "Universidade de Keio, Tokyo" },
     ],
   },
   {
