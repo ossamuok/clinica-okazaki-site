@@ -93,7 +93,6 @@ export const INSURANCES: Insurance[] = [
   { name: "AMEPE / CAMPE", coverage: "Exames e consultas" },
   { name: "Bradesco Saúde", coverage: "Derby · exames e consultas" },
   { name: "CAPE Saúde", coverage: "Exames e consultas" },
-  { name: "Conab", coverage: "Exames e consultas" },
   { name: "FACHESF", coverage: "Exames e consultas" },
   { name: "FISCO Saúde", coverage: "Exames e consultas" },
   { name: "Gama Saúde", coverage: "Exames e consultas" },
