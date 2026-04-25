@@ -8,8 +8,33 @@ importers:
 
   .: {}
 
+  packages/shared-renderer:
+    dependencies:
+      zod:
+        specifier: ^3.24.1
+        version: 3.25.76
+    devDependencies:
+      '@types/react':
+        specifier: ^19.2.14
+        version: 19.2.14
+      lucide-react:
+        specifier: ^1.8.0
+        version: 1.11.0(react@19.2.5)
+      react:
+        specifier: ^19.2.4
+        version: 19.2.5
+      tsx:
+        specifier: ^4.21.0
+        version: 4.21.0
+      typescript:
+        specifier: ~6.0.2
+        version: 6.0.3
+
   packages/site:
     dependencies:
+      '@okazaki/shared-renderer':
+        specifier: workspace:*
+        version: link:../shared-renderer
       framer-motion:
         specifier: ^12.38.0
         version: 12.38.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5)

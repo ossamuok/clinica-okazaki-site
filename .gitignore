@@ -6,6 +6,11 @@ node_modules/
 dist/
 **/dist/
 build/
+# Allow checked-in n8n snippet (regenerated; sha guards drift)
+!packages/shared-renderer/dist/
+packages/shared-renderer/dist/*
+!packages/shared-renderer/dist/n8n-snippet.js
+!packages/shared-renderer/dist/n8n-snippet.sha
 
 # Logs
 *.log
