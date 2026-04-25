@@ -9,6 +9,8 @@ const PreparoColonoscopia = lazy(() => import("./pages/PreparoColonoscopia"));
 const Gastroenterologia = lazy(() => import("./pages/Gastroenterologia"));
 const Hepatologia = lazy(() => import("./pages/Hepatologia"));
 const Geriatria = lazy(() => import("./pages/Geriatria"));
+const BlogIndex = lazy(() => import("./pages/BlogIndex"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function ScrollToTop() {
@@ -34,6 +36,8 @@ export default function App() {
         <Route path="/gastroenterologia" element={<Gastroenterologia />} />
         <Route path="/hepatologia" element={<Hepatologia />} />
         <Route path="/geriatria" element={<Geriatria />} />
+        <Route path="/blog" element={<BlogIndex />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       </Suspense>

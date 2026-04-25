@@ -30,8 +30,6 @@
     { "source": "/hepato", "destination": "/hepatologia", "permanent": true },
     { "source": "/hepatologista", "destination": "/hepatologia", "permanent": true },
     { "source": "/geriatra", "destination": "/geriatria", "permanent": true },
-    { "source": "/blog", "destination": "/", "permanent": true },
-    { "source": "/blog/:path*", "destination": "/", "permanent": true },
     { "source": "/home", "destination": "/", "permanent": true },
     { "source": "/index", "destination": "/", "permanent": true }
   ],
