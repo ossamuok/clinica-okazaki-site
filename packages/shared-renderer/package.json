@@ -1,0 +1,38 @@
+{
+  "name": "@okazaki/shared-renderer",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    "./types": {
+      "types": "./src/types.ts",
+      "default": "./src/types.ts"
+    },
+    "./schema": {
+      "types": "./src/schema.ts",
+      "default": "./src/schema.ts"
+    },
+    "./components": {
+      "types": "./src/components/index.ts",
+      "default": "./src/components/index.ts"
+    }
+  },
+  "scripts": {
+    "build:n8n-snippet": "tsx scripts/build-n8n-snippet.ts"
+  },
+  "dependencies": {
+    "zod": "^3.24.1"
+  },
+  "peerDependencies": {
+    "lucide-react": "^1.8.0",
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "lucide-react": "^1.8.0",
+    "react": "^19.2.4",
+    "tsx": "^4.21.0",
+    "typescript": "~6.0.2"
+  }
+}
