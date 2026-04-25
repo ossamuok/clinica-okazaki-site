@@ -15,17 +15,17 @@ export function CtaBand({
   return (
     <section className="section">
       <div className="container-page">
-        <div className="cta-gradient rounded-[2rem] px-6 py-16 md:px-16 md:py-24 text-white text-center shadow-lg relative overflow-hidden">
+        <div className="cta-gradient rounded-[2rem] px-6 py-10 md:px-14 md:py-14 text-white text-center shadow-lg relative overflow-hidden">
           <span className="text-eyebrow uppercase tracking-[0.18em] font-medium text-white/70">
             {eyebrow}
           </span>
-          <h2 className="mt-4 text-h2-fluid font-semibold text-white text-balance max-w-3xl mx-auto">
+          <h2 className="mt-3 text-h3-fluid font-semibold text-white text-balance max-w-2xl mx-auto">
             {title}
           </h2>
-          <p className="mt-5 text-white/80 text-lg max-w-xl mx-auto leading-relaxed">
+          <p className="mt-3 text-white/80 text-base max-w-xl mx-auto leading-relaxed">
             {subtitle}
           </p>
-          <div className="mt-10 flex flex-wrap gap-3 justify-center">
+          <div className="mt-6 flex flex-wrap gap-3 justify-center">
             <a
               href={WHATSAPP_URL}
               target="_blank"
