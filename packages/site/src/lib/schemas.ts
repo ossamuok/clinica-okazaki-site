@@ -296,3 +296,94 @@ export const HOME_SCHEMAS: JsonLd[] = [
   medicalClinicBoaViagemSchema,
   faqHomeSchema,
 ];
+
+export function articleSchema(params: {
+  title: string;
+  description: string;
+  url: string;
+  image?: string;
+  publishedAt: string;
+  updatedAt: string;
+  author: {
+    name: string;
+    crm?: string;
+    rqe?: string;
+    photo?: string;
+  };
+  reviewer?: {
+    name: string;
+    crm?: string;
+    rqe?: string;
+  };
+}): JsonLd {
+  const authorIdentifiers: JsonLd[] = [];
+  if (params.author.crm) {
+    authorIdentifiers.push({
+      "@type": "PropertyValue",
+      propertyID: "CRM-PE",
+      value: params.author.crm.replace(/^CRM-PE\s*/i, ""),
+    });
+  }
+  if (params.author.rqe) {
+    authorIdentifiers.push({
+      "@type": "PropertyValue",
+      propertyID: "RQE",
+      value: params.author.rqe.replace(/^RQE\s*/i, ""),
+    });
+  }
+
+  const author: JsonLd = {
+    "@type": "Physician",
+    name: params.author.name,
+    worksFor: { "@id": ORG_ID },
+  };
+  if (authorIdentifiers.length) author.identifier = authorIdentifiers;
+  if (params.author.photo) author.image = `${SITE.url}${params.author.photo}`;
+
+  const article: JsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: params.title,
+    description: params.description,
+    url: params.url,
+    mainEntityOfPage: params.url,
+    inLanguage: "pt-BR",
+    datePublished: params.publishedAt,
+    dateModified: params.updatedAt,
+    author,
+    publisher: { "@id": ORG_ID },
+  };
+
+  if (params.image) {
+    article.image = params.image.startsWith("http")
+      ? params.image
+      : `${SITE.url}${params.image}`;
+  }
+
+  if (params.reviewer) {
+    const reviewerIds: JsonLd[] = [];
+    if (params.reviewer.crm) {
+      reviewerIds.push({
+        "@type": "PropertyValue",
+        propertyID: "CRM-PE",
+        value: params.reviewer.crm.replace(/^CRM-PE\s*/i, ""),
+      });
+    }
+    if (params.reviewer.rqe) {
+      reviewerIds.push({
+        "@type": "PropertyValue",
+        propertyID: "RQE",
+        value: params.reviewer.rqe.replace(/^RQE\s*/i, ""),
+      });
+    }
+    const reviewer: JsonLd = {
+      "@type": "Physician",
+      name: params.reviewer.name,
+      worksFor: { "@id": ORG_ID },
+    };
+    if (reviewerIds.length) reviewer.identifier = reviewerIds;
+    article.reviewedBy = reviewer;
+  }
+
+  return article;
+}

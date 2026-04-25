@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import prerender from '@prerenderer/rollup-plugin'
 import fs from 'node:fs'
 import path from 'node:path'
+import { listBlogSlugs } from './scripts/list-blog-slugs'
 
 let homeHtml: string | null = null
 
@@ -29,6 +30,8 @@ async function resolveLaunchOptions() {
 export default defineConfig(async () => {
   const launchOptions = await resolveLaunchOptions()
 
+  const blogRoutes = listBlogSlugs().map((entry) => `/blog/${entry.slug}`)
+
   return {
     plugins: [react(), saveHomeHtml],
     build: {
@@ -44,6 +47,8 @@ export default defineConfig(async () => {
               '/gastroenterologia',
               '/hepatologia',
               '/geriatria',
+              '/blog',
+              ...blogRoutes,
             ],
             renderer: '@prerenderer/renderer-puppeteer',
             rendererOptions: {
