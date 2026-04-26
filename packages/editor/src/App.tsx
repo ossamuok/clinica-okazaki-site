@@ -3,6 +3,9 @@ import { useAuth } from "./lib/auth-context";
 import Login from "./pages/Login";
 import Inbox from "./pages/Inbox";
 import DraftEditor from "./pages/DraftEditor";
+import Queue from "./pages/Queue";
+import Settings from "./pages/Settings";
+import Published from "./pages/Published";
 import { AppShell } from "./components/AppShell";
 
 export default function App() {
@@ -31,6 +34,9 @@ export default function App() {
         <Route path="/" element={<Navigate to="/inbox" replace />} />
         <Route path="/inbox" element={<Inbox />} />
         <Route path="/drafts/:id" element={<DraftEditor />} />
+        <Route path="/queue" element={<Queue />} />
+        <Route path="/published" element={<Published />} />
+        <Route path="/settings" element={<Settings />} />
         <Route path="*" element={<Navigate to="/inbox" replace />} />
       </Routes>
     </AppShell>
