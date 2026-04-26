@@ -49,19 +49,139 @@ export function BlockEditor({ block, readOnly, onChange }: Props) {
         />
       );
     case "inline-cta":
-      return <ReadOnlyBadge type="inline-cta" preview={block.text} />;
+      return (
+        <InlineCtaField
+          block={block}
+          readOnly={readOnly}
+          onChange={(b) => onChange(b)}
+        />
+      );
     case "video":
       return (
-        <ReadOnlyBadge
-          type="video"
-          preview={`youtubeId: ${block.youtubeId}`}
+        <VideoField
+          block={block}
+          readOnly={readOnly}
+          onChange={(b) => onChange(b)}
         />
       );
     case "link":
       return (
-        <ReadOnlyBadge type="link" preview={`${block.label} → ${block.href}`} />
+        <LinkField
+          block={block}
+          readOnly={readOnly}
+          onChange={(b) => onChange(b)}
+        />
       );
   }
+}
+
+function InlineCtaField({
+  block,
+  readOnly,
+  onChange,
+}: {
+  block: Extract<Block, { type: "inline-cta" }>;
+  readOnly: boolean;
+  onChange: (b: Block) => void;
+}) {
+  return (
+    <div className="space-y-2 border border-line rounded-lg p-3">
+      <p className="text-xs text-muted font-mono">inline-cta</p>
+      <div>
+        <label className="label !mb-1 text-xs">Texto</label>
+        <textarea
+          className="input min-h-[50px]"
+          value={block.text}
+          onChange={(e) => onChange({ ...block, text: e.target.value })}
+          disabled={readOnly}
+        />
+      </div>
+      <div>
+        <label className="label !mb-1 text-xs">Label do botão (opcional)</label>
+        <input
+          className="input"
+          value={block.label ?? ""}
+          onChange={(e) =>
+            onChange({ ...block, label: e.target.value || undefined })
+          }
+          disabled={readOnly}
+          placeholder="Agendar"
+        />
+      </div>
+    </div>
+  );
+}
+
+function VideoField({
+  block,
+  readOnly,
+  onChange,
+}: {
+  block: Extract<Block, { type: "video" }>;
+  readOnly: boolean;
+  onChange: (b: Block) => void;
+}) {
+  return (
+    <div className="space-y-2 border border-line rounded-lg p-3">
+      <p className="text-xs text-muted font-mono">video (YouTube)</p>
+      <div>
+        <label className="label !mb-1 text-xs">YouTube ID</label>
+        <input
+          className="input font-mono"
+          value={block.youtubeId}
+          onChange={(e) => onChange({ ...block, youtubeId: e.target.value })}
+          disabled={readOnly}
+          placeholder="dQw4w9WgXcQ"
+        />
+      </div>
+      <div>
+        <label className="label !mb-1 text-xs">Caption (opcional)</label>
+        <input
+          className="input"
+          value={block.caption ?? ""}
+          onChange={(e) =>
+            onChange({ ...block, caption: e.target.value || undefined })
+          }
+          disabled={readOnly}
+        />
+      </div>
+    </div>
+  );
+}
+
+function LinkField({
+  block,
+  readOnly,
+  onChange,
+}: {
+  block: Extract<Block, { type: "link" }>;
+  readOnly: boolean;
+  onChange: (b: Block) => void;
+}) {
+  return (
+    <div className="space-y-2 border border-line rounded-lg p-3">
+      <p className="text-xs text-muted font-mono">link</p>
+      <div>
+        <label className="label !mb-1 text-xs">Label</label>
+        <input
+          className="input"
+          value={block.label}
+          onChange={(e) => onChange({ ...block, label: e.target.value })}
+          disabled={readOnly}
+        />
+      </div>
+      <div>
+        <label className="label !mb-1 text-xs">Href</label>
+        <input
+          className="input font-mono"
+          value={block.href}
+          onChange={(e) => onChange({ ...block, href: e.target.value })}
+          disabled={readOnly}
+          placeholder="/endoscopia"
+        />
+      </div>
+    </div>
+  );
 }
 
 function ProseField({
@@ -151,12 +271,3 @@ function ListField({
   );
 }
 
-function ReadOnlyBadge({ type, preview }: { type: string; preview: string }) {
-  return (
-    <div className="px-3 py-2 rounded-lg border border-dashed border-line bg-paper text-xs text-muted">
-      <span className="font-mono mr-2">[{type}]</span>
-      {preview}
-      <span className="ml-2 text-muted/60">— edição em F5</span>
-    </div>
-  );
-}
