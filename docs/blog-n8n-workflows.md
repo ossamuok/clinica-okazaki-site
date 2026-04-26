@@ -24,12 +24,12 @@ URLs:
 6. Code `Parse + Validar` — extrai bloco text, JSON.parse, valida campos obrigatórios + slug regex + description length
 7. Postgres `INSERT blog_drafts` — INSERT 2× (1 por pilar)
 8. Postgres `UPDATE last_pillar` — atualiza `settings.last_pillar` para o último pilar inserido
-9. HTTP `Notificar Jane (Edge Function)` — POST p/ `notify-jane-new-drafts` (executeOnce, agrega ids)
+9. Telegram `Notificar Grupo Telegram` — sendMessage com lista de drafts + botão inline "Abrir editor" (executeOnce, agrega ids; chat_id `-5152728039`, parse_mode HTML)
 
 **Credentials a configurar manualmente:**
 - `Supabase Blog Postgres` (auto-atribuída se já existir conta Postgres)
 - `Anthropic Blog` — Anthropic API key (Settings → Credentials → New → "Anthropic API")
-- `Supabase Blog Anon Key` — HTTP Header Auth, header `Authorization: Bearer <ANON_KEY>`
+- `Telegram Blog Bot` — Telegram API, token do BotFather
 
 ## F8 — Blog · Publicador
 
@@ -43,13 +43,13 @@ URLs:
 5. Code `Gerar .post.ts + Validar` — valida shape, atualiza `updatedAt`, gera arquivo TS com `satisfies BlogPost`, base64 encoda
 6. HTTP `GitHub createOrUpdate File` — PUT em `repos/ossamuok/clinica-okazaki-site/contents/packages/site/src/content/blog/<slug>.post.ts`
 7. If `Commit OK?` — statusCode < 300
-   - **TRUE** → POST IndexNow → UPDATE `published_at` + `github_commit_sha` + drafts.status='published' → notify-publish-success
-   - **FALSE** → UPDATE `last_error` na queue → notify-publish-failure (ossamuok@gmail.com)
+   - **TRUE** → POST IndexNow → UPDATE `published_at` + `github_commit_sha` + drafts.status='published' → Telegram `Telegram: Publicado OK` (botão "Ver post ao vivo")
+   - **FALSE** → UPDATE `last_error` na queue → Telegram `Telegram: Falha publicação` (botão "Abrir rascunho")
 
 **Credentials a configurar manualmente:**
 - `Supabase Blog Postgres` (auto-atribuída)
 - `GitHub PAT Blog` — HTTP Header Auth, header `Authorization: Bearer github_pat_xxx`. PAT precisa scope `Contents: Write` no repo `ossamuok/clinica-okazaki-site`
-- `Supabase Blog Anon Key` (mesma do Gerador)
+- `Telegram Blog Bot` (mesma do Gerador)
 
 **Variável de ambiente n8n necessária:**
 - `INDEXNOW_KEY` — string aleatória 32 chars (gere via `openssl rand -hex 16`)
@@ -77,10 +77,11 @@ Para cada credential listada, abrir n8n → Settings → Credentials → New:
 - Tipo: **Anthropic API** (predefinido)
 - API Key: pegue em https://console.anthropic.com/settings/keys
 
-#### `Supabase Blog Anon Key`
-- Tipo: **HTTP Header Auth**
-- Name: `Authorization`
-- Value: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp2cmp6YXN2bmZ5a2Z0ZGRxcHFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5OTQ2NjMsImV4cCI6MjA5MjU3MDY2M30.HJvO9A4cvLehPiE9ZE4N1Ys6A-rKho5ScGqxiburR0g`
+#### `Telegram Blog Bot`
+- Tipo: **Telegram API** (predefinido)
+- Access Token: token do BotFather (`/mybots` → seu bot → API Token)
+- Após salvar, n8n auto-atribui aos 3 nós Telegram nos workflows F7+F8
+- Grupo Telegram já configurado: chat_id `-5152728039` (hardcoded nos nós)
 
 #### `GitHub PAT Blog`
 - Tipo: **HTTP Header Auth**
@@ -109,15 +110,15 @@ openssl rand -hex 16
 
 Abrir cada workflow no n8n UI → toggle "Active" no canto superior direito.
 
-> **Atenção:** ativar Publicador antes do site (F1) ter sido deployado em prod com a estrutura `/blog` quebra: arquivo .post.ts vai pra repo, build CI corre, deploy → 200 só se branch f5/f4 já merged + Vercel editor configurado. Active **DEPOIS** de F4-F5 mergeados + Vercel editor up + Resend env vars setados em F6.
+> **Atenção:** ativar Publicador antes do site (F1) ter sido deployado em prod com a estrutura `/blog` quebra: arquivo .post.ts vai pra repo, build CI corre, deploy → 200 só se branch f5/f4 já merged + Vercel editor configurado. Active **DEPOIS** de F4-F5 mergeados + Vercel editor up + credencial Telegram configurada.
 
 ## Smoke test end-to-end
 
-Após todas credentials + secrets:
+Após todas credentials configuradas:
 
-1. **Gerador manual** — abrir workflow F7 → Execute Workflow (manual). Espera: 2 rows em `blog_drafts` + email Jane recebido.
-2. **Editor** — Jane logga, vê os 2 drafts no inbox, edita, aprova com data hoje (back-fill `scheduled_for` para `NOW() - 1 minute`).
-3. **Publicador manual** — workflow F8 → Execute. Espera: 1 commit em `main`, 1 deploy Vercel, 1 row `published_at` setado, 1 email Jane "✅ publicado".
+1. **Gerador manual** — abrir workflow F7 → Execute Workflow (manual). Espera: 2 rows em `blog_drafts` + mensagem no grupo Telegram.
+2. **Editor** — Jane logga em `editor.clinicaokazaki.com`, vê os 2 drafts no inbox, edita, aprova com data hoje (back-fill `scheduled_for` para `NOW() - 1 minute`).
+3. **Publicador manual** — workflow F8 → Execute. Espera: 1 commit em `main`, 1 deploy Vercel, 1 row `published_at` setado, mensagem Telegram "✅ Post publicado".
 4. **Site** — verificar `https://www.clinicaokazaki.com/blog/<slug>` ao vivo.
 5. **Sitemap** — `https://www.clinicaokazaki.com/sitemap.xml` deve incluir o slug novo após próximo build.
 
@@ -134,7 +135,7 @@ Para desativar pipeline imediatamente:
 |---|---|
 | Anthropic Claude Sonnet (2 posts/sem × 4 sem × ~5k tokens out × $3/1M) | ~$0.20 |
 | Anthropic input + cache hits | ~$0.30 |
-| Resend free tier (até 3000 emails) | $0 |
+| Telegram (notificações) | $0 (ilimitado) |
 | Vercel Hobby (site + editor) | $0 |
 | Supabase free tier (compartilhado Dashboard Amigo) | $0 |
 | **Total mensal** | **~$0.50-1** |
