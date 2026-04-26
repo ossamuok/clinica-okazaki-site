@@ -20,7 +20,7 @@ URLs:
 2. Postgres `Ler Settings + Buffer` — lê `generator_paused`, `generator_pause_threshold`, `last_pillar`, `count(blog_drafts WHERE status IN ('pending_review','approved'))`
 3. If `Pode Gerar?` — `paused=false AND buffer < threshold`
 4. Code `Escolher 2 Pilares + Prompt` — round-robin a partir de `last_pillar`, monta system + user prompt para 2 pilares
-5. HTTP `Anthropic Claude Sonnet` — `claude-sonnet-4-5`, max_tokens 8000, system com `cache_control: ephemeral`. Roda 2× (1 por pilar)
+5. **Anthropic** node nativo `Anthropic Claude Sonnet` — modelo `claude-sonnet-4-5`, maxTokens 8000, system message do prompt. Roda 2× (1 por pilar). Sem cache_control — perda marginal aceita por usar nó nativo
 6. Code `Parse + Validar` — extrai bloco text, JSON.parse, valida campos obrigatórios + slug regex + description length
 7. Postgres `INSERT blog_drafts` — INSERT 2× (1 por pilar)
 8. Postgres `UPDATE last_pillar` — atualiza `settings.last_pillar` para o último pilar inserido
@@ -40,15 +40,14 @@ URLs:
 2. Postgres `Lock + Claim Draft` — CTE `FOR UPDATE SKIP LOCKED` + cap 1/dia BRT, marca `attempt_started_at` + incrementa `attempt_count`
 3. If `Tem entry?` — sai se nada disponível
 4. Postgres `SELECT draft completo` — JOIN drafts + queue
-5. Code `Gerar .post.ts + Validar` — valida shape, atualiza `updatedAt`, gera arquivo TS com `satisfies BlogPost`, base64 encoda
-6. HTTP `GitHub createOrUpdate File` — PUT em `repos/ossamuok/clinica-okazaki-site/contents/packages/site/src/content/blog/<slug>.post.ts`
-7. If `Commit OK?` — statusCode < 300
-   - **TRUE** → POST IndexNow → UPDATE `published_at` + `github_commit_sha` + drafts.status='published' → Telegram `Telegram: Publicado OK` (botão "Ver post ao vivo")
-   - **FALSE** → UPDATE `last_error` na queue → Telegram `Telegram: Falha publicação` (botão "Abrir rascunho")
+5. Code `Gerar .post.ts + Validar` — valida shape, atualiza `updatedAt`, gera arquivo TS com `satisfies BlogPost` (texto puro, sem base64)
+6. **GitHub** node nativo `GitHub Commit (file.edit)` — `resource: file, operation: edit` em `ossamuok/clinica-okazaki-site` branch `main`. Modo `onError: continueErrorOutput` — bifurca em sucesso/erro nativo
+   - **success** → POST IndexNow (HTTP — sem nó nativo) → UPDATE `published_at` + `github_commit_sha` + drafts.status='published' → Telegram `Telegram: Publicado OK` (botão "Ver post ao vivo")
+   - **error** → UPDATE `last_error` na queue → Telegram `Telegram: Falha publicação` (botão "Abrir rascunho")
 
 **Credentials a configurar manualmente:**
 - `Supabase Blog Postgres` (auto-atribuída)
-- `GitHub PAT Blog` — HTTP Header Auth, header `Authorization: Bearer github_pat_xxx`. PAT precisa scope `Contents: Write` no repo `ossamuok/clinica-okazaki-site`
+- `GitHub Blog API` — tipo nativo **GitHub API** (não HTTP Header Auth!). Use access token Fine-grained PAT com Contents: Read and write
 - `Telegram Blog Bot` (mesma do Gerador)
 
 **Variável de ambiente n8n necessária:**
@@ -83,10 +82,10 @@ Para cada credential listada, abrir n8n → Settings → Credentials → New:
 - Após salvar, n8n auto-atribui aos 3 nós Telegram nos workflows F7+F8
 - Grupo Telegram já configurado: chat_id `-5152728039` (hardcoded nos nós)
 
-#### `GitHub PAT Blog`
-- Tipo: **HTTP Header Auth**
-- Name: `Authorization`
-- Value: `Bearer github_pat_xxxxxxxx`
+#### `GitHub Blog API`
+- Tipo: **GitHub API** (predefinido — usado pelo nó nativo `n8n-nodes-base.github`)
+- Authentication method: **Access Token**
+- Access Token: `github_pat_xxxxxxxx` (sem prefixo `Bearer`)
 - Como gerar PAT:
   1. https://github.com/settings/tokens?type=beta
   2. Generate new token (Fine-grained)
