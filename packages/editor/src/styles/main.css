@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "DM Sans", system-ui, sans-serif;
+    color: theme("colors.ink.DEFAULT");
+    background: theme("colors.paper");
+  }
+  h1 {
+    @apply text-2xl font-bold tracking-tight text-navy-900;
+  }
+  h2 {
+    @apply text-xl font-semibold tracking-tight text-navy-900;
+  }
+  h3 {
+    @apply text-lg font-semibold;
+  }
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.18em] text-teal-600 font-mono;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm transition-colors;
+  }
+  .btn-primary {
+    @apply btn bg-teal-500 text-white hover:bg-teal-600 disabled:bg-teal-200 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply btn bg-white border border-line text-navy-900 hover:border-teal-500;
+  }
+  .btn-ghost {
+    @apply btn text-teal-600 hover:bg-teal-50;
+  }
+  .btn-danger {
+    @apply btn bg-white border border-line text-danger hover:bg-red-50;
+  }
+  .input {
+    @apply w-full px-4 py-2.5 rounded-lg border border-line bg-white text-ink-900 placeholder:text-muted focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-50;
+  }
+  .label {
+    @apply block text-sm font-medium text-navy-900 mb-1.5;
+  }
+  .card {
+    @apply rounded-card border border-line bg-white p-6;
+  }
+  .pill {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-teal-50 text-teal-700 border border-teal-100;
+  }
+  .pill-warning {
+    @apply pill bg-amber-50 text-warning border-amber-200;
+  }
+  .pill-success {
+    @apply pill bg-emerald-50 text-success border-emerald-200;
+  }
+}
+
+/* Tiptap basic styles */
+.ProseMirror {
+  @apply min-h-[80px] px-4 py-3 rounded-lg border border-line bg-white focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-50;
+}
+.ProseMirror p {
+  @apply mb-2;
+}
+.ProseMirror p:last-child {
+  @apply mb-0;
+}
+.ProseMirror ul {
+  @apply list-disc pl-5 mb-2;
+}
