@@ -16,7 +16,9 @@ export function AppShell({ children }: { children: ReactNode }) {
           </Link>
           <nav className="flex items-center gap-1">
             <NavItem to="/inbox" label="Inbox" />
-            {/* F5 trará Queue, Published, Settings */}
+            <NavItem to="/queue" label="Fila" />
+            <NavItem to="/published" label="Publicados" />
+            <NavItem to="/settings" label="Configurações" />
           </nav>
           <div className="flex items-center gap-3">
             <span className="text-xs text-muted hidden md:inline">{email}</span>
