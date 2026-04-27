@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, Save, Send, X, Archive, RefreshCcw, Sparkles } from "lucide-react";
 import { supabase } from "../lib/supabase";
@@ -6,6 +6,7 @@ import { useAuth } from "../lib/auth-context";
 import { nextFreeSlot, isDateFree } from "../lib/scheduling";
 import type { DraftRow } from "../lib/types";
 import type { BlogPost, Block, Section } from "@okazaki/shared-renderer/types";
+import { PostBody } from "@okazaki/shared-renderer/components";
 
 const RESTRUCTURE_WEBHOOK_URL =
   (import.meta.env.VITE_RESTRUCTURE_WEBHOOK_URL as string) ||
@@ -59,6 +60,105 @@ function bodyFromContent(content: BlogPost): string {
       content.faqs.map((f) => `**${f.q}**\n\n${f.a}`).join("\n\n");
   }
   return text;
+}
+
+function slugify(s: string): string {
+  return (
+    s
+      .normalize("NFD")
+      .replace(/[̀-ͯ]/g, "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "")
+      .slice(0, 60) || "secao"
+  );
+}
+
+function parseMarkdownBlocks(text: string): Block[] {
+  const blocks: Block[] = [];
+  const lines = text.split("\n");
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i];
+    if (!line.trim()) {
+      i++;
+      continue;
+    }
+    if (line.startsWith("### ")) {
+      blocks.push({ type: "h3", text: line.replace(/^###\s+/, "").trim() });
+      i++;
+    } else if (line.startsWith("- ")) {
+      const items: string[] = [];
+      while (i < lines.length && lines[i].startsWith("- ")) {
+        items.push(lines[i].replace(/^-\s+/, "").trim());
+        i++;
+      }
+      blocks.push({ type: "ul", items });
+    } else if (line.startsWith(">")) {
+      const stripped = line.replace(/^>\s*/, "").trim();
+      if (/^⚠️|warning|atenção|alerta/i.test(stripped)) {
+        blocks.push({
+          type: "warning",
+          text: stripped.replace(/^⚠️\s*/, "").trim(),
+        });
+      } else {
+        blocks.push({
+          type: "callout",
+          text: stripped.replace(/^💡\s*/, "").trim(),
+        });
+      }
+      i++;
+    } else {
+      const para: string[] = [line];
+      i++;
+      while (
+        i < lines.length &&
+        lines[i].trim() &&
+        !lines[i].startsWith("##") &&
+        !lines[i].startsWith("- ") &&
+        !lines[i].startsWith(">")
+      ) {
+        para.push(lines[i]);
+        i++;
+      }
+      blocks.push({ type: "p", text: para.join(" ").trim() });
+    }
+  }
+  return blocks;
+}
+
+function parseMarkdownToSections(body: string): Section[] {
+  const sections: Section[] = [];
+  const parts = body.split(/(?=^##\s)/m);
+  let leading = "";
+  for (const part of parts) {
+    if (!part.trim()) continue;
+    if (part.startsWith("## ")) {
+      const firstNl = part.indexOf("\n");
+      const h2 = part.slice(3, firstNl === -1 ? undefined : firstNl).trim();
+      const rest = firstNl === -1 ? "" : part.slice(firstNl + 1);
+      const blocks = parseMarkdownBlocks(rest);
+      if (blocks.length === 0) blocks.push({ type: "p", text: "" });
+      sections.push({ id: slugify(h2), h2, blocks });
+    } else {
+      leading += part;
+    }
+  }
+  if (leading.trim() && sections.length === 0) {
+    sections.push({
+      id: "introducao",
+      h2: "Introdução",
+      blocks: parseMarkdownBlocks(leading),
+    });
+  }
+  if (sections.length === 0) {
+    sections.push({
+      id: "vazio",
+      h2: "Conteúdo",
+      blocks: [{ type: "p", text: "" }],
+    });
+  }
+  return sections;
 }
 
 export default function DraftEditor() {
@@ -309,8 +409,13 @@ export default function DraftEditor() {
   const readOnly =
     draft.status === "published" || draft.status === "archived";
 
+  const previewSections = useMemo(
+    () => parseMarkdownToSections(edit.body),
+    [edit.body],
+  );
+
   return (
-    <div className="max-w-3xl mx-auto px-6 py-8">
+    <div className="max-w-7xl mx-auto px-6 py-8">
       <div className="flex items-center justify-between mb-6">
         <Link to="/inbox" className="btn-ghost">
           <ArrowLeft className="h-4 w-4" />
@@ -325,6 +430,8 @@ export default function DraftEditor() {
         </div>
       </div>
 
+      <div className="grid lg:grid-cols-2 gap-6">
+        <div className="space-y-6">
       <section className="card space-y-6">
         <div>
           <label className="label">Título</label>
@@ -450,6 +557,36 @@ export default function DraftEditor() {
           </button>
         </div>
       </section>
+        </div>
+
+        <aside className="lg:sticky lg:top-6 self-start">
+          <div className="card max-h-[85vh] overflow-y-auto">
+            <p className="eyebrow mb-2">Preview</p>
+            <p className="text-xs text-muted mb-4">
+              Renderização aproximada do post — estilos finais aplicados após
+              IA reestruturar e site gerar build.
+            </p>
+            <article className="prose prose-sm max-w-none">
+              <p className="text-xs text-teal-600 font-mono uppercase tracking-wider">
+                BLOG · {draft.pillar.toUpperCase()}
+              </p>
+              <h1 className="text-2xl font-bold tracking-tight text-navy-900 mt-2">
+                {edit.title || "(sem título)"}
+              </h1>
+              {edit.lead ? (
+                <p className="text-base text-ink-500 leading-relaxed">
+                  {edit.lead}
+                </p>
+              ) : null}
+              <hr className="my-4 border-line" />
+              <PostBody
+                sections={previewSections}
+                config={{ ctaUrl: "https://wa.me/5581999540570" }}
+              />
+            </article>
+          </div>
+        </aside>
+      </div>
     </div>
   );
 }
