@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { ArrowLeft, Save, Send, X, Archive, RefreshCcw, Sparkles } from "lucide-react";
+import { ArrowLeft, Save, Send, X, Archive, ArchiveRestore, RefreshCcw, Sparkles } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import { useAuth } from "../lib/auth-context";
 import { nextFreeSlot, isDateFree } from "../lib/scheduling";
@@ -360,6 +360,25 @@ export default function DraftEditor() {
     else setValidation(e.message);
   }
 
+  async function handleUnarchive() {
+    if (!session) return;
+    if (!window.confirm("Desarquivar este rascunho? Volta para revisão.")) return;
+    setSaving(true);
+    const { error: e, data } = await supabase
+      .from("blog_drafts")
+      .update({
+        status: "pending_review",
+        reviewer_user_id: session.user.id,
+        reviewed_at: new Date().toISOString(),
+      })
+      .eq("id", id)
+      .select("*")
+      .single();
+    setSaving(false);
+    if (!e && data) setDraft(data as DraftRow);
+    else if (e) setValidation(e.message);
+  }
+
   async function handleRequestNewVersion() {
     if (!session) return;
     const note = window.prompt("Notas para o gerador (o que mudar):");
@@ -546,15 +565,27 @@ export default function DraftEditor() {
             <RefreshCcw className="h-4 w-4" />
             Pedir nova versão
           </button>
-          <button
-            type="button"
-            onClick={handleArchive}
-            disabled={saving || restructuring || readOnly}
-            className="btn-ghost"
-          >
-            <Archive className="h-4 w-4" />
-            Arquivar
-          </button>
+          {draft.status === "archived" ? (
+            <button
+              type="button"
+              onClick={handleUnarchive}
+              disabled={saving || restructuring}
+              className="btn-ghost"
+            >
+              <ArchiveRestore className="h-4 w-4" />
+              Desarquivar
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={handleArchive}
+              disabled={saving || restructuring || readOnly}
+              className="btn-ghost"
+            >
+              <Archive className="h-4 w-4" />
+              Arquivar
+            </button>
+          )}
         </div>
       </section>
         </div>
