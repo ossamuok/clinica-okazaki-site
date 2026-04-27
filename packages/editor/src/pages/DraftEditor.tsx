@@ -1,23 +1,65 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { ArrowLeft, Save, Send, X, Archive, RefreshCcw } from "lucide-react";
+import { ArrowLeft, Save, Send, X, Archive, RefreshCcw, Sparkles } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import { useAuth } from "../lib/auth-context";
 import { nextFreeSlot, isDateFree } from "../lib/scheduling";
 import type { DraftRow } from "../lib/types";
-import type { BlogPost } from "@okazaki/shared-renderer/types";
-import { BlogPostSchema } from "@okazaki/shared-renderer/schema";
-import { PreviewPane } from "../components/PreviewPane";
-import { BlockEditor } from "../components/BlockEditor";
+import type { BlogPost, Block, Section } from "@okazaki/shared-renderer/types";
+
+const RESTRUCTURE_WEBHOOK_URL =
+  (import.meta.env.VITE_RESTRUCTURE_WEBHOOK_URL as string) ||
+  "https://automacoes-n8n.adhgqk.easypanel.host/webhook/blog-reestruturar";
+const RESTRUCTURE_WEBHOOK_SECRET = import.meta.env
+  .VITE_RESTRUCTURE_WEBHOOK_SECRET as string | undefined;
 
 type EditState = {
   title: string;
-  slug: string;
-  meta_description: string;
-  keywords: string;
-  excerpt: string;
-  content: BlogPost;
+  lead: string;
+  body: string;
 };
+
+function blocksToMarkdown(blocks: Block[]): string {
+  return blocks
+    .map((b) => {
+      switch (b.type) {
+        case "p":
+          return b.text;
+        case "h3":
+          return `### ${b.text}`;
+        case "ul":
+          return b.items.map((i) => `- ${i}`).join("\n");
+        case "callout":
+          return `> 💡 ${b.text}`;
+        case "warning":
+          return `> ⚠️ ${b.text}`;
+        case "inline-cta":
+          return `[CTA${b.label ? ` · ${b.label}` : ""}] ${b.text}`;
+        case "video":
+          return `[VÍDEO YouTube: ${b.youtubeId}]${b.caption ? ` ${b.caption}` : ""}`;
+        case "link":
+          return `[LINK: ${b.label}](${b.href})`;
+      }
+    })
+    .filter(Boolean)
+    .join("\n\n");
+}
+
+function sectionsToMarkdown(sections: Section[]): string {
+  return sections
+    .map((s) => `## ${s.h2}\n\n${blocksToMarkdown(s.blocks)}`)
+    .join("\n\n");
+}
+
+function bodyFromContent(content: BlogPost): string {
+  let text = sectionsToMarkdown(content.sections);
+  if (content.faqs?.length) {
+    text +=
+      "\n\n## Perguntas frequentes\n\n" +
+      content.faqs.map((f) => `**${f.q}**\n\n${f.a}`).join("\n\n");
+  }
+  return text;
+}
 
 export default function DraftEditor() {
   const { id = "" } = useParams<{ id: string }>();
@@ -30,6 +72,7 @@ export default function DraftEditor() {
   const [saving, setSaving] = useState(false);
   const [validation, setValidation] = useState<string | null>(null);
   const [scheduledFor, setScheduledFor] = useState<string>("");
+  const [restructuring, setRestructuring] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -51,11 +94,8 @@ export default function DraftEditor() {
         setDraft(row);
         setEdit({
           title: row.title,
-          slug: row.slug,
-          meta_description: row.meta_description,
-          keywords: (row.keywords ?? []).join(", "),
-          excerpt: content.excerpt ?? "",
-          content,
+          lead: content.lead ?? "",
+          body: bodyFromContent(content),
         });
         setLoading(false);
       });
@@ -64,42 +104,24 @@ export default function DraftEditor() {
     };
   }, [id]);
 
-  const previewPost = useMemo<BlogPost | null>(() => {
-    if (!edit) return null;
-    return {
-      ...edit.content,
-      title: edit.title,
-      slug: edit.slug,
-      meta_description: edit.meta_description,
-      keywords: edit.keywords,
-      excerpt: edit.excerpt,
-    };
-  }, [edit]);
-
-  async function persistDraft(updates: Partial<DraftRow>) {
+  async function persistRaw() {
+    if (!edit || !draft) return false;
     setSaving(true);
     setValidation(null);
-    const payload = {
-      title: edit!.title,
-      slug: edit!.slug,
-      meta_description: edit!.meta_description,
-      keywords: edit!.keywords
-        .split(",")
-        .map((k) => k.trim())
-        .filter(Boolean),
-      content_json: {
-        ...edit!.content,
-        title: edit!.title,
-        slug: edit!.slug,
-        meta_description: edit!.meta_description,
-        excerpt: edit!.excerpt,
-        keywords: edit!.keywords,
-      },
-      ...updates,
+    const content = draft.content_json as BlogPost;
+    const merged: BlogPost = {
+      ...content,
+      title: edit.title,
+      lead: edit.lead,
     };
+    (merged as BlogPost & { _raw_body?: string })._raw_body = edit.body;
     const { error: e } = await supabase
       .from("blog_drafts")
-      .update(payload)
+      .update({
+        title: edit.title,
+        content_json: merged,
+        updated_at: new Date().toISOString(),
+      })
       .eq("id", id);
     setSaving(false);
     if (e) {
@@ -109,17 +131,51 @@ export default function DraftEditor() {
     return true;
   }
 
-  async function handleSave() {
-    const ok = await persistDraft({});
-    if (ok) {
-      // optimistic — reload
-      const { data } = await supabase
+  async function callRestructure(): Promise<boolean> {
+    if (!edit || !draft) return false;
+    setRestructuring(true);
+    setValidation(null);
+    try {
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+      };
+      if (RESTRUCTURE_WEBHOOK_SECRET) {
+        headers["Authorization"] = `Bearer ${RESTRUCTURE_WEBHOOK_SECRET}`;
+      }
+      const res = await fetch(RESTRUCTURE_WEBHOOK_URL, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          draft_id: id,
+          title: edit.title,
+          lead: edit.lead,
+          body: edit.body,
+          pillar: draft.pillar,
+        }),
+      });
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(`Webhook ${res.status}: ${text.slice(0, 200)}`);
+      }
+      const data = await res.json();
+      if (!data.ok) throw new Error("Webhook retornou ok=false");
+      const { data: refreshed } = await supabase
         .from("blog_drafts")
         .select("*")
         .eq("id", id)
         .single();
-      if (data) setDraft(data as DraftRow);
+      if (refreshed) setDraft(refreshed as DraftRow);
+      return true;
+    } catch (e) {
+      setValidation("Falha ao reestruturar: " + (e as Error).message);
+      return false;
+    } finally {
+      setRestructuring(false);
     }
+  }
+
+  async function handleSave() {
+    await persistRaw();
   }
 
   async function handleApprove() {
@@ -132,38 +188,31 @@ export default function DraftEditor() {
       setValidation("Data inválida.");
       return;
     }
-    setSaving(true);
-    setValidation(null);
     const free = await isDateFree(target);
     if (!free) {
       setValidation(
         "Já há um post agendado para este dia. Escolha outra data.",
       );
+      return;
+    }
+    const okPersist = await persistRaw();
+    if (!okPersist) return;
+    const okRestructure = await callRestructure();
+    if (!okRestructure) return;
+    setSaving(true);
+    const { error: uErr } = await supabase
+      .from("blog_drafts")
+      .update({
+        status: "approved",
+        reviewer_user_id: session.user.id,
+        reviewed_at: new Date().toISOString(),
+      })
+      .eq("id", id);
+    if (uErr) {
+      setValidation("Falha ao aprovar: " + uErr.message);
       setSaving(false);
       return;
     }
-    const parsed = BlogPostSchema.safeParse({
-      ...edit.content,
-      title: edit.title,
-      slug: edit.slug,
-      meta_description: edit.meta_description,
-      excerpt: edit.excerpt,
-      keywords: edit.keywords,
-    });
-    if (!parsed.success) {
-      setValidation(
-        "Validação falhou: " +
-          parsed.error.issues.map((i) => i.message).join("; "),
-      );
-      setSaving(false);
-      return;
-    }
-    const ok = await persistDraft({
-      status: "approved",
-      reviewer_user_id: session.user.id,
-      reviewed_at: new Date().toISOString(),
-    });
-    if (!ok) return;
     const { error: qErr } = await supabase.from("blog_publish_queue").insert({
       draft_id: id,
       scheduled_for: target.toISOString(),
@@ -180,44 +229,54 @@ export default function DraftEditor() {
     if (!session) return;
     const reason = window.prompt("Motivo da rejeição (opcional):") ?? "";
     setSaving(true);
-    const ok = await persistDraft({
-      status: "rejected",
-      reviewer_user_id: session.user.id,
-      reviewed_at: new Date().toISOString(),
-      rejection_reason: reason || null,
-    });
+    const { error: e } = await supabase
+      .from("blog_drafts")
+      .update({
+        status: "rejected",
+        reviewer_user_id: session.user.id,
+        reviewed_at: new Date().toISOString(),
+        rejection_reason: reason || null,
+      })
+      .eq("id", id);
     setSaving(false);
-    if (ok) navigate("/inbox");
+    if (!e) navigate("/inbox");
+    else setValidation(e.message);
   }
 
   async function handleArchive() {
     if (!session) return;
     if (!window.confirm("Arquivar este rascunho?")) return;
     setSaving(true);
-    const ok = await persistDraft({
-      status: "archived",
-      reviewer_user_id: session.user.id,
-      reviewed_at: new Date().toISOString(),
-    });
+    const { error: e } = await supabase
+      .from("blog_drafts")
+      .update({
+        status: "archived",
+        reviewer_user_id: session.user.id,
+        reviewed_at: new Date().toISOString(),
+      })
+      .eq("id", id);
     setSaving(false);
-    if (ok) navigate("/inbox");
+    if (!e) navigate("/inbox");
+    else setValidation(e.message);
   }
 
   async function handleRequestNewVersion() {
     if (!session) return;
-    const note = window.prompt(
-      "Notas para o gerador (o que mudar):",
-    );
+    const note = window.prompt("Notas para o gerador (o que mudar):");
     if (note === null) return;
     setSaving(true);
-    const ok = await persistDraft({
-      status: "pending_review",
-      reviewer_user_id: session.user.id,
-      reviewed_at: new Date().toISOString(),
-      reviewer_notes: note,
-    });
+    const { error: e } = await supabase
+      .from("blog_drafts")
+      .update({
+        status: "pending_review",
+        reviewer_user_id: session.user.id,
+        reviewed_at: new Date().toISOString(),
+        reviewer_notes: note,
+      })
+      .eq("id", id);
     setSaving(false);
-    if (ok) navigate("/inbox");
+    if (!e) navigate("/inbox");
+    else setValidation(e.message);
   }
 
   async function suggestNextSlot() {
@@ -231,14 +290,14 @@ export default function DraftEditor() {
 
   if (loading) {
     return (
-      <div className="max-w-6xl mx-auto px-6 py-10 text-muted">
+      <div className="max-w-4xl mx-auto px-6 py-10 text-muted">
         Carregando rascunho...
       </div>
     );
   }
-  if (error || !draft || !edit || !previewPost) {
+  if (error || !draft || !edit) {
     return (
-      <div className="max-w-6xl mx-auto px-6 py-10">
+      <div className="max-w-4xl mx-auto px-6 py-10">
         <p className="text-danger text-sm">Erro: {error}</p>
         <Link to="/inbox" className="btn-ghost mt-4">
           Voltar
@@ -247,10 +306,11 @@ export default function DraftEditor() {
     );
   }
 
-  const readOnly = draft.status === "published" || draft.status === "archived";
+  const readOnly =
+    draft.status === "published" || draft.status === "archived";
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-8">
+    <div className="max-w-3xl mx-auto px-6 py-8">
       <div className="flex items-center justify-between mb-6">
         <Link to="/inbox" className="btn-ghost">
           <ArrowLeft className="h-4 w-4" />
@@ -259,201 +319,137 @@ export default function DraftEditor() {
         <div className="text-xs text-muted">
           status:{" "}
           <span className="font-medium text-ink-900">{draft.status}</span>
+          {" · "}
+          pilar:{" "}
+          <span className="font-medium text-ink-900">{draft.pillar}</span>
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-6">
-        {/* LEFT — form */}
-        <div className="space-y-6">
-          <section className="card">
-            <h2 className="mb-4">Metadados</h2>
-            <div className="space-y-4">
-              <div>
-                <label className="label">Título (max ~120 chars)</label>
-                <input
-                  className="input"
-                  value={edit.title}
-                  onChange={(e) =>
-                    setEdit({ ...edit, title: e.target.value })
-                  }
-                  disabled={readOnly}
-                />
-              </div>
-              <div>
-                <label className="label">Slug (kebab-case)</label>
-                <input
-                  className="input font-mono"
-                  value={edit.slug}
-                  onChange={(e) =>
-                    setEdit({ ...edit, slug: e.target.value })
-                  }
-                  disabled={readOnly}
-                />
-              </div>
-              <div>
-                <label className="label">
-                  Meta description (140-160 chars) — atual:{" "}
-                  {edit.meta_description.length}
-                </label>
-                <textarea
-                  className="input min-h-[80px]"
-                  value={edit.meta_description}
-                  onChange={(e) =>
-                    setEdit({ ...edit, meta_description: e.target.value })
-                  }
-                  disabled={readOnly}
-                />
-              </div>
-              <div>
-                <label className="label">
-                  Excerpt (resumo para listagem, 40-300 chars)
-                </label>
-                <textarea
-                  className="input min-h-[60px]"
-                  value={edit.excerpt}
-                  onChange={(e) =>
-                    setEdit({ ...edit, excerpt: e.target.value })
-                  }
-                  disabled={readOnly}
-                />
-              </div>
-              <div>
-                <label className="label">Keywords (separadas por vírgula)</label>
-                <textarea
-                  className="input min-h-[60px]"
-                  value={edit.keywords}
-                  onChange={(e) =>
-                    setEdit({ ...edit, keywords: e.target.value })
-                  }
-                  disabled={readOnly}
-                />
-              </div>
-            </div>
-          </section>
-
-          <section className="card">
-            <h2 className="mb-4">Conteúdo</h2>
-            <p className="text-xs text-muted mb-4">
-              Edição inline em parágrafos, h3, listas, callouts e warnings.
-              Outros tipos (vídeo, link, inline-cta) preservados como vêm do
-              gerador. Reordenação e adição/remoção de seções/blocos chegam em F5.
-            </p>
-            <div className="space-y-6">
-              {edit.content.sections.map((section, sIdx) => (
-                <div
-                  key={section.id}
-                  className="border-l-2 border-line pl-4"
-                >
-                  <p className="text-xs text-muted font-mono mb-1">
-                    #{section.id}
-                  </p>
-                  <h3 className="mb-3">{section.h2}</h3>
-                  <div className="space-y-3">
-                    {section.blocks.map((block, bIdx) => (
-                      <BlockEditor
-                        key={bIdx}
-                        block={block}
-                        readOnly={readOnly}
-                        onChange={(updated) => {
-                          const sections = [...edit.content.sections];
-                          const blocks = [...sections[sIdx].blocks];
-                          blocks[bIdx] = updated;
-                          sections[sIdx] = { ...sections[sIdx], blocks };
-                          setEdit({
-                            ...edit,
-                            content: { ...edit.content, sections },
-                          });
-                        }}
-                      />
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="card">
-            <h2 className="mb-4">Aprovar e agendar</h2>
-            <div className="flex items-end gap-3 mb-4">
-              <div className="flex-1">
-                <label className="label">
-                  Data e hora de publicação (BRT)
-                </label>
-                <input
-                  type="datetime-local"
-                  className="input"
-                  value={scheduledFor}
-                  onChange={(e) => setScheduledFor(e.target.value)}
-                  disabled={readOnly}
-                />
-              </div>
-              <button
-                type="button"
-                onClick={suggestNextSlot}
-                className="btn-secondary"
-                disabled={readOnly}
-              >
-                Sugerir próxima data
-              </button>
-            </div>
-            {validation ? (
-              <p className="text-sm text-danger mb-3">{validation}</p>
-            ) : null}
-            <div className="flex flex-wrap gap-2">
-              <button
-                type="button"
-                onClick={handleSave}
-                disabled={saving || readOnly}
-                className="btn-secondary"
-              >
-                <Save className="h-4 w-4" />
-                Salvar rascunho
-              </button>
-              <button
-                type="button"
-                onClick={handleApprove}
-                disabled={saving || readOnly}
-                className="btn-primary"
-              >
-                <Send className="h-4 w-4" />
-                Aprovar e agendar
-              </button>
-              <button
-                type="button"
-                onClick={handleReject}
-                disabled={saving || readOnly}
-                className="btn-danger"
-              >
-                <X className="h-4 w-4" />
-                Rejeitar
-              </button>
-              <button
-                type="button"
-                onClick={handleRequestNewVersion}
-                disabled={saving || readOnly}
-                className="btn-ghost"
-              >
-                <RefreshCcw className="h-4 w-4" />
-                Pedir nova versão
-              </button>
-              <button
-                type="button"
-                onClick={handleArchive}
-                disabled={saving || readOnly}
-                className="btn-ghost"
-              >
-                <Archive className="h-4 w-4" />
-                Arquivar
-              </button>
-            </div>
-          </section>
+      <section className="card space-y-6">
+        <div>
+          <label className="label">Título</label>
+          <input
+            type="text"
+            className="input text-lg"
+            value={edit.title}
+            onChange={(e) => setEdit({ ...edit, title: e.target.value })}
+            disabled={readOnly}
+          />
         </div>
 
-        {/* RIGHT — preview */}
-        <div className="lg:sticky lg:top-6 self-start">
-          <PreviewPane post={previewPost} />
+        <div>
+          <label className="label">Subtítulo / Lead</label>
+          <textarea
+            className="input min-h-[80px]"
+            value={edit.lead}
+            onChange={(e) => setEdit({ ...edit, lead: e.target.value })}
+            disabled={readOnly}
+            placeholder="Parágrafo introdutório (1-3 frases)"
+          />
         </div>
-      </div>
+
+        <div>
+          <label className="label">
+            Corpo do post
+            <span className="ml-2 text-xs font-normal text-muted">
+              Markdown — `## Título da seção`, `- item de lista`, parágrafos
+              separados por linha em branco
+            </span>
+          </label>
+          <textarea
+            className="input min-h-[480px] font-mono text-sm leading-relaxed"
+            value={edit.body}
+            onChange={(e) => setEdit({ ...edit, body: e.target.value })}
+            disabled={readOnly}
+            spellCheck
+          />
+          <p className="text-xs text-muted mt-2">
+            A IA reorganiza estrutura (slug, SEO, FAQs, blocos) ao aprovar.
+            Você foca apenas no texto médico.
+          </p>
+        </div>
+      </section>
+
+      <section className="card mt-6 space-y-4">
+        <h2>Aprovar e agendar</h2>
+        <div className="flex items-end gap-3">
+          <div className="flex-1">
+            <label className="label">Data e hora de publicação (BRT)</label>
+            <input
+              type="datetime-local"
+              className="input"
+              value={scheduledFor}
+              onChange={(e) => setScheduledFor(e.target.value)}
+              disabled={readOnly}
+            />
+          </div>
+          <button
+            type="button"
+            onClick={suggestNextSlot}
+            className="btn-secondary"
+            disabled={readOnly}
+          >
+            Sugerir próxima data
+          </button>
+        </div>
+        {validation ? (
+          <p className="text-sm text-danger">{validation}</p>
+        ) : null}
+        {restructuring ? (
+          <p className="text-sm text-teal-700">
+            <Sparkles className="inline h-4 w-4 mr-1" />
+            IA reorganizando estrutura...
+          </p>
+        ) : null}
+
+        <div className="flex flex-wrap gap-2">
+          <button
+            type="button"
+            onClick={handleSave}
+            disabled={saving || restructuring || readOnly}
+            className="btn-secondary"
+          >
+            <Save className="h-4 w-4" />
+            Salvar rascunho
+          </button>
+          <button
+            type="button"
+            onClick={handleApprove}
+            disabled={saving || restructuring || readOnly}
+            className="btn-primary"
+          >
+            <Send className="h-4 w-4" />
+            Aprovar e agendar
+          </button>
+          <button
+            type="button"
+            onClick={handleReject}
+            disabled={saving || restructuring || readOnly}
+            className="btn-danger"
+          >
+            <X className="h-4 w-4" />
+            Rejeitar
+          </button>
+          <button
+            type="button"
+            onClick={handleRequestNewVersion}
+            disabled={saving || restructuring || readOnly}
+            className="btn-ghost"
+          >
+            <RefreshCcw className="h-4 w-4" />
+            Pedir nova versão
+          </button>
+          <button
+            type="button"
+            onClick={handleArchive}
+            disabled={saving || restructuring || readOnly}
+            className="btn-ghost"
+          >
+            <Archive className="h-4 w-4" />
+            Arquivar
+          </button>
+        </div>
+      </section>
     </div>
   );
 }
