@@ -341,8 +341,14 @@ export const TEAM: Doctor[] = [
   },
   {
     name: "Dr. Milson Brasileiro",
-    specialty: "Gastroenterologia · Endoscopia",
+    specialty: "Endoscopia Digestiva · Gastroenterologia",
     crm: "CRM-PE 23302",
+    rqe: "13771",
+    photo: "/assets/team/milson.webp",
+    formation: [
+      { label: "Endoscopia Digestiva", institution: "RHP" },
+      { label: "Gastroenterologia", institution: "HC-UFPE" },
+    ],
   },
   {
     name: "Dra. Sylene Coutinho Rampche",
