@@ -184,9 +184,14 @@ export const TEAM: Doctor[] = [
   {
     name: "Dra. Mitsu Okazaki",
     role: "Fundadora",
-    specialty: "Gastroenterologia",
+    specialty: "Gastroenterologia · Endoscopia",
     crm: "CRM-PE 6616",
+    photo: "/assets/team/mitsu.webp",
     founder: true,
+    formation: [
+      { label: "Gastroenterologia", institution: "UFPE" },
+      { label: "Endoscopia", institution: "UFPE" },
+    ],
   },
   {
     name: "Dr. Ossamu Okazaki",
@@ -275,8 +280,15 @@ export const TEAM: Doctor[] = [
     ],
   },
   {
-    name: "Dra. Isabela Aquino",
+    name: "Dra. Isabela Carvalho de Aquino",
     specialty: "Gastroenterologia · Endoscopia",
+    crm: "CRM-PE 27945",
+    rqe: "14080",
+    photo: "/assets/team/isabela.webp",
+    formation: [
+      { label: "Gastroenterologia", institution: "HUOC-UPE" },
+      { label: "Endoscopia Digestiva", institution: "Real Hospital Português" },
+    ],
   },
   {
     name: "Dra. Jane Erika Frazão Okazaki",
