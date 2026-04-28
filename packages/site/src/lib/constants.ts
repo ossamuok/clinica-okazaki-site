@@ -261,10 +261,9 @@ export const TEAM: Doctor[] = [
     rqe: "16612",
     photo: "/assets/team/henrique.webp",
     formation: [
-      { label: "Medicina", institution: "UFPE" },
       { label: "Clínica Médica", institution: "HGV-PE" },
       { label: "Gastroenterologia", institution: "HC-UFPE" },
-      { label: "Endoscopia Digestiva", institution: "RHP-PE" },
+      { label: "Endoscopia Digestiva", institution: "RHP" },
     ],
   },
   {
@@ -287,7 +286,7 @@ export const TEAM: Doctor[] = [
     photo: "/assets/team/isabela.webp",
     formation: [
       { label: "Gastroenterologia", institution: "HUOC-UPE" },
-      { label: "Endoscopia Digestiva", institution: "Real Hospital Português" },
+      { label: "Endoscopia Digestiva", institution: "RHP" },
     ],
   },
   {
@@ -320,7 +319,7 @@ export const TEAM: Doctor[] = [
     rqe: "11263 · 18619",
     photo: "/assets/team/livia.webp",
     formation: [
-      { label: "Endoscopia Digestiva", institution: "RHP-PE" },
+      { label: "Endoscopia Digestiva", institution: "RHP" },
       { label: "Gastroenterologia", institution: "HC-UFPE" },
     ],
   },
