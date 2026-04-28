@@ -16,7 +16,7 @@ export const SITE = {
   age: CLINIC_AGE,
   reviewsCount: 2500,
   rating: 5.0,
-  instagram: "https://www.instagram.com/centro_clinico_okazaki/",
+  instagram: "https://www.instagram.com/clinicaokazaki/",
   tecnico: {
     nome: "Dr. Ossamu Okazaki",
     crm: "CRM-PE 19246",
