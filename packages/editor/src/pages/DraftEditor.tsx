@@ -151,6 +151,8 @@ function sectionsToMarkdown(sections: Section[]): string {
 }
 
 function bodyFromContent(content: BlogPost): string {
+  const raw = (content as BlogPost & { _raw_body?: string })._raw_body;
+  if (typeof raw === "string" && raw.trim().length > 0) return raw;
   let text = sectionsToMarkdown(content.sections);
   if (content.faqs?.length) {
     text +=
@@ -274,7 +276,13 @@ export default function DraftEditor() {
   }
 
   async function handleSave() {
-    await persistRaw();
+    const ok = await persistRaw();
+    if (ok) {
+      setValidation("✓ Rascunho salvo");
+      setTimeout(() => {
+        setValidation((v) => (v === "✓ Rascunho salvo" ? null : v));
+      }, 2000);
+    }
   }
 
   async function handleApprove() {
@@ -527,7 +535,11 @@ export default function DraftEditor() {
           </button>
         </div>
         {validation ? (
-          <p className="text-sm text-danger">{validation}</p>
+          <p
+            className={`text-sm ${validation.startsWith("✓") ? "text-success" : "text-danger"}`}
+          >
+            {validation}
+          </p>
         ) : null}
         {restructuring ? (
           <p className="text-sm text-teal-700">
