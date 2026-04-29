@@ -12,6 +12,9 @@ const RESTRUCTURE_WEBHOOK_URL =
   "https://automacoes-n8n.adhgqk.easypanel.host/webhook/blog-reestruturar";
 const RESTRUCTURE_WEBHOOK_SECRET = import.meta.env
   .VITE_RESTRUCTURE_WEBHOOK_SECRET as string | undefined;
+const REGENERATE_WEBHOOK_URL =
+  (import.meta.env.VITE_REGENERATE_WEBHOOK_URL as string) ||
+  "https://automacoes-n8n.adhgqk.easypanel.host/webhook/blog-regenerar";
 
 type EditState = {
   title: string;
@@ -261,22 +264,50 @@ export default function DraftEditor() {
   }
 
   async function handleRequestNewVersion() {
-    if (!session) return;
-    const note = window.prompt("Notas para o gerador (o que mudar):");
+    if (!session || !draft) return;
+    const note = window.prompt(
+      "Notas para o gerador (o que mudar):",
+    );
     if (note === null) return;
-    setSaving(true);
-    const { error: e } = await supabase
-      .from("blog_drafts")
-      .update({
-        status: "pending_review",
-        reviewer_user_id: session.user.id,
-        reviewed_at: new Date().toISOString(),
-        reviewer_notes: note,
-      })
-      .eq("id", id);
-    setSaving(false);
-    if (!e) navigate("/inbox");
-    else setValidation(e.message);
+    if (!note.trim()) {
+      setValidation("Informe ao menos uma nota para regenerar.");
+      return;
+    }
+    setRestructuring(true);
+    setValidation(null);
+    try {
+      const { error: pErr } = await supabase
+        .from("blog_drafts")
+        .update({
+          reviewer_user_id: session.user.id,
+          reviewed_at: new Date().toISOString(),
+          reviewer_notes: note,
+        })
+        .eq("id", id);
+      if (pErr) throw new Error(pErr.message);
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+      };
+      if (RESTRUCTURE_WEBHOOK_SECRET) {
+        headers["Authorization"] = `Bearer ${RESTRUCTURE_WEBHOOK_SECRET}`;
+      }
+      const res = await fetch(REGENERATE_WEBHOOK_URL, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ draft_id: id, reviewer_notes: note }),
+      });
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(`Webhook ${res.status}: ${text.slice(0, 200)}`);
+      }
+      const data = await res.json();
+      if (!data.ok) throw new Error("Webhook retornou ok=false");
+      navigate("/inbox");
+    } catch (e) {
+      setValidation("Falha ao regenerar: " + (e as Error).message);
+    } finally {
+      setRestructuring(false);
+    }
   }
 
   async function suggestNextSlot() {
