@@ -22,22 +22,44 @@ type EditState = {
   body: string;
 };
 
+function blockText(b: Block): string {
+  const raw = b as unknown as Record<string, unknown>;
+  return (
+    (raw.text as string) ||
+    (raw.content as string) ||
+    (raw.body as string) ||
+    ""
+  );
+}
+
+function blockItems(b: Block): string[] {
+  const raw = b as unknown as Record<string, unknown>;
+  const list =
+    (raw.items as unknown[]) ||
+    (raw.list as unknown[]) ||
+    (raw.values as unknown[]) ||
+    [];
+  return list.map((i) => String(i));
+}
+
 function blocksToMarkdown(blocks: Block[]): string {
   return blocks
     .map((b) => {
       switch (b.type) {
         case "p":
-          return b.text;
+          return blockText(b);
         case "h3":
-          return `### ${b.text}`;
+          return `### ${blockText(b)}`;
         case "ul":
-          return b.items.map((i) => `- ${i}`).join("\n");
+          return blockItems(b)
+            .map((i) => `- ${i}`)
+            .join("\n");
         case "callout":
-          return `> 💡 ${b.text}`;
+          return `> 💡 ${blockText(b)}`;
         case "warning":
-          return `> ⚠️ ${b.text}`;
+          return `> ⚠️ ${blockText(b)}`;
         case "inline-cta":
-          return `[CTA${b.label ? ` · ${b.label}` : ""}] ${b.text}`;
+          return `[CTA${b.label ? ` · ${b.label}` : ""}] ${blockText(b)}`;
         case "video":
           return `[VÍDEO YouTube: ${b.youtubeId}]${b.caption ? ` ${b.caption}` : ""}`;
         case "link":
