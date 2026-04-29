@@ -423,6 +423,11 @@ export default function DraftEditor() {
     }
   }
 
+  const previewSections = useMemo(
+    () => parseMarkdownToSections(edit?.body ?? ""),
+    [edit?.body],
+  );
+
   if (loading) {
     return (
       <div className="max-w-4xl mx-auto px-6 py-10 text-muted">
@@ -443,11 +448,6 @@ export default function DraftEditor() {
 
   const readOnly =
     draft.status === "published" || draft.status === "archived";
-
-  const previewSections = useMemo(
-    () => parseMarkdownToSections(edit.body),
-    [edit.body],
-  );
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-8">
