@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, Save, Send, X, Archive, RefreshCcw, Sparkles } from "lucide-react";
 import { supabase } from "../lib/supabase";
@@ -6,6 +6,7 @@ import { useAuth } from "../lib/auth-context";
 import { nextFreeSlot, isDateFree } from "../lib/scheduling";
 import type { DraftRow } from "../lib/types";
 import type { BlogPost, Block, Section } from "@okazaki/shared-renderer/types";
+import { PostBody } from "@okazaki/shared-renderer/components";
 
 const RESTRUCTURE_WEBHOOK_URL =
   (import.meta.env.VITE_RESTRUCTURE_WEBHOOK_URL as string) ||
@@ -21,6 +22,79 @@ type EditState = {
   lead: string;
   body: string;
 };
+
+function parseMarkdownToSections(md: string): Section[] {
+  const lines = md.split("\n");
+  const sections: Section[] = [];
+  let current: Section | null = null;
+  let pendingP: string[] = [];
+  let pendingUl: string[] = [];
+
+  function flushParagraph() {
+    if (!current) return;
+    if (pendingP.length > 0) {
+      current.blocks.push({ type: "p", text: pendingP.join(" ").trim() });
+      pendingP = [];
+    }
+  }
+  function flushUl() {
+    if (!current) return;
+    if (pendingUl.length > 0) {
+      current.blocks.push({ type: "ul", items: pendingUl });
+      pendingUl = [];
+    }
+  }
+  function ensureSection() {
+    if (!current) {
+      current = { id: "intro", h2: "", blocks: [] };
+      sections.push(current);
+    }
+  }
+
+  for (const raw of lines) {
+    const line = raw.trimEnd();
+    if (line.startsWith("## ")) {
+      flushParagraph();
+      flushUl();
+      const h2 = line.slice(3).trim();
+      current = {
+        id: h2.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || `s-${sections.length}`,
+        h2,
+        blocks: [],
+      };
+      sections.push(current);
+    } else if (line.startsWith("### ")) {
+      flushParagraph();
+      flushUl();
+      ensureSection();
+      current!.blocks.push({ type: "h3", text: line.slice(4).trim() });
+    } else if (line.startsWith("- ")) {
+      flushParagraph();
+      ensureSection();
+      pendingUl.push(line.slice(2).trim());
+    } else if (line.startsWith("> 💡 ")) {
+      flushParagraph();
+      flushUl();
+      ensureSection();
+      current!.blocks.push({ type: "callout", text: line.slice(5).trim() });
+    } else if (line.startsWith("> ⚠️ ")) {
+      flushParagraph();
+      flushUl();
+      ensureSection();
+      current!.blocks.push({ type: "warning", text: line.slice(5).trim() });
+    } else if (line.trim() === "") {
+      flushParagraph();
+      flushUl();
+    } else {
+      flushUl();
+      ensureSection();
+      pendingP.push(line);
+    }
+  }
+  flushParagraph();
+  flushUl();
+  return sections.filter((s) => s.h2 || s.blocks.length > 0);
+}
 
 function blockText(b: Block): string {
   const raw = b as unknown as Record<string, unknown>;
@@ -362,8 +436,13 @@ export default function DraftEditor() {
   const readOnly =
     draft.status === "published" || draft.status === "archived";
 
+  const previewSections = useMemo(
+    () => parseMarkdownToSections(edit.body),
+    [edit.body],
+  );
+
   return (
-    <div className="max-w-3xl mx-auto px-6 py-8">
+    <div className="max-w-7xl mx-auto px-6 py-8">
       <div className="flex items-center justify-between mb-6">
         <Link to="/inbox" className="btn-ghost">
           <ArrowLeft className="h-4 w-4" />
@@ -378,6 +457,8 @@ export default function DraftEditor() {
         </div>
       </div>
 
+      <div className="grid lg:grid-cols-2 gap-6">
+        <div className="space-y-6">
       <section className="card space-y-6">
         <div>
           <label className="label">Título</label>
@@ -503,6 +584,35 @@ export default function DraftEditor() {
           </button>
         </div>
       </section>
+        </div>
+
+        <aside className="lg:sticky lg:top-6 self-start">
+          <div className="card max-h-[calc(100vh-4rem)] overflow-y-auto">
+            <p className="eyebrow mb-2">Preview</p>
+            <p className="text-xs text-muted mb-4">
+              Renderização aproximada do post — estilos finais aplicados após
+              IA reestruturar e site gerar build.
+            </p>
+            <article className="prose prose-sm max-w-none">
+              <p className="text-xs text-teal-600 font-mono uppercase tracking-wider">
+                BLOG · {draft.pillar.toUpperCase()}
+              </p>
+              <h1 className="text-2xl font-bold tracking-tight text-navy-900 mt-2">
+                {edit.title || "(sem título)"}
+              </h1>
+              {edit.lead ? (
+                <p className="text-base text-ink-500 leading-relaxed">
+                  {edit.lead}
+                </p>
+              ) : null}
+              <PostBody
+                sections={previewSections}
+                config={{ ctaUrl: "#" }}
+              />
+            </article>
+          </div>
+        </aside>
+      </div>
     </div>
   );
 }
