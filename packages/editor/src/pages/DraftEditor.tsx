@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { ArrowLeft, Save, Send, X, Archive, RefreshCcw, Sparkles } from "lucide-react";
+import { ArrowLeft, Save, Send, X, Archive, ArchiveRestore, RefreshCcw, Sparkles } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import { useAuth } from "../lib/auth-context";
 import { nextFreeSlot, isDateFree } from "../lib/scheduling";
@@ -352,7 +352,11 @@ export default function DraftEditor() {
 
   async function handleArchive() {
     if (!session) return;
-    if (!window.confirm("Arquivar este rascunho?")) return;
+    const confirmMsg =
+      draft?.status === "approved"
+        ? "Este rascunho já foi aprovado e está na fila de publicação.\n\nArquivar vai cancelar a publicação e será necessário aprovar novamente do zero.\n\nConfirma?"
+        : "Arquivar este rascunho?";
+    if (!window.confirm(confirmMsg)) return;
     setSaving(true);
     const { error: e } = await supabase
       .from("blog_drafts")
@@ -365,6 +369,33 @@ export default function DraftEditor() {
     setSaving(false);
     if (!e) navigate("/inbox");
     else setValidation(e.message);
+  }
+
+  async function handleUnarchive() {
+    if (!session) return;
+    if (
+      !window.confirm(
+        "Desarquivar este rascunho? Volta para a aba Pendentes para revisão.",
+      )
+    )
+      return;
+    setSaving(true);
+    const { data, error: e } = await supabase
+      .from("blog_drafts")
+      .update({
+        status: "pending_review",
+        reviewer_user_id: session.user.id,
+        reviewed_at: new Date().toISOString(),
+      })
+      .eq("id", id)
+      .select("*")
+      .single();
+    setSaving(false);
+    if (e) {
+      setValidation(e.message);
+      return;
+    }
+    if (data) setDraft(data as DraftRow);
   }
 
   async function handleRequestNewVersion() {
@@ -585,15 +616,27 @@ export default function DraftEditor() {
             <RefreshCcw className="h-4 w-4" />
             Pedir nova versão
           </button>
-          <button
-            type="button"
-            onClick={handleArchive}
-            disabled={saving || restructuring || readOnly}
-            className="btn-ghost"
-          >
-            <Archive className="h-4 w-4" />
-            Arquivar
-          </button>
+          {draft.status === "archived" ? (
+            <button
+              type="button"
+              onClick={handleUnarchive}
+              disabled={saving || restructuring}
+              className="btn-ghost"
+            >
+              <ArchiveRestore className="h-4 w-4" />
+              Desarquivar
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={handleArchive}
+              disabled={saving || restructuring || readOnly}
+              className="btn-ghost"
+            >
+              <Archive className="h-4 w-4" />
+              Arquivar
+            </button>
+          )}
         </div>
       </section>
         </div>

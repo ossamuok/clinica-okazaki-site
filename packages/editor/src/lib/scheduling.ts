@@ -34,14 +34,14 @@ export async function nextFreeSlot(): Promise<Date> {
 export async function isDateFree(date: Date): Promise<boolean> {
   const dayStart = startOfDay(date).toISOString();
   const dayEnd = addDays(startOfDay(date), 1).toISOString();
-  const { data, error } = await supabase
+  const { count, error } = await supabase
     .from("blog_publish_queue")
     .select("id", { count: "exact", head: true })
     .is("published_at", null)
     .gte("scheduled_for", dayStart)
     .lt("scheduled_for", dayEnd);
   if (error) throw error;
-  return (data ?? []).length === 0;
+  return (count ?? 0) === 0;
 }
 
 export function toLocalIsoBRT(date: Date): string {
