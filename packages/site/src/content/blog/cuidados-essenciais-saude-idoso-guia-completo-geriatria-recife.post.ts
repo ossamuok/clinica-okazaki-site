@@ -50,27 +50,27 @@ export const post = {
       "blocks": [
         {
           "type": "p",
-          "content": "A geriatria é a especialidade médica que se dedica ao cuidado integral da pessoa idosa, considerando aspectos físicos, mentais, funcionais e sociais do envelhecimento. Diferente de outras especialidades que focam em sistemas ou órgãos específicos, o geriatra avalia o paciente de forma global, compreendendo como diferentes condições de saúde interagem entre si."
+          "text": "A geriatria é a especialidade médica que se dedica ao cuidado integral da pessoa idosa, considerando aspectos físicos, mentais, funcionais e sociais do envelhecimento. Diferente de outras especialidades que focam em sistemas ou órgãos específicos, o geriatra avalia o paciente de forma global, compreendendo como diferentes condições de saúde interagem entre si."
         },
         {
           "type": "p",
-          "content": "O processo de envelhecimento traz mudanças naturais ao organismo que podem afetar diversos sistemas simultaneamente. A pele torna-se mais fina e menos elástica, os ossos perdem densidade, a proporção da massa muscular diminui, e há alterações nos sistemas cardiovascular, digestivo, neurológico e endócrino. Estas transformações não são doenças, mas representam modificações fisiológicas que exigem adaptações e cuidados específicos."
+          "text": "O processo de envelhecimento traz mudanças naturais ao organismo que podem afetar diversos sistemas simultaneamente. A pele torna-se mais fina e menos elástica, os ossos perdem densidade, a proporção da massa muscular diminui, e há alterações nos sistemas cardiovascular, digestivo, neurológico e endócrino. Estas transformações não são doenças, mas representam modificações fisiológicas que exigem adaptações e cuidados específicos."
         },
         {
           "type": "p",
-          "content": "A avaliação geriátrica é fundamental porque os idosos frequentemente apresentam múltiplas condições de saúde concomitantes, utilizam diversos medicamentos e podem ter limitações funcionais que impactam sua autonomia. O geriatra é o profissional capacitado para coordenar esse cuidado complexo, priorizar intervenções que mantenham ou melhorem a qualidade de vida e para antecipar e evitar possíveis complicações de saúde."
+          "text": "A avaliação geriátrica é fundamental porque os idosos frequentemente apresentam múltiplas condições de saúde concomitantes, utilizam diversos medicamentos e podem ter limitações funcionais que impactam sua autonomia. O geriatra é o profissional capacitado para coordenar esse cuidado complexo, priorizar intervenções que mantenham ou melhorem a qualidade de vida e para antecipar e evitar possíveis complicações de saúde."
         },
         {
           "type": "h3",
-          "content": "Quando Procurar um Geriatra"
+          "text": "Quando Procurar um Geriatra"
         },
         {
           "type": "p",
-          "content": "Embora não exista uma idade exata para iniciar o acompanhamento geriátrico, recomenda-se a avaliação especializada a partir dos 60 anos, especialmente na presença de múltiplas condições crônicas, uso de vários medicamentos, episódios de quedas, perda de peso não intencional, declínio funcional ou cognitivo, ou dificuldade no autocuidado."
+          "text": "Embora não exista uma idade exata para iniciar o acompanhamento geriátrico, recomenda-se a avaliação especializada a partir dos 60 anos, especialmente na presença de múltiplas condições crônicas, uso de vários medicamentos, episódios de quedas, perda de peso não intencional, declínio funcional ou cognitivo, ou dificuldade no autocuidado."
         },
         {
           "type": "callout",
-          "content": "A geriatria não trata apenas doenças, mas promove saúde, funcionalidade e bem-estar durante o envelhecimento, permitindo que o idoso mantenha sua independência e qualidade de vida pelo maior tempo possível."
+          "text": "A geriatria não trata apenas doenças, mas promove saúde, funcionalidade e bem-estar durante o envelhecimento, permitindo que o idoso mantenha sua independência e qualidade de vida pelo maior tempo possível."
         },
         {
           "href": "/geriatria",
@@ -85,23 +85,23 @@ export const post = {
       "blocks": [
         {
           "type": "p",
-          "content": "A Avaliação Geriátrica Ampla (AGA) é o principal instrumento do geriatra para compreender integralmente a situação de saúde do idoso. Diferente de uma consulta médica tradicional, a AGA investiga sistematicamente diversos domínios que influenciam o bem-estar e a funcionalidade do idoso."
+          "text": "A Avaliação Geriátrica Ampla (AGA) é o principal instrumento do geriatra para compreender integralmente a situação de saúde do idoso. Diferente de uma consulta médica tradicional, a AGA investiga sistematicamente diversos domínios que influenciam o bem-estar e a funcionalidade do idoso."
         },
         {
           "type": "h3",
-          "content": "Componentes da Avaliação Geriátrica"
+          "text": "Componentes da Avaliação Geriátrica"
         },
         {
           "type": "p",
-          "content": "A avaliação geriátrica completa abrange múltiplas dimensões da saúde do idoso."
+          "text": "A avaliação geriátrica completa abrange múltiplas dimensões da saúde do idoso."
         },
         {
           "type": "p",
-          "content": "A avaliação funcional examina desde a capacidade para realizar atividades de autocuidado até atividades extremamente complexas a depender da performance prévia do indivíduo e das necessidades atuais, visando entender se há prejuízo da capacidade prévia e identificar as possíveis causas. Essa avaliação abrange desde as básicas da vida diária, como banhar-se, vestir-se, alimentar-se, usar o banheiro e locomover-se, além das atividades instrumentais, como preparar refeições, fazer compras, gerenciar medicamentos e cuidar das finanças, assim como atividades especiais mais complexas."
+          "text": "A avaliação funcional examina desde a capacidade para realizar atividades de autocuidado até atividades extremamente complexas a depender da performance prévia do indivíduo e das necessidades atuais, visando entender se há prejuízo da capacidade prévia e identificar as possíveis causas. Essa avaliação abrange desde as básicas da vida diária, como banhar-se, vestir-se, alimentar-se, usar o banheiro e locomover-se, além das atividades instrumentais, como preparar refeições, fazer compras, gerenciar medicamentos e cuidar das finanças, assim como atividades especiais mais complexas."
         },
         {
           "type": "p",
-          "content": "A avaliação cognitiva investiga memória, atenção, linguagem, orientação temporal e espacial, raciocínio e função executiva. Declínios cognitivos podem indicar desde alterações secundárias a outras condições clínicas como transtornos de sono, humor ou deficiências vitamínicas até quadros demenciais que requerem investigação e acompanhamento específicos."
+          "text": "A avaliação cognitiva investiga memória, atenção, linguagem, orientação temporal e espacial, raciocínio e função executiva. Declínios cognitivos podem indicar desde alterações secundárias a outras condições clínicas como transtornos de sono, humor ou deficiências vitamínicas até quadros demenciais que requerem investigação e acompanhamento específicos."
         },
         {
           "type": "ul",
@@ -115,11 +115,11 @@ export const post = {
         },
         {
           "type": "p",
-          "content": "O geriatra também avalia o risco de quedas, importante causa de morbimortalidade em idosos, investigando histórico de quedas prévias, equilíbrio, marcha, força muscular, uso de dispositivos auxiliares e riscos ambientais no domicílio."
+          "text": "O geriatra também avalia o risco de quedas, importante causa de morbimortalidade em idosos, investigando histórico de quedas prévias, equilíbrio, marcha, força muscular, uso de dispositivos auxiliares e riscos ambientais no domicílio."
         },
         {
           "type": "callout",
-          "content": "A Avaliação Geriátrica Abrangente permite identificar problemas não detectados em consultas convencionais, possibilitando intervenções precoces que previnem complicações e mantêm a independência do idoso."
+          "text": "A Avaliação Geriátrica Abrangente permite identificar problemas não detectados em consultas convencionais, possibilitando intervenções precoces que previnem complicações e mantêm a independência do idoso."
         }
       ]
     },
@@ -129,35 +129,35 @@ export const post = {
       "blocks": [
         {
           "type": "p",
-          "content": "Algumas condições de saúde são particularmente prevalentes ou relevantes na população idosa, exigindo atenção e manejo adequados. Compreender essas condições auxilia tanto profissionais de saúde quanto familiares a identificarem sinais precoces e buscarem cuidado apropriado."
+          "text": "Algumas condições de saúde são particularmente prevalentes ou relevantes na população idosa, exigindo atenção e manejo adequados. Compreender essas condições auxilia tanto profissionais de saúde quanto familiares a identificarem sinais precoces e buscarem cuidado apropriado."
         },
         {
           "type": "h3",
-          "content": "Síndromes Geriátricas"
+          "text": "Síndromes Geriátricas"
         },
         {
           "type": "p",
-          "content": "As chamadas síndromes geriátricas são condições de saúde multifatoriais que resultam de acúmulo de déficits em múltiplos sistemas, tornando o idoso vulnerável. São também chamadas de gigantes da geriatria devido à sua alta prevalência nessa população. O rastreio dessas condições fazem parte da AGA. As principais incluem instabilidade postural e quedas, incontinência urinária, imobilidade, déficit cognitivo e delirium."
+          "text": "As chamadas síndromes geriátricas são condições de saúde multifatoriais que resultam de acúmulo de déficits em múltiplos sistemas, tornando o idoso vulnerável. São também chamadas de gigantes da geriatria devido à sua alta prevalência nessa população. O rastreio dessas condições fazem parte da AGA. As principais incluem instabilidade postural e quedas, incontinência urinária, imobilidade, déficit cognitivo e delirium."
         },
         {
           "type": "p",
-          "content": "A instabilidade postural aumenta o risco de quedas, que podem causar fraturas, especialmente de quadril, redução da mobilidade, medo de cair novamente e perda de independência. Fatores contribuintes incluem fraqueza muscular, alterações de equilíbrio, problemas visuais, medicamentos e riscos ambientais."
+          "text": "A instabilidade postural aumenta o risco de quedas, que podem causar fraturas, especialmente de quadril, redução da mobilidade, medo de cair novamente e perda de independência. Fatores contribuintes incluem fraqueza muscular, alterações de equilíbrio, problemas visuais, medicamentos e riscos ambientais."
         },
         {
           "type": "p",
-          "content": "A incontinência urinária afeta significativamente a qualidade de vida, mas não é consequência inevitável do envelhecimento. Pode ter diversas causas, desde infecções urinárias até efeitos de medicamentos, hiperplasia prostática, fraqueza da musculatura pélvica ou doenças neurológicas. Avaliação adequada permite tratamento direcionado."
+          "text": "A incontinência urinária afeta significativamente a qualidade de vida, mas não é consequência inevitável do envelhecimento. Pode ter diversas causas, desde infecções urinárias até efeitos de medicamentos, hiperplasia prostática, fraqueza da musculatura pélvica ou doenças neurológicas. Avaliação adequada permite tratamento direcionado."
         },
         {
           "type": "h3",
-          "content": "Doenças Crônicas na Terceira Idade"
+          "text": "Doenças Crônicas na Terceira Idade"
         },
         {
           "type": "p",
-          "content": "A hipertensão arterial é extremamente comum em idosos e requer controle adequado para prevenir complicações cardiovasculares e cerebrovasculares. O tratamento deve considerar peculiaridades dessa faixa etária, como maior variabilidade pressórica, hipotensão postural e interações medicamentosas."
+          "text": "A hipertensão arterial é extremamente comum em idosos e requer controle adequado para prevenir complicações cardiovasculares e cerebrovasculares. O tratamento deve considerar peculiaridades dessa faixa etária, como maior variabilidade pressórica, hipotensão postural e interações medicamentosas."
         },
         {
           "type": "p",
-          "content": "Diabetes mellitus também é prevalente e seu manejo no idoso exige individualização, considerando expectativa de vida, comorbidades, risco de hipoglicemia e capacidade de autocuidado. Metas glicêmicas menos rígidas podem ser apropriadas em determinadas situações."
+          "text": "Diabetes mellitus também é prevalente e seu manejo no idoso exige individualização, considerando expectativa de vida, comorbidades, risco de hipoglicemia e capacidade de autocuidado. Metas glicêmicas menos rígidas podem ser apropriadas em determinadas situações."
         },
         {
           "type": "ul",
@@ -171,11 +171,11 @@ export const post = {
         },
         {
           "type": "p",
-          "content": "O geriatra é um médico capacitado a tratar das doenças crônicas mais prevalentes no idoso com a expertise de maneja-las em conjunto e com o cuidado de manter a prescrição adequada para interação das doenças e medicamentos entre si."
+          "text": "O geriatra é um médico capacitado a tratar das doenças crônicas mais prevalentes no idoso com a expertise de maneja-las em conjunto e com o cuidado de manter a prescrição adequada para interação das doenças e medicamentos entre si."
         },
         {
           "type": "warning",
-          "content": "Muitas condições de saúde em idosos manifestam-se de forma atípica ou com sintomas inespecíficos. Mudanças no estado funcional, confusão mental aguda ou queda inexplicada podem ser manifestações de diversas doenças e merecem avaliação médica."
+          "text": "Muitas condições de saúde em idosos manifestam-se de forma atípica ou com sintomas inespecíficos. Mudanças no estado funcional, confusão mental aguda ou queda inexplicada podem ser manifestações de diversas doenças e merecem avaliação médica."
         }
       ]
     },
@@ -185,27 +185,27 @@ export const post = {
       "blocks": [
         {
           "type": "p",
-          "content": "A polifarmácia, definida geralmente como uso de cinco ou mais medicamentos simultaneamente, é extremamente comum em idosos devido à prevalência de múltiplas condições crônicas. Embora muitos medicamentos sejam necessários, o uso de vários fármacos aumenta riscos de interações medicamentosas, efeitos adversos, erros de administração e redução da adesão ao tratamento."
+          "text": "A polifarmácia, definida geralmente como uso de cinco ou mais medicamentos simultaneamente, é extremamente comum em idosos devido à prevalência de múltiplas condições crônicas. Embora muitos medicamentos sejam necessários, o uso de vários fármacos aumenta riscos de interações medicamentosas, efeitos adversos, erros de administração e redução da adesão ao tratamento."
         },
         {
           "type": "p",
-          "content": "O envelhecimento altera a farmacocinética, isto é, como o organismo absorve, distribui, metaboliza e elimina medicamentos, e a farmacodinâmica, ou seja, como os medicamentos agem no organismo. A função renal tende a declinar com a idade, retardando a eliminação de diversos fármacos. A composição corporal se modifica, com redução da massa muscular e aumento da gordura, alterando a distribuição de medicamentos."
+          "text": "O envelhecimento altera a farmacocinética, isto é, como o organismo absorve, distribui, metaboliza e elimina medicamentos, e a farmacodinâmica, ou seja, como os medicamentos agem no organismo. A função renal tende a declinar com a idade, retardando a eliminação de diversos fármacos. A composição corporal se modifica, com redução da massa muscular e aumento da gordura, alterando a distribuição de medicamentos."
         },
         {
           "type": "h3",
-          "content": "Medicamentos Potencialmente Inapropriados"
+          "text": "Medicamentos Potencialmente Inapropriados"
         },
         {
           "type": "p",
-          "content": "Alguns medicamentos apresentam riscos particularmente elevados em idosos e devem ser evitados quando possível. Os critérios de Beers, atualizados periodicamente, listam medicamentos potencialmente inapropriados para idosos. Incluem certos anti-inflamatórios não esteroides que aumentam risco de sangramento gastrointestinal e insuficiência renal, benzodiazepínicos de longa ação que aumentam risco de quedas e confusão mental, e alguns anti-histamínicos que causam sonolência excessiva e alterações cognitivas."
+          "text": "Alguns medicamentos apresentam riscos particularmente elevados em idosos e devem ser evitados quando possível. Os critérios de Beers, atualizados periodicamente, listam medicamentos potencialmente inapropriados para idosos. Incluem certos anti-inflamatórios não esteroides que aumentam risco de sangramento gastrointestinal e insuficiência renal, benzodiazepínicos de longa ação que aumentam risco de quedas e confusão mental, e alguns anti-histamínicos que causam sonolência excessiva e alterações cognitivas."
         },
         {
           "type": "p",
-          "content": "A revisão medicamentosa regular pelo geriatra é fundamental para identificar medicamentos desnecessários, doses inadequadas, duplicidades terapêuticas e potenciais interações. O processo de desprescrição, ou seja, a retirada planejada e monitorada de medicamentos, pode ser apropriado em determinadas situações, sempre sob orientação médica."
+          "text": "A revisão medicamentosa regular pelo geriatra é fundamental para identificar medicamentos desnecessários, doses inadequadas, duplicidades terapêuticas e potenciais interações. O processo de desprescrição, ou seja, a retirada planejada e monitorada de medicamentos, pode ser apropriado em determinadas situações, sempre sob orientação médica."
         },
         {
           "type": "h3",
-          "content": "Estratégias para Uso Seguro de Medicamentos"
+          "text": "Estratégias para Uso Seguro de Medicamentos"
         },
         {
           "type": "ul",
@@ -220,7 +220,7 @@ export const post = {
         },
         {
           "type": "callout",
-          "content": "A revisão medicamentosa periódica pelo geriatra pode identificar oportunidades de otimização do tratamento, reduzindo riscos e melhorando a segurança sem comprometer o controle das condições de saúde."
+          "text": "A revisão medicamentosa periódica pelo geriatra pode identificar oportunidades de otimização do tratamento, reduzindo riscos e melhorando a segurança sem comprometer o controle das condições de saúde."
         }
       ]
     },
@@ -230,39 +230,39 @@ export const post = {
       "blocks": [
         {
           "type": "p",
-          "content": "A prevenção de doenças e a promoção de saúde são fundamentais em qualquer idade, mas assumem características específicas com o envelhecimento. O foco é manter funcionalidade, independência e qualidade de vida, prevenindo não apenas doenças, mas também suas complicações e o declínio funcional."
+          "text": "A prevenção de doenças e a promoção de saúde são fundamentais em qualquer idade, mas assumem características específicas com o envelhecimento. O foco é manter funcionalidade, independência e qualidade de vida, prevenindo não apenas doenças, mas também suas complicações e o declínio funcional."
         },
         {
           "type": "h3",
-          "content": "Imunizações Recomendadas"
+          "text": "Imunizações Recomendadas"
         },
         {
           "type": "p",
-          "content": "A vacinação é medida preventiva importante em idosos, que apresentam maior vulnerabilidade a infecções devido à imunossenescência, ou seja, o declínio do sistema imunológico relacionado à idade. As vacinas recomendadas incluem a vacina contra influenza anualmente, a vacina pneumocócica para prevenir pneumonia pneumocócica e suas complicações, e a vacina contra herpes-zóster, que reduz o risco de desenvolver esta doença dolorosa. Mais recentemente passamos a ter recomendação também da vacina para vírus sincicial respiratório."
+          "text": "A vacinação é medida preventiva importante em idosos, que apresentam maior vulnerabilidade a infecções devido à imunossenescência, ou seja, o declínio do sistema imunológico relacionado à idade. As vacinas recomendadas incluem a vacina contra influenza anualmente, a vacina pneumocócica para prevenir pneumonia pneumocócica e suas complicações, e a vacina contra herpes-zóster, que reduz o risco de desenvolver esta doença dolorosa. Mais recentemente passamos a ter recomendação também da vacina para vírus sincicial respiratório."
         },
         {
           "type": "p",
-          "content": "Também são recomendadas a vacina dupla adulto (difteria e tétano) a cada dez anos, e, em situações específicas, vacinas contra hepatite B, febre amarela e outras, conforme avaliação individualizada considerando riscos e benefícios."
+          "text": "Também são recomendadas a vacina dupla adulto (difteria e tétano) a cada dez anos, e, em situações específicas, vacinas contra hepatite B, febre amarela e outras, conforme avaliação individualizada considerando riscos e benefícios."
         },
         {
           "type": "h3",
-          "content": "Atividade Física e Exercícios"
+          "text": "Atividade Física e Exercícios"
         },
         {
           "type": "p",
-          "content": "A atividade física regular é uma das intervenções mais efetivas para promoção de saúde e prevenção de declínio funcional em idosos. Exercícios aeróbicos melhoram a capacidade cardiovascular e ajudam no controle de peso, pressão arterial e glicemia. Exercícios de fortalecimento muscular previnem sarcopenia, a perda de massa muscular relacionada à idade, e mantêm a capacidade funcional."
+          "text": "A atividade física regular é uma das intervenções mais efetivas para promoção de saúde e prevenção de declínio funcional em idosos. Exercícios aeróbicos melhoram a capacidade cardiovascular e ajudam no controle de peso, pressão arterial e glicemia. Exercícios de fortalecimento muscular previnem sarcopenia, a perda de massa muscular relacionada à idade, e mantêm a capacidade funcional."
         },
         {
           "type": "p",
-          "content": "Exercícios de equilíbrio são particularmente importantes para prevenção de quedas, enquanto exercícios de flexibilidade mantêm a amplitude de movimento das articulações. Recomenda-se ao menos 150 minutos de atividade aeróbica de intensidade moderada por semana, além de exercícios de fortalecimento muscular duas vezes por semana, sempre respeitando limitações individuais e, preferencialmente, com orientação profissional."
+          "text": "Exercícios de equilíbrio são particularmente importantes para prevenção de quedas, enquanto exercícios de flexibilidade mantêm a amplitude de movimento das articulações. Recomenda-se ao menos 150 minutos de atividade aeróbica de intensidade moderada por semana, além de exercícios de fortalecimento muscular duas vezes por semana, sempre respeitando limitações individuais e, preferencialmente, com orientação profissional."
         },
         {
           "type": "h3",
-          "content": "Nutrição Adequada"
+          "text": "Nutrição Adequada"
         },
         {
           "type": "p",
-          "content": "A nutrição adequada é fundamental para manutenção da saúde na terceira idade. Alterações no apetite, paladar, olfato, dentição e capacidade de mastigação e deglutição podem comprometer a ingestão alimentar. A desnutrição em idosos associa-se a maior mortalidade, infecções, hospitalização prolongada e perda funcional."
+          "text": "A nutrição adequada é fundamental para manutenção da saúde na terceira idade. Alterações no apetite, paladar, olfato, dentição e capacidade de mastigação e deglutição podem comprometer a ingestão alimentar. A desnutrição em idosos associa-se a maior mortalidade, infecções, hospitalização prolongada e perda funcional."
         },
         {
           "type": "ul",
@@ -277,15 +277,15 @@ export const post = {
         },
         {
           "type": "h3",
-          "content": "Saúde Mental e Engajamento Social"
+          "text": "Saúde Mental e Engajamento Social"
         },
         {
           "type": "p",
-          "content": "A saúde mental é componente essencial do envelhecimento saudável. Manter-se mentalmente ativo através de leitura, jogos, aprendizado de novas habilidades e hobbies estimula a função cognitiva. O engajamento social, através de convívio familiar, amizades, atividades comunitárias, trabalho voluntário ou grupos de interesse, protege contra isolamento, depressão e declínio cognitivo."
+          "text": "A saúde mental é componente essencial do envelhecimento saudável. Manter-se mentalmente ativo através de leitura, jogos, aprendizado de novas habilidades e hobbies estimula a função cognitiva. O engajamento social, através de convívio familiar, amizades, atividades comunitárias, trabalho voluntário ou grupos de interesse, protege contra isolamento, depressão e declínio cognitivo."
         },
         {
           "type": "p",
-          "content": "A espiritualidade e o senso de propósito contribuem para o bem-estar psicológico e qualidade de vida. Atividades que proporcionem prazer, significado e conexão são fundamentais para o envelhecimento bem-sucedido."
+          "text": "A espiritualidade e o senso de propósito contribuem para o bem-estar psicológico e qualidade de vida. Atividades que proporcionem prazer, significado e conexão são fundamentais para o envelhecimento bem-sucedido."
         },
         {
           "text": "Agende sua consulta geriátrica na Clínica Okazaki",
@@ -300,19 +300,19 @@ export const post = {
       "blocks": [
         {
           "type": "p",
-          "content": "A família desempenha papel central no cuidado e bem-estar do idoso, especialmente quando há declínio funcional ou dependência. O cuidado adequado requer compreensão das necessidades do idoso, organização, paciência e, frequentemente, apoio profissional. É importante reconhecer que cuidar de um idoso, especialmente com dependência significativa, é tarefa desafiadora que pode impactar a saúde física e emocional do cuidador."
+          "text": "A família desempenha papel central no cuidado e bem-estar do idoso, especialmente quando há declínio funcional ou dependência. O cuidado adequado requer compreensão das necessidades do idoso, organização, paciência e, frequentemente, apoio profissional. É importante reconhecer que cuidar de um idoso, especialmente com dependência significativa, é tarefa desafiadora que pode impactar a saúde física e emocional do cuidador."
         },
         {
           "type": "h3",
-          "content": "Orientações para Familiares e Cuidadores"
+          "text": "Orientações para Familiares e Cuidadores"
         },
         {
           "type": "p",
-          "content": "Compreender as condições de saúde do idoso é fundamental. Participar das consultas médicas, quando possível e com consentimento do paciente, permite melhor entendimento do plano terapêutico e das orientações. Manter comunicação clara com a equipe de saúde, reportando mudanças no estado do idoso, é essencial para ajustes no tratamento."
+          "text": "Compreender as condições de saúde do idoso é fundamental. Participar das consultas médicas, quando possível e com consentimento do paciente, permite melhor entendimento do plano terapêutico e das orientações. Manter comunicação clara com a equipe de saúde, reportando mudanças no estado do idoso, é essencial para ajustes no tratamento."
         },
         {
           "type": "p",
-          "content": "Promover a autonomia do idoso, incentivando-o a realizar atividades que ainda é capaz de fazer, mesmo que de forma mais lenta, é importante para manutenção da autoestima e funcionalidade. Auxiliar apenas quando necessário, respeitando o ritmo e as preferências do idoso, preserva sua dignidade e senso de independência."
+          "text": "Promover a autonomia do idoso, incentivando-o a realizar atividades que ainda é capaz de fazer, mesmo que de forma mais lenta, é importante para manutenção da autoestima e funcionalidade. Auxiliar apenas quando necessário, respeitando o ritmo e as preferências do idoso, preserva sua dignidade e senso de independência."
         },
         {
           "type": "ul",
@@ -327,23 +327,23 @@ export const post = {
         },
         {
           "type": "h3",
-          "content": "Cuidando do Cuidador"
+          "text": "Cuidando do Cuidador"
         },
         {
           "type": "p",
-          "content": "O cuidador, especialmente quando é familiar, pode experimentar sobrecarga física e emocional, estresse, ansiedade, depressão e isolamento social. É fundamental que o cuidador também cuide de sua própria saúde, mantendo acompanhamento médico regular, alimentação adequada, atividade física e momentos de descanso e lazer."
+          "text": "O cuidador, especialmente quando é familiar, pode experimentar sobrecarga física e emocional, estresse, ansiedade, depressão e isolamento social. É fundamental que o cuidador também cuide de sua própria saúde, mantendo acompanhamento médico regular, alimentação adequada, atividade física e momentos de descanso e lazer."
         },
         {
           "type": "p",
-          "content": "Compartilhar responsabilidades entre familiares, quando possível, previne sobrecarga de uma única pessoa. Buscar orientação de profissionais de saúde sobre técnicas de cuidado, manejo de situações desafiadoras e recursos disponíveis pode facilitar o cuidado e reduzir estresse. Grupos de apoio a cuidadores oferecem espaço para compartilhar experiências, aprender estratégias e receber suporte emocional."
+          "text": "Compartilhar responsabilidades entre familiares, quando possível, previne sobrecarga de uma única pessoa. Buscar orientação de profissionais de saúde sobre técnicas de cuidado, manejo de situações desafiadoras e recursos disponíveis pode facilitar o cuidado e reduzir estresse. Grupos de apoio a cuidadores oferecem espaço para compartilhar experiências, aprender estratégias e receber suporte emocional."
         },
         {
           "type": "warning",
-          "content": "A sobrecarga do cuidador pode levar ao esgotamento e comprometer tanto sua saúde quanto a qualidade do cuidado oferecido ao idoso. Reconhecer limites e buscar apoio não é sinal de fraqueza, mas de responsabilidade e autocuidado."
+          "text": "A sobrecarga do cuidador pode levar ao esgotamento e comprometer tanto sua saúde quanto a qualidade do cuidado oferecido ao idoso. Reconhecer limites e buscar apoio não é sinal de fraqueza, mas de responsabilidade e autocuidado."
         },
         {
           "type": "p",
-          "content": "O acompanhamento geriátrico regular na Clínica Okazaki em Recife oferece não apenas avaliação e tratamento do idoso, mas também orientações para familiares e cuidadores, contribuindo para o cuidado integral e de qualidade. A geriatria reconhece a família como parte fundamental da equipe de cuidado, valorizando sua participação e oferecendo suporte necessário."
+          "text": "O acompanhamento geriátrico regular na Clínica Okazaki em Recife oferece não apenas avaliação e tratamento do idoso, mas também orientações para familiares e cuidadores, contribuindo para o cuidado integral e de qualidade. A geriatria reconhece a família como parte fundamental da equipe de cuidado, valorizando sua participação e oferecendo suporte necessário."
         }
       ]
     }

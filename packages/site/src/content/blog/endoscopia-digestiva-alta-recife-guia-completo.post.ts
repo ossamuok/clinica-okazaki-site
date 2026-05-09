@@ -50,23 +50,23 @@ export const post = {
       "blocks": [
         {
           "type": "p",
-          "content": "A endoscopia digestiva alta, também conhecida como esofagogastroduodenoscopia (EDA), é um exame que permite visualizar diretamente o revestimento interno (mucosa) do esôfago, estômago e a primeira porção do intestino delgado (duodeno). O procedimento utiliza um endoscópio, que é um tubo flexível fino equipado com uma câmera e luz na ponta."
+          "text": "A endoscopia digestiva alta, também conhecida como esofagogastroduodenoscopia (EDA), é um exame que permite visualizar diretamente o revestimento interno (mucosa) do esôfago, estômago e a primeira porção do intestino delgado (duodeno). O procedimento utiliza um endoscópio, que é um tubo flexível fino equipado com uma câmera e luz na ponta."
         },
         {
           "type": "p",
-          "content": "Este equipamento sofisticado permite ao médico gastroenterologista examinar detalhadamente a mucosa digestiva em tempo real, identificando alterações que outros exames como radiografias ou ultrassonografias não conseguem detectar com a mesma precisão. A imagem de alta definição é transmitida para um monitor, possibilitando uma avaliação minuciosa de toda a região."
+          "text": "Este equipamento sofisticado permite ao médico gastroenterologista examinar detalhadamente a mucosa digestiva em tempo real, identificando alterações que outros exames como radiografias ou ultrassonografias não conseguem detectar com a mesma precisão. A imagem de alta definição é transmitida para um monitor, possibilitando uma avaliação minuciosa de toda a região."
         },
         {
           "type": "p",
-          "content": "O endoscópio moderno possui cerca de 8 a 11 milímetros de diâmetro e entre 100 e 110 centímetros de comprimento. Além da visualização, o aparelho possui um canal de trabalho que permite a passagem de instrumentos especiais para realizar biópsias (retirada de pequenos fragmentos de tecido para análise), remover pólipos, controlar sangramentos e até realizar procedimentos terapêuticos."
+          "text": "O endoscópio moderno possui cerca de 8 a 11 milímetros de diâmetro e entre 100 e 110 centímetros de comprimento. Além da visualização, o aparelho possui um canal de trabalho que permite a passagem de instrumentos especiais para realizar biópsias (retirada de pequenos fragmentos de tecido para análise), remover pólipos, controlar sangramentos e até realizar procedimentos terapêuticos."
         },
         {
           "type": "callout",
-          "content": "A endoscopia digestiva alta é considerada o padrão-ouro para investigação de diversas condições do trato digestivo superior, sendo um procedimento seguro quando realizado por profissionais capacitados em ambiente adequado."
+          "text": "A endoscopia digestiva alta é considerada o padrão-ouro para investigação de diversas condições do trato digestivo superior, sendo um procedimento seguro quando realizado por profissionais capacitados em ambiente adequado."
         },
         {
           "type": "p",
-          "content": "Na Clínica Okazaki, utilizamos equipamentos de última geração com tecnologia de alta definição e magnificação de imagem, que permitem identificar lesões precoces e pequenas alterações na mucosa digestiva. Nosso centro de endoscopia segue rigorosamente as normas da SOBED (Sociedade Brasileira de Endoscopia Digestiva) e protocolos internacionais de segurança."
+          "text": "Na Clínica Okazaki, utilizamos equipamentos de última geração com tecnologia de alta definição e magnificação de imagem, que permitem identificar lesões precoces e pequenas alterações na mucosa digestiva. Nosso centro de endoscopia segue rigorosamente as normas da SOBED (Sociedade Brasileira de Endoscopia Digestiva) e protocolos internacionais de segurança."
         }
       ]
     },
@@ -76,11 +76,11 @@ export const post = {
       "blocks": [
         {
           "type": "p",
-          "content": "A endoscopia digestiva alta é indicada para investigar uma ampla variedade de sintomas e condições do sistema digestivo. O médico gastroenterologista pode solicitar o exame quando o paciente apresenta queixas persistentes ou sinais de alerta que necessitam avaliação mais detalhada."
+          "text": "A endoscopia digestiva alta é indicada para investigar uma ampla variedade de sintomas e condições do sistema digestivo. O médico gastroenterologista pode solicitar o exame quando o paciente apresenta queixas persistentes ou sinais de alerta que necessitam avaliação mais detalhada."
         },
         {
           "type": "h3",
-          "content": "Sintomas que Justificam a Realização da Endoscopia"
+          "text": "Sintomas que Justificam a Realização da Endoscopia"
         },
         {
           "type": "ul",
@@ -97,19 +97,19 @@ export const post = {
         },
         {
           "type": "p",
-          "content": "Além da investigação de sintomas, a endoscopia é fundamental para diagnóstico e acompanhamento de diversas doenças digestivas. Entre as condições mais comumente avaliadas estão a doença do refluxo gastroesofágico, gastrite, úlceras pépticas, esofagite, doença celíaca, esôfago de Barrett e lesões pré-malignas ou malignas do trato digestivo superior."
+          "text": "Além da investigação de sintomas, a endoscopia é fundamental para diagnóstico e acompanhamento de diversas doenças digestivas. Entre as condições mais comumente avaliadas estão a doença do refluxo gastroesofágico, gastrite, úlceras pépticas, esofagite, doença celíaca, esôfago de Barrett e lesões pré-malignas ou malignas do trato digestivo superior."
         },
         {
           "type": "h3",
-          "content": "Rastreamento e Vigilância"
+          "text": "Rastreamento e Vigilância"
         },
         {
           "type": "p",
-          "content": "O exame também desempenha papel importante no rastreamento de câncer gástrico em pacientes com fatores de risco, como história familiar positiva, infecção por Helicobacter pylori de longa data, presença de metaplasia intestinal ou gastrite atrófica. A vigilância endoscópica periódica é essencial para pacientes com diagnóstico de esôfago de Barrett, condição que aumenta o risco de adenocarcinoma esofágico."
+          "text": "O exame também desempenha papel importante no rastreamento de câncer gástrico em pacientes com fatores de risco, como história familiar positiva, infecção por Helicobacter pylori de longa data, presença de metaplasia intestinal ou gastrite atrófica. A vigilância endoscópica periódica é essencial para pacientes com diagnóstico de esôfago de Barrett, condição que aumenta o risco de adenocarcinoma esofágico."
         },
         {
           "type": "p",
-          "content": "Para pacientes que já realizaram tratamento de lesões pré-malignas ou câncer do trato digestivo superior, a endoscopia de seguimento permite detectar precocemente eventuais recidivas. O intervalo entre os exames de vigilância é determinado pelo gastroenterologista com base no achado anterior e nos protocolos específicos para cada condição."
+          "text": "Para pacientes que já realizaram tratamento de lesões pré-malignas ou câncer do trato digestivo superior, a endoscopia de seguimento permite detectar precocemente eventuais recidivas. O intervalo entre os exames de vigilância é determinado pelo gastroenterologista com base no achado anterior e nos protocolos específicos para cada condição."
         }
       ]
     },
@@ -119,39 +119,39 @@ export const post = {
       "blocks": [
         {
           "type": "p",
-          "content": "O preparo correto é fundamental para o sucesso do exame. Uma preparação inadequada pode comprometer a visualização da mucosa digestiva, necessitando em alguns casos a repetição do procedimento. Por isso, é essencial seguir rigorosamente todas as orientações fornecidas pela equipe médica."
+          "text": "O preparo correto é fundamental para o sucesso do exame. Uma preparação inadequada pode comprometer a visualização da mucosa digestiva, necessitando em alguns casos a repetição do procedimento. Por isso, é essencial seguir rigorosamente todas as orientações fornecidas pela equipe médica."
         },
         {
           "type": "h3",
-          "content": "Jejum Antes do Exame"
+          "text": "Jejum Antes do Exame"
         },
         {
           "type": "p",
-          "content": "O jejum é a principal orientação pré-exame e deve ser respeitado para garantir a segurança do procedimento. O estômago precisa estar completamente vazio para permitir boa visualização e prevenir complicações como aspiração de conteúdo gástrico durante a sedação. As recomendações de jejum são: 8 horas para alimentos sólidos e líquidos em geral, incluindo leite e derivados; 6 horas para líquidos claros como água, chá e suco sem resíduos; em casos específicos, o médico pode orientar períodos diferentes."
+          "text": "O jejum é a principal orientação pré-exame e deve ser respeitado para garantir a segurança do procedimento. O estômago precisa estar completamente vazio para permitir boa visualização e prevenir complicações como aspiração de conteúdo gástrico durante a sedação. As recomendações de jejum são: 8 horas para alimentos sólidos e líquidos em geral, incluindo leite e derivados; 6 horas para líquidos claros como água, chá e suco sem resíduos; em casos específicos, o médico pode orientar períodos diferentes."
         },
         {
           "type": "warning",
-          "content": "Não cumprir o jejum adequadamente pode resultar no cancelamento do exame por questões de segurança. Em caso de dúvidas sobre o tempo de jejum ou situações especiais, entre em contato com a clínica antes do dia marcado."
+          "text": "Não cumprir o jejum adequadamente pode resultar no cancelamento do exame por questões de segurança. Em caso de dúvidas sobre o tempo de jejum ou situações especiais, entre em contato com a clínica antes do dia marcado."
         },
         {
           "type": "h3",
-          "content": "Orientações Sobre Medicamentos"
+          "text": "Orientações Sobre Medicamentos"
         },
         {
           "type": "p",
-          "content": "A maioria dos medicamentos de uso contínuo pode ser mantida, mas é fundamental informar ao médico todos os remédios que você utiliza. Medicações para controle da pressão arterial e doenças cardíacas geralmente são mantidas com pequeno gole de água no dia do exame. Anti-hipertensivos devem ser tomados conforme prescrição habitual para evitar alterações pressóricas durante o procedimento."
+          "text": "A maioria dos medicamentos de uso contínuo pode ser mantida, mas é fundamental informar ao médico todos os remédios que você utiliza. Medicações para controle da pressão arterial e doenças cardíacas geralmente são mantidas com pequeno gole de água no dia do exame. Anti-hipertensivos devem ser tomados conforme prescrição habitual para evitar alterações pressóricas durante o procedimento."
         },
         {
           "type": "p",
-          "content": "Anticoagulantes (varfarina, rivaroxabana, apixabana, dabigatrana) e antiagregantes plaquetários (clopidogrel, ticagrelor) podem necessitar suspensão temporária, especialmente se houver planejamento de biópsias ou procedimentos terapêuticos. A aspirina em baixas doses geralmente pode ser mantida, mas essa decisão deve ser individualizada considerando os riscos cardiovasculares e hemorrágicos de cada paciente. Não recomendamos suspensão dos anticoagulantes ou antiagregantes plaquetários por conta própria. Para suspensão, o seu médico deve ser consultado."
+          "text": "Anticoagulantes (varfarina, rivaroxabana, apixabana, dabigatrana) e antiagregantes plaquetários (clopidogrel, ticagrelor) podem necessitar suspensão temporária, especialmente se houver planejamento de biópsias ou procedimentos terapêuticos. A aspirina em baixas doses geralmente pode ser mantida, mas essa decisão deve ser individualizada considerando os riscos cardiovasculares e hemorrágicos de cada paciente. Não recomendamos suspensão dos anticoagulantes ou antiagregantes plaquetários por conta própria. Para suspensão, o seu médico deve ser consultado."
         },
         {
           "type": "p",
-          "content": "Pacientes diabéticos requerem atenção especial. Antidiabéticos orais devem ser suspensos no dia do exame pela manhã. Para usuários de insulina, ajustes nas doses são necessários, especialmente da insulina de ação prolongada da noite anterior e da insulina rápida da manhã. O endocrinologista deverá fornecer orientações específicas baseadas no tipo de diabetes e esquema terapêutico."
+          "text": "Pacientes diabéticos requerem atenção especial. Antidiabéticos orais devem ser suspensos no dia do exame pela manhã. Para usuários de insulina, ajustes nas doses são necessários, especialmente da insulina de ação prolongada da noite anterior e da insulina rápida da manhã. O endocrinologista deverá fornecer orientações específicas baseadas no tipo de diabetes e esquema terapêutico."
         },
         {
           "type": "h3",
-          "content": "Documentos e Acompanhante"
+          "text": "Documentos e Acompanhante"
         },
         {
           "type": "ul",
@@ -166,7 +166,7 @@ export const post = {
         },
         {
           "type": "p",
-          "content": "A presença de acompanhante não é apenas recomendada, mas obrigatória devido à sedação. Este acompanhante deve ser maior de idade e capaz de conduzir o paciente para casa após o exame, seja dirigindo ou chamando transporte adequado. Menores de idade devem estar acompanhados por responsável legal."
+          "text": "A presença de acompanhante não é apenas recomendada, mas obrigatória devido à sedação. Este acompanhante deve ser maior de idade e capaz de conduzir o paciente para casa após o exame, seja dirigindo ou chamando transporte adequado. Menores de idade devem estar acompanhados por responsável legal."
         }
       ]
     },
@@ -176,35 +176,35 @@ export const post = {
       "blocks": [
         {
           "type": "p",
-          "content": "O dia do exame pode gerar ansiedade, mas compreender cada etapa do processo ajuda a deixar o paciente mais tranquilo. Na Clínica Okazaki, priorizamos o conforto e a segurança em todas as fases do procedimento, desde a recepção até a alta após o exame."
+          "text": "O dia do exame pode gerar ansiedade, mas compreender cada etapa do processo ajuda a deixar o paciente mais tranquilo. Na Clínica Okazaki, priorizamos o conforto e a segurança em todas as fases do procedimento, desde a recepção até a alta após o exame."
         },
         {
           "type": "h3",
-          "content": "Chegada e Preparação Inicial"
+          "text": "Chegada e Preparação Inicial"
         },
         {
           "type": "p",
-          "content": "Recomendamos chegar com 30 minutos de antecedência do horário marcado. Na recepção, os processos de autorização do exame é realizado junto à operadora de saúde, além da atualização dos dados cadastrais."
+          "text": "Recomendamos chegar com 30 minutos de antecedência do horário marcado. Na recepção, os processos de autorização do exame é realizado junto à operadora de saúde, além da atualização dos dados cadastrais."
         },
         {
           "type": "p",
-          "content": "Antes do exame, você terá uma conversa breve com o médico endoscopista, que revisará as indicações, esclarecerá dúvidas. Este é o momento ideal para mencionar qualquer preocupação ou pergunta que ainda tenha sobre o procedimento."
+          "text": "Antes do exame, você terá uma conversa breve com o médico endoscopista, que revisará as indicações, esclarecerá dúvidas. Este é o momento ideal para mencionar qualquer preocupação ou pergunta que ainda tenha sobre o procedimento."
         },
         {
           "type": "h3",
-          "content": "Sedação e Realização do Exame"
+          "text": "Sedação e Realização do Exame"
         },
         {
           "type": "p",
-          "content": "Na sala de endoscopia, você será posicionado confortavelmente em decúbito lateral esquerdo. A equipe de enfermagem instalará monitorização cardíaca, oxímetro de pulso e medidor de pressão arterial para acompanhamento contínuo dos sinais vitais durante todo o procedimento. Um acesso venoso será realizado para administração dos medicamentos."
+          "text": "Na sala de endoscopia, você será posicionado confortavelmente em decúbito lateral esquerdo. A equipe de enfermagem instalará monitorização cardíaca, oxímetro de pulso e medidor de pressão arterial para acompanhamento contínuo dos sinais vitais durante todo o procedimento. Um acesso venoso será realizado para administração dos medicamentos."
         },
         {
           "type": "p",
-          "content": "Antes da sedação, aplica-se um anestésico local em spray na garganta para reduzir o reflexo de vômito e aumentar o conforto. Em seguida, administram-se os sedativos por via endovenosa. Utilizamos protocolos de sedação consciente ou profunda, conforme a necessidade de cada caso, sempre com acompanhamento de profissional habilitado."
+          "text": "Antes da sedação, aplica-se um anestésico local em spray na garganta para reduzir o reflexo de vômito e aumentar o conforto. Em seguida, administram-se os sedativos por via endovenosa. Utilizamos protocolos de sedação consciente ou profunda, conforme a necessidade de cada caso, sempre com acompanhamento de profissional habilitado."
         },
         {
           "type": "p",
-          "content": "Com o paciente adequadamente sedado e confortável, o endoscópio é introduzido delicadamente pela boca, passando pela faringe, esôfago, estômago e chegando ao duodeno. Durante todo o trajeto, o médico examina cuidadosamente a mucosa, identifica alterações e, quando necessário, realiza biópsias ou procedimentos terapêuticos. O exame propriamente dito dura entre 5 e 15 minutos, dependendo da complexidade."
+          "text": "Com o paciente adequadamente sedado e confortável, o endoscópio é introduzido delicadamente pela boca, passando pela faringe, esôfago, estômago e chegando ao duodeno. Durante todo o trajeto, o médico examina cuidadosamente a mucosa, identifica alterações e, quando necessário, realiza biópsias ou procedimentos terapêuticos. O exame propriamente dito dura entre 5 e 15 minutos, dependendo da complexidade."
         },
         {
           "href": "/endoscopia",
@@ -213,19 +213,19 @@ export const post = {
         },
         {
           "type": "h3",
-          "content": "Recuperação e Alta"
+          "text": "Recuperação e Alta"
         },
         {
           "type": "p",
-          "content": "Após o término do exame, você será conduzido a uma sala de recuperação, onde permanecerá em observação até o despertar completo da sedação. Este período geralmente dura entre 30 e 60 minutos. A equipe de enfermagem monitora os sinais vitais e verifica se há qualquer desconforto ou complicação."
+          "text": "Após o término do exame, você será conduzido a uma sala de recuperação, onde permanecerá em observação até o despertar completo da sedação. Este período geralmente dura entre 30 e 60 minutos. A equipe de enfermagem monitora os sinais vitais e verifica se há qualquer desconforto ou complicação."
         },
         {
           "type": "p",
-          "content": "Antes da liberação, o médico conversará com você e seu acompanhante, explicando os achados do exame, entregando o laudo preliminar e fornecendo orientações pós-procedimento. O relatório anatomopatológico das biópsias, quando realizadas, fica disponível em 7 a 10 dias úteis e deve ser levado na consulta de retorno com o gastroenterologista."
+          "text": "Antes da liberação, o médico conversará com você e seu acompanhante, explicando os achados do exame, entregando o laudo preliminar e fornecendo orientações pós-procedimento. O relatório anatomopatológico das biópsias, quando realizadas, fica disponível em 7 a 10 dias úteis e deve ser levado na consulta de retorno com o gastroenterologista."
         },
         {
           "type": "p",
-          "content": "A alta é concedida quando o paciente está completamente desperto, com sinais vitais estáveis e sem sintomas preocupantes. É fundamental que o acompanhante assuma a responsabilidade pelo transporte e cuidados nas primeiras horas após o exame."
+          "text": "A alta é concedida quando o paciente está completamente desperto, com sinais vitais estáveis e sem sintomas preocupantes. É fundamental que o acompanhante assuma a responsabilidade pelo transporte e cuidados nas primeiras horas após o exame."
         }
       ]
     },
@@ -235,31 +235,31 @@ export const post = {
       "blocks": [
         {
           "type": "p",
-          "content": "Os cuidados pós-exame são essenciais para uma recuperação tranquila e para prevenir complicações. Embora a endoscopia seja um procedimento muito seguro, seguir as recomendações médicas nas primeiras 24 horas é fundamental."
+          "text": "Os cuidados pós-exame são essenciais para uma recuperação tranquila e para prevenir complicações. Embora a endoscopia seja um procedimento muito seguro, seguir as recomendações médicas nas primeiras 24 horas é fundamental."
         },
         {
           "type": "h3",
-          "content": "Alimentação e Hidratação"
+          "text": "Alimentação e Hidratação"
         },
         {
           "type": "p",
-          "content": "Devido ao anestésico aplicado na garganta, recomenda-se aguardar pelo menos 1 hora após o término do exame para começar a se alimentar ou beber líquidos. Este período permite que o efeito do anestésico local passe completamente, reduzindo o risco de engasgo. Para testar se a sensibilidade voltou, tome um pequeno gole de água antes de consumir outros alimentos."
+          "text": "Devido ao anestésico aplicado na garganta, recomenda-se aguardar pelo menos 1 hora após o término do exame para começar a se alimentar ou beber líquidos. Este período permite que o efeito do anestésico local passe completamente, reduzindo o risco de engasgo. Para testar se a sensibilidade voltou, tome um pequeno gole de água antes de consumir outros alimentos."
         },
         {
           "type": "p",
-          "content": "Nas primeiras horas, prefira alimentos leves e de fácil digestão, como caldos, sopas, torradas, frutas macias e sucos naturais. Evite alimentos muito quentes, gordurosos, picantes ou de difícil digestão nas primeiras 6 a 8 horas. A partir do dia seguinte, você pode retomar sua dieta habitual, exceto se houver orientação específica diferente baseada nos achados do exame."
+          "text": "Nas primeiras horas, prefira alimentos leves e de fácil digestão, como caldos, sopas, torradas, frutas macias e sucos naturais. Evite alimentos muito quentes, gordurosos, picantes ou de difícil digestão nas primeiras 6 a 8 horas. A partir do dia seguinte, você pode retomar sua dieta habitual, exceto se houver orientação específica diferente baseada nos achados do exame."
         },
         {
           "type": "p",
-          "content": "É normal sentir leve desconforto na garganta ou uma sensação de estufamento abdominal nas primeiras horas, causada pelo ar insuflado durante o procedimento. Esses sintomas são transitórios e melhoram espontaneamente. Caminhar um pouco pode ajudar a eliminar o ar e reduzir o desconforto."
+          "text": "É normal sentir leve desconforto na garganta ou uma sensação de estufamento abdominal nas primeiras horas, causada pelo ar insuflado durante o procedimento. Esses sintomas são transitórios e melhoram espontaneamente. Caminhar um pouco pode ajudar a eliminar o ar e reduzir o desconforto."
         },
         {
           "type": "h3",
-          "content": "Restrições e Limitações"
+          "text": "Restrições e Limitações"
         },
         {
           "type": "warning",
-          "content": "É absolutamente proibido dirigir veículos, operar máquinas ou tomar decisões importantes nas 12 horas seguintes ao exame. Os sedativos afetam temporariamente reflexos, coordenação motora e capacidade de julgamento, mesmo que você se sinta completamente desperto."
+          "text": "É absolutamente proibido dirigir veículos, operar máquinas ou tomar decisões importantes nas 12 horas seguintes ao exame. Os sedativos afetam temporariamente reflexos, coordenação motora e capacidade de julgamento, mesmo que você se sinta completamente desperto."
         },
         {
           "type": "ul",
@@ -273,27 +273,27 @@ export const post = {
         },
         {
           "type": "h3",
-          "content": "Quando Procurar Atendimento Médico"
+          "text": "Quando Procurar Atendimento Médico"
         },
         {
           "type": "p",
-          "content": "Embora complicações sejam raras, é importante reconhecer sinais de alerta que exigem avaliação médica imediata. Procure atendimento de urgência ou entre em contato com a clínica caso apresente: dor abdominal intensa e persistente que não melhora; vômitos com sangue vivo ou em grande quantidade; fezes escuras, pastosas e com odor forte (melena); dificuldade respiratória ou dor no peito; febre acima de 37,8°C; tontura intensa ou desmaio."
+          "text": "Embora complicações sejam raras, é importante reconhecer sinais de alerta que exigem avaliação médica imediata. Procure atendimento de urgência ou entre em contato com a clínica caso apresente: dor abdominal intensa e persistente que não melhora; vômitos com sangue vivo ou em grande quantidade; fezes escuras, pastosas e com odor forte (melena); dificuldade respiratória ou dor no peito; febre acima de 37,8°C; tontura intensa ou desmaio."
         },
         {
           "type": "p",
-          "content": "Pequenos sangramentos após biópsias podem causar fezes ligeiramente mais escuras por um dia, o que é normal. Também é esperado um leve desconforto na garganta por até 48 horas. No entanto, sintomas intensos, persistentes ou progressivos devem sempre ser avaliados por um médico."
+          "text": "Pequenos sangramentos após biópsias podem causar fezes ligeiramente mais escuras por um dia, o que é normal. Também é esperado um leve desconforto na garganta por até 48 horas. No entanto, sintomas intensos, persistentes ou progressivos devem sempre ser avaliados por um médico."
         },
         {
           "type": "h3",
-          "content": "Retorno às Atividades Normais"
+          "text": "Retorno às Atividades Normais"
         },
         {
           "type": "p",
-          "content": "A maioria dos pacientes pode retornar às atividades habituais no dia seguinte ao exame. Medicamentos de uso contínuo suspensos antes do procedimento devem ser retomados conforme orientação médica, geralmente já no dia seguinte. Para anticoagulantes e antiagregantes, siga rigorosamente as instruções fornecidas, pois o tempo de reintrodução pode variar."
+          "text": "A maioria dos pacientes pode retornar às atividades habituais no dia seguinte ao exame. Medicamentos de uso contínuo suspensos antes do procedimento devem ser retomados conforme orientação médica, geralmente já no dia seguinte. Para anticoagulantes e antiagregantes, siga rigorosamente as instruções fornecidas, pois o tempo de reintrodução pode variar."
         },
         {
           "type": "p",
-          "content": "Agende consulta de retorno com seu gastroenterologista para discutir os resultados completos do exame, especialmente se foram realizadas biópsias. Este acompanhamento é fundamental para definir o tratamento adequado baseado nos achados endoscópicos e histopatológicos."
+          "text": "Agende consulta de retorno com seu gastroenterologista para discutir os resultados completos do exame, especialmente se foram realizadas biópsias. Este acompanhamento é fundamental para definir o tratamento adequado baseado nos achados endoscópicos e histopatológicos."
         }
       ]
     },
@@ -303,47 +303,47 @@ export const post = {
       "blocks": [
         {
           "type": "p",
-          "content": "A escolha do local onde realizará sua endoscopia é tão importante quanto a decisão de fazer o exame. Na Clínica Okazaki, reunimos infraestrutura moderna, equipamentos de última geração e, principalmente, uma equipe altamente qualificada e humanizada para oferecer o melhor cuidado aos nossos pacientes."
+          "text": "A escolha do local onde realizará sua endoscopia é tão importante quanto a decisão de fazer o exame. Na Clínica Okazaki, reunimos infraestrutura moderna, equipamentos de última geração e, principalmente, uma equipe altamente qualificada e humanizada para oferecer o melhor cuidado aos nossos pacientes."
         },
         {
           "type": "h3",
-          "content": "Tecnologia de Ponta e Segurança"
+          "text": "Tecnologia de Ponta e Segurança"
         },
         {
           "type": "p",
-          "content": "Nossa clínica conta com sala de endoscopia equipada com videoendoscópios de alta definição e recursos avançados como cromoscopia digital e magnificação de imagem. Essa tecnologia permite identificar lesões sutis e precoces que equipamentos convencionais poderiam não detectar, aumentando a precisão diagnóstica."
+          "text": "Nossa clínica conta com sala de endoscopia equipada com videoendoscópios de alta definição e recursos avançados como cromoscopia digital e magnificação de imagem. Essa tecnologia permite identificar lesões sutis e precoces que equipamentos convencionais poderiam não detectar, aumentando a precisão diagnóstica."
         },
         {
           "type": "p",
-          "content": "Seguimos rigorosamente os protocolos de limpeza, desinfecção e esterilização de materiais estabelecidos pela SOBED e pela ANVISA. Todo o processo de reprocessamento dos endoscópios é rastreado e documentado, garantindo total segurança aos pacientes. Nosso centro de endoscopia possui toda a estrutura necessária para atender emergências, incluindo equipamentos de reanimação e medicações de urgência."
+          "text": "Seguimos rigorosamente os protocolos de limpeza, desinfecção e esterilização de materiais estabelecidos pela SOBED e pela ANVISA. Todo o processo de reprocessamento dos endoscópios é rastreado e documentado, garantindo total segurança aos pacientes. Nosso centro de endoscopia possui toda a estrutura necessária para atender emergências, incluindo equipamentos de reanimação e medicações de urgência."
         },
         {
           "type": "h3",
-          "content": "Equipe Especializada e Humanizada"
+          "text": "Equipe Especializada e Humanizada"
         },
         {
           "type": "p",
-          "content": "O Dr. Ossamu Okazaki, responsável técnica pelo serviço de endoscopia, é endoscopista com ampla experiência em procedimentos diagnósticos e terapêuticos. Além da competência técnica, nossa equipe prioriza o acolhimento humanizado, compreendendo a ansiedade que naturalmente acompanha a realização de exames médicos."
+          "text": "O Dr. Ossamu Okazaki, responsável técnica pelo serviço de endoscopia, é endoscopista com ampla experiência em procedimentos diagnósticos e terapêuticos. Além da competência técnica, nossa equipe prioriza o acolhimento humanizado, compreendendo a ansiedade que naturalmente acompanha a realização de exames médicos."
         },
         {
           "type": "p",
-          "content": "Desde o primeiro contato telefônico até o acompanhamento pós-exame, você receberá orientações claras, terá suas dúvidas esclarecidas e será tratado com respeito e empatia. Acreditamos que o cuidado integral envolve não apenas a excelência técnica, mas também o acolhimento emocional do paciente e de seus familiares."
+          "text": "Desde o primeiro contato telefônico até o acompanhamento pós-exame, você receberá orientações claras, terá suas dúvidas esclarecidas e será tratado com respeito e empatia. Acreditamos que o cuidado integral envolve não apenas a excelência técnica, mas também o acolhimento emocional do paciente e de seus familiares."
         },
         {
           "type": "h3",
-          "content": "Localização Privilegiada em Recife"
+          "text": "Localização Privilegiada em Recife"
         },
         {
           "type": "p",
-          "content": "Estrategicamente localizada em Recife, a Clínica Okazaki oferece fácil acesso para pacientes de toda a região metropolitana. Contamos com estacionamento próprio, facilitando a chegada de pacientes e acompanhantes no dia do exame. Nossas instalações são confortáveis, climatizadas e projetadas para proporcionar bem-estar durante toda a permanência na clínica."
+          "text": "Estrategicamente localizada em Recife, a Clínica Okazaki oferece fácil acesso para pacientes de toda a região metropolitana. Contamos com estacionamento próprio, facilitando a chegada de pacientes e acompanhantes no dia do exame. Nossas instalações são confortáveis, climatizadas e projetadas para proporcionar bem-estar durante toda a permanência na clínica."
         },
         {
           "type": "p",
-          "content": "Atendemos pacientes particulares e diversos convênios médicos. Nossa equipe administrativa está preparada para esclarecer questões sobre cobertura, autorizações e documentação necessária, tornando o processo mais simples e menos burocrático."
+          "text": "Atendemos pacientes particulares e diversos convênios médicos. Nossa equipe administrativa está preparada para esclarecer questões sobre cobertura, autorizações e documentação necessária, tornando o processo mais simples e menos burocrático."
         },
         {
           "type": "callout",
-          "content": "Na Clínica Okazaki, cada detalhe é pensado para que você tenha a melhor experiência possível, aliando tecnologia avançada, segurança rigorosa e atendimento humanizado. Sua saúde digestiva merece esse cuidado especializado."
+          "text": "Na Clínica Okazaki, cada detalhe é pensado para que você tenha a melhor experiência possível, aliando tecnologia avançada, segurança rigorosa e atendimento humanizado. Sua saúde digestiva merece esse cuidado especializado."
         }
       ]
     }
