@@ -331,6 +331,22 @@ const colonoscopia: PageContent = {
       q: "Quais convênios cobrem colonoscopia na Clínica Okazaki?",
       a: "Unimed (Recife, Intercâmbio, Unirede), Sul América, Bradesco Saúde (unidade Derby), Amil, Select, Gama, AMEPE/CAMPE, CAPE Saúde, Conab, FACHESF, FISCO Saúde, Mediservice, Petrobras, TRT 6 e particular. Confirme na recepção antes do agendamento.",
     },
+    {
+      q: "Qual o valor da colonoscopia em Recife?",
+      a: "O valor da colonoscopia em Recife varia conforme o convênio e o tipo de procedimento. Na Clínica Okazaki atendemos pelos principais planos — Unimed, Sul América, Bradesco Saúde, FACHESF, Amil, entre outros — e também por particular. Entre em contato pelo WhatsApp (81) 99954-0570 para verificar a cobertura do seu plano e obter informações sobre valores particulares.",
+    },
+    {
+      q: "Quem tem diabetes pode fazer colonoscopia?",
+      a: "Sim, pacientes diabéticos podem fazer colonoscopia, mas com cuidados específicos no preparo. O uso de laxantes e o jejum prolongado afetam a glicemia, por isso é fundamental informar ao médico sobre o tipo de diabetes, medicações em uso (especialmente insulina e hipoglicemiantes orais) e os níveis glicêmicos recentes. Nossa equipe orienta o ajuste do preparo de forma individualizada para cada paciente.",
+    },
+    {
+      q: "Quem tem aneurisma pode fazer colonoscopia?",
+      a: "Depende do tipo, localização e estabilidade do aneurisma. Em geral, aneurismas cerebrais ou aórticos estáveis e controlados não contraindicam a colonoscopia. O exame é realizado com sedação por anestesista, que avalia o risco cardiovascular previamente. É imprescindível informar sobre o aneurisma no momento do agendamento e apresentar avaliação recente do especialista responsável pelo acompanhamento.",
+    },
+    {
+      q: "Quem tem hérnia pode fazer colonoscopia?",
+      a: "Na maioria dos casos sim. Hérnias abdominais (inguinal, umbilical, incisional) geralmente não contraindicam a colonoscopia. O anestesista e o endoscopista devem ser informados para adaptar o posicionamento e a técnica se necessário. Hérnias de hiato também não contraindicam o exame. Informe sempre sua equipe médica sobre qualquer hérnia conhecida antes do procedimento.",
+    },
   ],
 };
 
