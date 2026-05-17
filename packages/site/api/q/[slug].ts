@@ -51,8 +51,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         country,
         city,
       })
-      .then(({ error: insErr }) => {
-        if (insErr) console.error('[qr] insert error', insErr);
+      .then((r: { error: unknown }) => {
+        if (r.error) console.error('[qr] insert error', r.error);
       });
 
     return res.redirect(302, campaign.destination_url);
