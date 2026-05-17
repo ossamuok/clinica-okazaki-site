@@ -37,7 +37,7 @@
     "api/**/*.ts": { "runtime": "@vercel/node@5.8.2" }
   },
   "rewrites": [
-    { "source": "/q/:slug", "destination": "/api/q/:slug" },
+    { "source": "/q/:slug", "destination": "/api/q?slug=:slug" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [
