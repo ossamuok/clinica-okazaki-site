@@ -33,7 +33,10 @@
     { "source": "/home", "destination": "/", "permanent": true },
     { "source": "/index", "destination": "/", "permanent": true }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "rewrites": [
+    { "source": "/q/:slug", "destination": "/api/q/:slug" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
