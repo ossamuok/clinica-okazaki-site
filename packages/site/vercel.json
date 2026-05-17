@@ -33,6 +33,9 @@
     { "source": "/home", "destination": "/", "permanent": true },
     { "source": "/index", "destination": "/", "permanent": true }
   ],
+  "functions": {
+    "api/**/*.ts": { "runtime": "@vercel/node@5.8.2" }
+  },
   "rewrites": [
     { "source": "/q/:slug", "destination": "/api/q/:slug" },
     { "source": "/(.*)", "destination": "/index.html" }
