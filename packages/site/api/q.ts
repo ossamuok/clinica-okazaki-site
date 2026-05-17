@@ -1,7 +1,13 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { supabaseAdmin } from '../_lib/supabase-admin.js';
+import { createClient } from '@supabase/supabase-js';
 
 const FALLBACK = 'https://www.clinicaokazaki.com';
+
+const supabase = createClient(
+  process.env.SUPABASE_URL ?? '',
+  process.env.SUPABASE_SERVICE_ROLE_KEY ?? '',
+  { auth: { autoRefreshToken: false, persistSession: false } },
+);
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const slugParam = req.query.slug;
@@ -12,7 +18,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (!slug) return res.redirect(302, FALLBACK);
 
   try {
-    const { data: campaign, error } = await supabaseAdmin
+    const { data: campaign, error } = await supabase
       .from('qr_campaigns')
       .select('id, destination_url, active')
       .eq('slug', slug)
@@ -39,7 +45,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const city = cityRaw ? decodeURIComponent(cityRaw) : null;
 
     // fire-and-forget: não bloqueia o redirect
-    void supabaseAdmin
+    void supabase
       .from('qr_scans')
       .insert({
         campaign_id: campaign.id,
