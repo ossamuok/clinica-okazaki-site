@@ -99,7 +99,7 @@ export function Footer() {
         </div>
 
         <div className="mt-6 pt-5 border-t border-paper/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-[11px] text-paper/45 leading-relaxed">
-          <p>© {year} {SITE.name}. Todos os direitos reservados.</p>
+          <p>© {year} {SITE.name}. Todos os direitos reservados. · {SITE.crmClinica}</p>
           <p className="text-right">
             Resp. técnico: {SITE.tecnico.nome} · {SITE.tecnico.crm} · {SITE.tecnico.rqe}
           </p>

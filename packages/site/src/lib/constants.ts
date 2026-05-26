@@ -17,6 +17,7 @@ export const SITE = {
   reviewsCount: 2500,
   rating: 5.0,
   instagram: "https://www.instagram.com/clinicaokazaki/",
+  crmClinica: "CRM-PE 473",
   tecnico: {
     nome: "Dr. Ossamu Okazaki",
     crm: "CRM-PE 19246",
