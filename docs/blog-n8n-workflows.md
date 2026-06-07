@@ -138,3 +138,39 @@ Para desativar pipeline imediatamente:
 | Vercel Hobby (site + editor) | $0 |
 | Supabase free tier (compartilhado Dashboard Amigo) | $0 |
 | **Total mensal** | **~$0.50-1** |
+
+---
+
+## ⚠️ Correções 2026-06-07 (este doc estava desatualizado)
+
+O **Gerador Semanal** (`41A8liy2qNm9zqpR`) live diverge do que está descrito acima:
+- Gera **6 posts/run** (não 2). Nó Code chama-se `Escolher 6 Pilares + Prompt`, `POSTS_PER_RUN=6`.
+- Anthropic via **httpRequest** (não nó nativo): `claude-sonnet-4-5`, `max_tokens 16000`, **com** `cache_control: ephemeral` no system, prefill `assistant: "{"`. Cred `anthropicApi` id `LrxhJlhaR4wnSx31`.
+- `generator_pause_threshold` = **18** (não 12).
+- Pausar/despausar: toggle no app editor (Configurações → Pausar gerador) **ou** `UPDATE blog_settings SET value='true'::jsonb WHERE key='generator_paused'`.
+
+## 🧠 Aprendizado — few-shot + style guide (2026-06-07)
+
+Sistema que faz o Gerador aprender o estilo da clínica. Guia não-técnico: `docs/blog-aprendizado.md`.
+
+### Tabelas novas (migration `20260607_blog_learning.sql`)
+- **`blog_review_log`** — guarda cada correção antes de ser apagada: `note_text`, `rejection_reason`, `original_content_json` (snapshot da versão da IA), `pillar`, `processed_at`.
+- **`blog_style_rules`** — regras destiladas: `rule_text`, `scope` (tom|estrutura|seo|factual|outro), `status` (proposed|active|rejected|retired), `source_log_ids[]`, `decided_via`.
+
+### Mudanças nos workflows existentes
+- **Regenerar** (`7UwTdI8qLmb5F4JL`): nó `LOG review` (Postgres, `onError: continueRegularOutput`) entre `SELECT draft atual` e `Montar Prompt Regenerar` — grava nota + snapshot em `blog_review_log` **antes** do UPDATE que zera `reviewer_notes`. Se o log falhar, o Regenerar continua (não trava o usuário).
+- **Gerador** (`41A8liy2qNm9zqpR`): 2 nós Postgres novos no ramo true do `Pode Gerar?` → `SELECT Exemplos` (top-3 aprovados por pilar) e `SELECT Regras Ativas`. O Code node injeta **regras ativas no `system`** (cacheado) e **3 exemplos do mesmo pilar no `user`** (completa com outros pilares se faltar). Lógica testada em `n8n-workflows/lib/fewshot.test.js`. Sem regras/exemplos = comportamento idêntico ao anterior (zero regressão).
+
+### Workflows novos
+| Workflow | ID | Disparo | Função |
+|---|---|---|---|
+| **Blog · Extrair Regras** | `P5LV0WrD3DSjQUcf` | cron `0 0 12 * * 1` + webhook `POST /webhook/blog-extrair-regras` | Lê `blog_review_log` não processado → Claude destila regras → INSERT `proposed` → manda no Telegram com botões |
+| **Blog · Aprovar Regra** | `3UanDymKb3L8tTAA` | Telegram Trigger (`callback_query`) | Botão ✅/❌ → UPDATE `blog_style_rules.status` para `active`/`rejected` (idempotente, guard `AND status='proposed'`) |
+
+### Notas operacionais (n8n public API)
+- PUT/POST de workflow: body só aceita `{name, nodes, connections, settings}`; `settings` só `{"executionOrder":"v1"}` (binaryMode/callerPolicy são rejeitados → caem pro default). `availableInMCP` também não sobrevive ao PUT.
+- Nós novos precisam de `id` **uuid4** senão a API os descarta silenciosamente.
+- Telegram inline keyboard: `inlineKeyboard.rows[].row.buttons[]`, cada botão com `additionalFields.callback_data`.
+- Postgres `onError` correto na versão atual é `"onError": "continueRegularOutput"` (não `continueOnFail`).
+- Backups pré-mudança: `n8n-workflows/_backup/2026-06-07-*.json` (rollback = PUT do backup).
+
