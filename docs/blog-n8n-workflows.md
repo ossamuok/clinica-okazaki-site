@@ -173,4 +173,16 @@ Sistema que faz o Gerador aprender o estilo da clínica. Guia não-técnico: `do
 - Telegram inline keyboard: `inlineKeyboard.rows[].row.buttons[]`, cada botão com `additionalFields.callback_data`.
 - Postgres `onError` correto na versão atual é `"onError": "continueRegularOutput"` (não `continueOnFail`).
 - Backups pré-mudança: `n8n-workflows/_backup/2026-06-07-*.json` (rollback = PUT do backup).
+- **SELECT no meio de cadeia precisa `alwaysOutputData: true`** — 0 linhas = 0 items = downstream não roda (gerador pararia silencioso). Consumidor filtra item vazio.
+
+## 💡 Sugestões de temas + anti-repetição (2026-06-10)
+
+- **Tabela `blog_topic_suggestions`** (migration `20260610_blog_topic_suggestions.sql`): pillar, topic_text, status (pending|used|archived), RLS authenticated. Editor insere; Gerador consome.
+- **Editor**: página `/temas` (`packages/editor/src/pages/Temas.tsx`) — form pilar+tema, fila pendente (excluir), histórico usados.
+- **Gerador** (`41A8liy2qNm9zqpR`, agora 18 nós):
+  - `SELECT Sugestoes` (alwaysOutputData) na cadeia antes do `Escolher 6 Pilares + Prompt`.
+  - Sugestões **furam a fila**: FIFO por pilar, 1 por slot/run; slug = slugify(topic_text); prompt marca "tema sugerido pela equipe".
+  - `Marcar Sugestao Usada` em ramo **paralelo** do Escolher (executeOnce, onError continue) — burn-on-consume: marca `used` mesmo se a geração falhar depois (raro; re-sugerir se acontecer).
+  - **Anti-repetição forte**: tema-chave = 2 primeiros tokens do slug (`esteatose-hepatica-*` = 1 tema). Tema só repete quando o pool do pilar esgota. Sorteio uniforme nos sobreviventes (não mais top-3 do ranking). Janela `recent_topics` 30→100 drafts.
+  - `alwaysOutputData: true` também em SELECT Exemplos/Regras Ativas (fix de bug latente).
 

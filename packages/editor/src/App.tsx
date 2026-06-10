@@ -6,6 +6,7 @@ import DraftEditor from "./pages/DraftEditor";
 import Queue from "./pages/Queue";
 import Settings from "./pages/Settings";
 import Published from "./pages/Published";
+import Temas from "./pages/Temas";
 import { AppShell } from "./components/AppShell";
 
 export default function App() {
@@ -36,6 +37,7 @@ export default function App() {
         <Route path="/drafts/:id" element={<DraftEditor />} />
         <Route path="/queue" element={<Queue />} />
         <Route path="/published" element={<Published />} />
+        <Route path="/temas" element={<Temas />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="*" element={<Navigate to="/inbox" replace />} />
       </Routes>

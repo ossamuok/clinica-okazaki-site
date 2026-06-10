@@ -58,6 +58,14 @@ Cada post nasce mais perto do gosto de vocês
 
 **A IA pode inventar uma regra médica errada?** O sistema é instruído a **não** criar regra de fato médico/CFM sem evidência na sua nota — e mesmo assim **nada entra sem você aprovar** no Telegram. Por isso o botão existe.
 
+## Sugerir temas (novo — 2026-06-10)
+
+Página **Temas** no editor (`editor.clinicaokazaki.com/temas`): escolha o pilar, escreva o tema (ex: *"Hepatite B na gravidez"*) e clique **Sugerir tema**. O próximo post daquele pilar usa o seu tema em vez do automático. A fila é por ordem de chegada; depois de usado, o tema aparece no histórico "Já usados".
+
+## Variedade de temas (novo — 2026-06-10)
+
+O gerador agora evita repetir o mesmo assunto dentro do pilar (ex: vários posts de esteatose em hepatologia). Um tema só volta a aparecer quando todos os outros temas do pilar já tiverem saído (~4 meses de espaçamento).
+
 ## Onde isso vive (pra equipe técnica)
 
-Ver `docs/blog-n8n-workflows.md` (seção "Aprendizado — 2026-06-07") para os workflows, tabelas e IDs.
+Ver `docs/blog-n8n-workflows.md` (seções "Aprendizado — 2026-06-07" e "Sugestões de temas — 2026-06-10") para os workflows, tabelas e IDs.

@@ -32,3 +32,15 @@
 **Causa:** Geração non-streaming de ~8-10k tokens passa de 180s (timeout configurado). `max_tokens 16000` permite saída longa. Gerador (background/schedule) tolera; webhooks síncronos (editor esperando) estouram.
 **Fix:** timeout 180s→300s nos nós Anthropic de Regenerar + Reestruturar. NÃO reduzir `max_tokens` (truncaria posts grandes de ~8-10k tokens).
 **Fix correto futuro:** tornar regeneração assíncrona (webhook responde na hora, workflow roda em background, editor faz polling) — remove a pressão de timeout síncrono. Exige mudança no editor.
+
+## 2026-06-10 · n8n SELECT com 0 linhas mata a cadeia silenciosamente
+
+**Erro:** SELECT Exemplos/Regras Ativas sem `alwaysOutputData` — se a query retornasse 0 linhas (ex: nenhuma regra ativa), o nó emite 0 items e TODO o downstream não roda. Gerador pararia de gerar sem nenhum erro visível.
+**Causa:** Semântica n8n: 0 items de saída = downstream skip. Mock-harness não pega (testa só o jsCode, não a cadeia).
+**Regra:** Todo nó Postgres SELECT no MEIO de uma cadeia n8n precisa de `alwaysOutputData: true` + o consumidor filtrar o item vazio (`.filter(r => r && r.campo)`). SELECT que é fim de cadeia ou cujo skip é desejado (ex: SELECT logs do Extrair) não precisa.
+
+## 2026-06-10 · Repetição de temas no gerador
+
+**Erro:** Hepatologia gerava só esteatose; gastro só "quando procurar". Dedup era por slug exato (variantes do mesmo tema passavam) + sorteio sempre no top-3 do ranking SEO (temas vizinhos saíam em sequência).
+**Fix:** tema-chave = 2 primeiros tokens do slug; tema só repete quando pool do pilar esgota; sorteio uniforme nos candidatos sobreviventes; janela recent_topics 30→100.
+**Regra:** dedup de conteúdo gerado deve ser por TEMA (chave semântica), não por string exata. Ranking fixo + janela curta = clusters de repetição.

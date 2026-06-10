@@ -18,6 +18,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <NavItem to="/inbox" label="Inbox" />
             <NavItem to="/queue" label="Fila" />
             <NavItem to="/published" label="Publicados" />
+            <NavItem to="/temas" label="Temas" />
             <NavItem to="/settings" label="Configurações" />
           </nav>
           <div className="flex items-center gap-3">

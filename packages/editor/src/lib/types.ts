@@ -49,3 +49,15 @@ export type SettingRow = {
   value: unknown;
   updated_at: string;
 };
+
+export type TopicSuggestionStatus = "pending" | "used" | "archived";
+
+export type BlogTopicSuggestion = {
+  id: string;
+  pillar: BlogPillar;
+  topic_text: string;
+  status: TopicSuggestionStatus;
+  suggested_by: string | null;
+  created_at: string;
+  used_at: string | null;
+};

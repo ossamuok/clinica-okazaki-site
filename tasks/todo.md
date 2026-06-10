@@ -1,25 +1,27 @@
-# Todo — Blog Few-shot + Style Guide
+# Todo — Sugestão de temas + anti-repetição
 
-Plano completo: `docs/superpowers/plans/2026-06-07-blog-few-shot-style-guide.md`
-Spec: `docs/superpowers/specs/2026-06-07-blog-few-shot-style-guide-design.md`
-Branch: `feature/blog-few-shot-style-guide`
+Pedido (2026-06-10): (1) sugerir temas pros posts via página no editor; (2) acabar com repetição de tema dentro do pilar (ex: hepatologia = só esteatose).
 
-## Status (2026-06-07)
+## Diagnóstico (confirmado em dados)
+- Hepatologia: 3/7 posts esteatose/gordura; gastro: 4/8 "quando procurar"; endoscopia: 4/8 "digestiva alta".
+- Causa 1: dedup por slug exato — `esteatose-hepatica-sintomas` não bloqueia `esteatose-hepatica-grau-1-2-3`.
+- Causa 2: picker sempre sorteia no top-3 do ranking SEO → temas vizinhos no ranking saem em sequência.
+- Bug latente: SELECTs do Gerador sem `alwaysOutputData` → 0 regras ativas um dia = cadeia morre silenciosa.
+- Run real de 06-08 (exec 29419) = success com few-shot+regras. Sistema vivo.
 
-- [x] Task 0 — backup workflows + pausar gerador
-- [x] Task 1 — migration (blog_review_log + blog_style_rules)
-- [x] Task 2 — trava-perda: nó LOG review no Regenerar
-- [x] Task 3 — lógica few-shot TDD (fewshot.js, 6/6 testes)
-- [x] Task 4+5 — Gerador: SELECT Exemplos/Regras + injeção (mock-harness 7/7)
-- [x] Task 7 — workflow Extrair Regras (`P5LV0WrD3DSjQUcf`)
-- [x] Task 8 — workflow Aprovar Regra Telegram (`3UanDymKb3L8tTAA`)
-- [~] Task 9 — docs feitos; **E2E ao vivo pendente (precisa do Ossamu)**
-- [ ] Task 6 — despausar gerador (após validação + OK do Ossamu)
+## Decisões (Ossamu)
+- Canal: **página no editor** (`/temas`)
+- Anti-repetição: **forte** (tema-chave só repete quando pool do pilar esgota)
+- Inbox atual: não mexer
 
-## Pendências que precisam do Ossamu (validação ao vivo)
-
-1. **Editor → rejeição real:** abrir um rascunho em `editor.clinicaokazaki.com`, "Pedir nova versão" com uma nota de estilo. → confirma que `blog_review_log` capta nota+snapshot ao vivo (Task 2).
-2. **Telegram → clicar botão:** quando uma regra proposta chegar no grupo, tocar ✅ Aprovar. → confirma o callback (Task 8) e a regra vira `active`.
-3. **Despausar o gerador:** toggle no app editor (Configurações → Pausar gerador = OFF) ou avisar pra rodar `generator_paused=false`. Só depois do item 1-2 validados.
-
-Após os cliques do Ossamu, verificar no banco e então despausar + merge da branch.
+## Plano
+- [ ] 1. Migration `blog_topic_suggestions` (pillar NOT NULL, topic_text, status pending/used/archived, RLS authenticated)
+- [ ] 2. Editor: página `/temas` (form pilar+tema, lista pendentes c/ excluir, histórico usados) + rota + nav AppShell — subagent
+- [ ] 3. Gerador:
+  - `alwaysOutputData=true` em SELECT Exemplos + SELECT Regras Ativas (fix latente)
+  - nó novo `SELECT Sugestoes` (pending, alwaysOutputData)
+  - Code: sugestões FIFO por pilar furam fila; anti-repetição por tema-chave (2 primeiros tokens do slug) vs recentes+batch; sorteio uniforme no pool sobrevivente; janela recent_topics 30→100
+  - nó `Marcar Sugestao Usada` em ramo PARALELO do Escolher (não inline — lição $input)
+- [ ] 4. Mock-harness do Code novo (sugestão consumida, tema repetido bloqueado, 0-rows ok)
+- [ ] 5. Docs + lessons + commit
+- [ ] 6. Deploy editor = precisa push (Vercel builda do GitHub) — pedir autorização no fim
