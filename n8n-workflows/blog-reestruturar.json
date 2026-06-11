@@ -1,1 +1,203 @@
-{"updatedAt":"2026-06-08T09:19:30.783Z","createdAt":"2026-04-27T00:40:13.271Z","id":"2q5SPYosY8zMClQP","name":"Blog · Reestruturar Draft","description":"Webhook: recebe {draft_id, title, lead, body, pillar} e re-estrutura via Anthropic em content_json completo (sections, blocks, faqs, slug, meta).","active":true,"isArchived":false,"nodes":[{"id":"e3520ef1-0b91-4291-aa4e-e9e07656c5d5","name":"Webhook Reestruturar","type":"n8n-nodes-base.webhook","typeVersion":2.1,"position":[240,300],"parameters":{"httpMethod":"POST","path":"blog-reestruturar","responseMode":"responseNode","authentication":"headerAuth"},"credentials":{"httpHeaderAuth":{"id":"Dy9Bl0UZHMNzB3dx","name":"Header Auth Blog Reestruturar"}},"webhookId":"11b03279-6db9-4561-9510-37198632ce2c"},{"id":"d61544c1-a172-4f27-811d-61000edec305","name":"Montar Prompt Reestruturação","type":"n8n-nodes-base.code","typeVersion":2,"position":[480,300],"parameters":{"mode":"runOnceForEachItem","language":"javaScript","jsCode":"const b = $input.item.json.body || $input.item.json;\nconst title = b.title;\nconst lead = b.lead;\nconst body = b.body;\nconst pillar = b.pillar;\nconst draft_id = b.draft_id;\nif (!title || !body || !pillar || !draft_id) throw new Error('Campos obrigatórios: draft_id, title, body, pillar');\nconst SYSTEM = 'Você é um editor médico que recebe prosa livre revisada por médico e reorganiza em JSON estruturado BlogPost para blog SEO. Preserve INTEGRALMENTE o conteúdo médico — não invente, não remova fatos. Apenas detecte estrutura (H2/H3/listas/destaques) e gere metadados (slug, meta, keywords, FAQs, excerpt). FAQs: 4-6 perguntas extraídas ou inferidas do corpo. Retorne APENAS JSON válido (sem markdown, sem triplebackticks). INICIE A RESPOSTA COM {.';\nconst USER = 'Reorganize este post para o blog da Clínica Okazaki (pilar: ' + pillar + ').\\n\\nTÍTULO REVISADO:\\n' + title + '\\n\\nLEAD REVISADO:\\n' + lead + '\\n\\nCORPO REVISADO (markdown simples):\\n' + body + '\\n\\nGere JSON com shape exato: { slug (kebab-case derivado do título), pillar: \"' + pillar + '\", title: <título acima>, description (140-160 chars com geo-modifier em Recife), keywords (string CSV de 5-8 termos), h1: <título acima>, lead: <lead acima>, eyebrow: \"BLOG · ' + pillar.toUpperCase() + '\", breadcrumbLabel (curto), about (procedimento/condição), excerpt (80-200 chars), sections (array {id slug-style, h2, blocks: [{type, ...}]}), faqs (array {q, a} 4-6 itens extraídos do corpo), author: {name: \"Dra. Jane Erika Frazão Okazaki\", crm: \"CRM-PE 19872\", rqe: \"RQE 17633\", photo: \"/assets/team/jane.webp\", bio: \"Médica geriatra do Centro Clínico Okazaki, responsável pela revisão clínica do conteúdo deste blog.\"}, publishedAt: ISO atual, updatedAt: ISO atual }. Block types disponíveis: p (parágrafo), h3 (sub-subtítulo), ul (lista de itens string[]), callout (destaque informativo), warning (alerta), inline-cta (CTA WhatsApp text + label), link (href + label). Inclua ao menos 1 link interno para /' + pillar + '. PRESERVE O CONTEÚDO MÉDICO LITERAL — apenas reorganize.';\nreturn { json: { draft_id, system: SYSTEM, user: USER } };"}},{"id":"432c7860-71e3-4889-b363-125c71f4d158","name":"Anthropic Claude Sonnet","type":"n8n-nodes-base.httpRequest","typeVersion":4.4,"position":[720,300],"parameters":{"method":"POST","url":"https://api.anthropic.com/v1/messages","authentication":"predefinedCredentialType","nodeCredentialType":"anthropicApi","sendHeaders":true,"specifyHeaders":"keypair","headerParameters":{"parameters":[{"name":"anthropic-version","value":"2023-06-01"},{"name":"Content-Type","value":"application/json"}]},"sendBody":true,"contentType":"json","specifyBody":"json","jsonBody":"={{ JSON.stringify({ model: \"claude-sonnet-4-5\", max_tokens: 16000, system: $json.system, messages: [{ role: \"user\", content: $json.user }, { role: \"assistant\", content: \"{\" }] }) }}","options":{"timeout":300000}},"credentials":{"anthropicApi":{"id":"LrxhJlhaR4wnSx31","name":"Anthropic account"}}},{"id":"4e9ce440-f625-44a6-93d9-70c9ec78b240","name":"Parse + Validar","type":"n8n-nodes-base.code","typeVersion":2,"position":[960,300],"parameters":{"mode":"runOnceForEachItem","language":"javaScript","jsCode":"const draft_id = $('Montar Prompt Reestruturação').item.json.draft_id;\nconst raw = $input.item.json;\nconst tb = (raw.content || []).find(c => c.type === 'text');\nif (!tb) throw new Error('Sem text block');\nlet body = (tb.text || '').trim();\nif (!body.startsWith('{')) body = '{' + body;\nbody = body.replace(/^```(?:json)?\\s*/i, '').replace(/```\\s*$/, '');\nconst lb = body.lastIndexOf('}');\nif (lb > 0) body = body.slice(0, lb + 1);\nconst parsed = JSON.parse(body);\nconst req = ['slug','pillar','title','description','keywords','h1','lead','eyebrow','breadcrumbLabel','about','excerpt','sections','faqs','author'];\nconst miss = req.filter(k => !(k in parsed));\nif (miss.length) throw new Error('Faltam: ' + miss.join(','));\nif (!parsed.publishedAt) parsed.publishedAt = new Date().toISOString();\nparsed.updatedAt = new Date().toISOString();\nconst kw = typeof parsed.keywords === 'string' ? parsed.keywords.split(',').map(k => k.trim()) : parsed.keywords;\nconst wc = JSON.stringify(parsed).split(/\\s+/).length;\nreturn { json: { draft_id, slug: parsed.slug, title: parsed.title, meta_description: parsed.description, keywords: kw, content_json: parsed, word_count: wc } };"}},{"id":"8000ab1b-b8ad-48ca-942f-bea33a3c485b","name":"UPDATE blog_drafts","type":"n8n-nodes-base.postgres","typeVersion":2.6,"position":[1200,300],"parameters":{"operation":"executeQuery","query":"UPDATE blog_drafts SET slug=$1, title=$2, meta_description=$3, keywords=$4::text[], content_json=$5::jsonb, word_count=$6, updated_at=NOW() WHERE id=$7 RETURNING id, slug, title, pillar;","options":{"queryReplacement":"={{ [$json.slug, $json.title, $json.meta_description, \"{\" + $json.keywords.map(k => \"\\\"\" + k.replace(/\"/g,\"\\\\\\\"\") + \"\\\"\").join(\",\") + \"}\", JSON.stringify($json.content_json), $json.word_count, $json.draft_id] }}"}},"credentials":{"postgres":{"id":"OrMhexleB5Cyk2m2","name":"Supabase Blog Postgres"}}},{"id":"56496085-cbd9-4f0e-87f9-6cd3dcc2640c","name":"Resposta","type":"n8n-nodes-base.respondToWebhook","typeVersion":1.1,"position":[1440,300],"parameters":{"respondWith":"json","responseBody":"={{ JSON.stringify({ ok: true, draft_id: $json.id, slug: $json.slug, title: $json.title }) }}","options":{"responseCode":200}}}],"connections":{"Webhook Reestruturar":{"main":[[{"node":"Montar Prompt Reestruturação","type":"main","index":0}]]},"Montar Prompt Reestruturação":{"main":[[{"node":"Anthropic Claude Sonnet","type":"main","index":0}]]},"Anthropic Claude Sonnet":{"main":[[{"node":"Parse + Validar","type":"main","index":0}]]},"Parse + Validar":{"main":[[{"node":"UPDATE blog_drafts","type":"main","index":0}]]},"UPDATE blog_drafts":{"main":[[{"node":"Resposta","type":"main","index":0}]]}},"settings":{"executionOrder":"v1","availableInMCP":false,"callerPolicy":"workflowsFromSameOwner"},"staticData":null,"meta":{"aiBuilderAssisted":true},"pinData":null,"versionId":"711779be-24c6-4ae4-9e89-69b050bdc636","activeVersionId":"711779be-24c6-4ae4-9e89-69b050bdc636","versionCounter":26,"triggerCount":1,"shared":[{"updatedAt":"2026-04-27T00:40:13.275Z","createdAt":"2026-04-27T00:40:13.275Z","role":"workflow:owner","workflowId":"2q5SPYosY8zMClQP","projectId":"mNuhJVX5r2YbaTma","project":{"updatedAt":"2026-03-23T10:56:34.089Z","createdAt":"2026-03-19T09:34:59.280Z","id":"mNuhJVX5r2YbaTma","name":"Ossamu Okazaki <ossamuok@gmail.com>","type":"personal","icon":null,"description":null,"creatorId":"8b3518a6-64b3-4cc8-bfa5-294507f67464"}}],"tags":[],"activeVersion":{"updatedAt":"2026-06-08T09:19:30.784Z","createdAt":"2026-06-08T09:19:30.784Z","versionId":"711779be-24c6-4ae4-9e89-69b050bdc636","workflowId":"2q5SPYosY8zMClQP","nodes":[{"id":"e3520ef1-0b91-4291-aa4e-e9e07656c5d5","name":"Webhook Reestruturar","type":"n8n-nodes-base.webhook","typeVersion":2.1,"position":[240,300],"parameters":{"httpMethod":"POST","path":"blog-reestruturar","responseMode":"responseNode","authentication":"headerAuth"},"credentials":{"httpHeaderAuth":{"id":"Dy9Bl0UZHMNzB3dx","name":"Header Auth Blog Reestruturar"}},"webhookId":"11b03279-6db9-4561-9510-37198632ce2c"},{"id":"d61544c1-a172-4f27-811d-61000edec305","name":"Montar Prompt Reestruturação","type":"n8n-nodes-base.code","typeVersion":2,"position":[480,300],"parameters":{"mode":"runOnceForEachItem","language":"javaScript","jsCode":"const b = $input.item.json.body || $input.item.json;\nconst title = b.title;\nconst lead = b.lead;\nconst body = b.body;\nconst pillar = b.pillar;\nconst draft_id = b.draft_id;\nif (!title || !body || !pillar || !draft_id) throw new Error('Campos obrigatórios: draft_id, title, body, pillar');\nconst SYSTEM = 'Você é um editor médico que recebe prosa livre revisada por médico e reorganiza em JSON estruturado BlogPost para blog SEO. Preserve INTEGRALMENTE o conteúdo médico — não invente, não remova fatos. Apenas detecte estrutura (H2/H3/listas/destaques) e gere metadados (slug, meta, keywords, FAQs, excerpt). FAQs: 4-6 perguntas extraídas ou inferidas do corpo. Retorne APENAS JSON válido (sem markdown, sem triplebackticks). INICIE A RESPOSTA COM {.';\nconst USER = 'Reorganize este post para o blog da Clínica Okazaki (pilar: ' + pillar + ').\\n\\nTÍTULO REVISADO:\\n' + title + '\\n\\nLEAD REVISADO:\\n' + lead + '\\n\\nCORPO REVISADO (markdown simples):\\n' + body + '\\n\\nGere JSON com shape exato: { slug (kebab-case derivado do título), pillar: \"' + pillar + '\", title: <título acima>, description (140-160 chars com geo-modifier em Recife), keywords (string CSV de 5-8 termos), h1: <título acima>, lead: <lead acima>, eyebrow: \"BLOG · ' + pillar.toUpperCase() + '\", breadcrumbLabel (curto), about (procedimento/condição), excerpt (80-200 chars), sections (array {id slug-style, h2, blocks: [{type, ...}]}), faqs (array {q, a} 4-6 itens extraídos do corpo), author: {name: \"Dra. Jane Erika Frazão Okazaki\", crm: \"CRM-PE 19872\", rqe: \"RQE 17633\", photo: \"/assets/team/jane.webp\", bio: \"Médica geriatra do Centro Clínico Okazaki, responsável pela revisão clínica do conteúdo deste blog.\"}, publishedAt: ISO atual, updatedAt: ISO atual }. Block types disponíveis: p (parágrafo), h3 (sub-subtítulo), ul (lista de itens string[]), callout (destaque informativo), warning (alerta), inline-cta (CTA WhatsApp text + label), link (href + label). Inclua ao menos 1 link interno para /' + pillar + '. PRESERVE O CONTEÚDO MÉDICO LITERAL — apenas reorganize.';\nreturn { json: { draft_id, system: SYSTEM, user: USER } };"}},{"id":"432c7860-71e3-4889-b363-125c71f4d158","name":"Anthropic Claude Sonnet","type":"n8n-nodes-base.httpRequest","typeVersion":4.4,"position":[720,300],"parameters":{"method":"POST","url":"https://api.anthropic.com/v1/messages","authentication":"predefinedCredentialType","nodeCredentialType":"anthropicApi","sendHeaders":true,"specifyHeaders":"keypair","headerParameters":{"parameters":[{"name":"anthropic-version","value":"2023-06-01"},{"name":"Content-Type","value":"application/json"}]},"sendBody":true,"contentType":"json","specifyBody":"json","jsonBody":"={{ JSON.stringify({ model: \"claude-sonnet-4-5\", max_tokens: 16000, system: $json.system, messages: [{ role: \"user\", content: $json.user }, { role: \"assistant\", content: \"{\" }] }) }}","options":{"timeout":300000}},"credentials":{"anthropicApi":{"id":"LrxhJlhaR4wnSx31","name":"Anthropic account"}}},{"id":"4e9ce440-f625-44a6-93d9-70c9ec78b240","name":"Parse + Validar","type":"n8n-nodes-base.code","typeVersion":2,"position":[960,300],"parameters":{"mode":"runOnceForEachItem","language":"javaScript","jsCode":"const draft_id = $('Montar Prompt Reestruturação').item.json.draft_id;\nconst raw = $input.item.json;\nconst tb = (raw.content || []).find(c => c.type === 'text');\nif (!tb) throw new Error('Sem text block');\nlet body = (tb.text || '').trim();\nif (!body.startsWith('{')) body = '{' + body;\nbody = body.replace(/^```(?:json)?\\s*/i, '').replace(/```\\s*$/, '');\nconst lb = body.lastIndexOf('}');\nif (lb > 0) body = body.slice(0, lb + 1);\nconst parsed = JSON.parse(body);\nconst req = ['slug','pillar','title','description','keywords','h1','lead','eyebrow','breadcrumbLabel','about','excerpt','sections','faqs','author'];\nconst miss = req.filter(k => !(k in parsed));\nif (miss.length) throw new Error('Faltam: ' + miss.join(','));\nif (!parsed.publishedAt) parsed.publishedAt = new Date().toISOString();\nparsed.updatedAt = new Date().toISOString();\nconst kw = typeof parsed.keywords === 'string' ? parsed.keywords.split(',').map(k => k.trim()) : parsed.keywords;\nconst wc = JSON.stringify(parsed).split(/\\s+/).length;\nreturn { json: { draft_id, slug: parsed.slug, title: parsed.title, meta_description: parsed.description, keywords: kw, content_json: parsed, word_count: wc } };"}},{"id":"8000ab1b-b8ad-48ca-942f-bea33a3c485b","name":"UPDATE blog_drafts","type":"n8n-nodes-base.postgres","typeVersion":2.6,"position":[1200,300],"parameters":{"operation":"executeQuery","query":"UPDATE blog_drafts SET slug=$1, title=$2, meta_description=$3, keywords=$4::text[], content_json=$5::jsonb, word_count=$6, updated_at=NOW() WHERE id=$7 RETURNING id, slug, title, pillar;","options":{"queryReplacement":"={{ [$json.slug, $json.title, $json.meta_description, \"{\" + $json.keywords.map(k => \"\\\"\" + k.replace(/\"/g,\"\\\\\\\"\") + \"\\\"\").join(\",\") + \"}\", JSON.stringify($json.content_json), $json.word_count, $json.draft_id] }}"}},"credentials":{"postgres":{"id":"OrMhexleB5Cyk2m2","name":"Supabase Blog Postgres"}}},{"id":"56496085-cbd9-4f0e-87f9-6cd3dcc2640c","name":"Resposta","type":"n8n-nodes-base.respondToWebhook","typeVersion":1.1,"position":[1440,300],"parameters":{"respondWith":"json","responseBody":"={{ JSON.stringify({ ok: true, draft_id: $json.id, slug: $json.slug, title: $json.title }) }}","options":{"responseCode":200}}}],"connections":{"Webhook Reestruturar":{"main":[[{"node":"Montar Prompt Reestruturação","type":"main","index":0}]]},"Montar Prompt Reestruturação":{"main":[[{"node":"Anthropic Claude Sonnet","type":"main","index":0}]]},"Anthropic Claude Sonnet":{"main":[[{"node":"Parse + Validar","type":"main","index":0}]]},"Parse + Validar":{"main":[[{"node":"UPDATE blog_drafts","type":"main","index":0}]]},"UPDATE blog_drafts":{"main":[[{"node":"Resposta","type":"main","index":0}]]}},"authors":"Ossamu Okazaki","name":null,"description":null,"autosaved":false,"workflowPublishHistory":[{"createdAt":"2026-06-08T09:19:30.860Z","id":861,"workflowId":"2q5SPYosY8zMClQP","versionId":"711779be-24c6-4ae4-9e89-69b050bdc636","event":"activated","userId":"8b3518a6-64b3-4cc8-bfa5-294507f67464"},{"createdAt":"2026-06-08T09:19:30.846Z","id":860,"workflowId":"2q5SPYosY8zMClQP","versionId":"711779be-24c6-4ae4-9e89-69b050bdc636","event":"deactivated","userId":"8b3518a6-64b3-4cc8-bfa5-294507f67464"}]}}
+{
+  "name": "Blog · Reestruturar Draft",
+  "nodes": [
+    {
+      "id": "e3520ef1-0b91-4291-aa4e-e9e07656c5d5",
+      "name": "Webhook Reestruturar",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        240,
+        300
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "blog-reestruturar",
+        "responseMode": "responseNode",
+        "authentication": "headerAuth"
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Dy9Bl0UZHMNzB3dx",
+          "name": "Header Auth Blog Reestruturar"
+        }
+      },
+      "webhookId": "11b03279-6db9-4561-9510-37198632ce2c"
+    },
+    {
+      "id": "d61544c1-a172-4f27-811d-61000edec305",
+      "name": "Montar Prompt Reestruturação",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        300
+      ],
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "language": "javaScript",
+        "jsCode": "const b = $input.item.json.body || $input.item.json;\nconst title = b.title;\nconst lead = b.lead;\nconst body = b.body;\nconst pillar = b.pillar;\nconst draft_id = b.draft_id;\nif (!title || !body || !pillar || !draft_id) throw new Error('Campos obrigatórios: draft_id, title, body, pillar');\nconst SYSTEM = 'Você é um editor médico que recebe prosa livre revisada por médico e reorganiza em JSON estruturado BlogPost para blog SEO. Preserve INTEGRALMENTE o conteúdo médico — não invente, não remova fatos. Apenas detecte estrutura (H2/H3/listas/destaques) e gere metadados (slug, meta, keywords, FAQs, excerpt). FAQs: 4-6 perguntas extraídas ou inferidas do corpo. Emita o resultado chamando a ferramenta emit_post com o objeto BlogPost estruturado.';\nconst USER = 'Reorganize este post para o blog da Clínica Okazaki (pilar: ' + pillar + ').\\n\\nTÍTULO REVISADO:\\n' + title + '\\n\\nLEAD REVISADO:\\n' + lead + '\\n\\nCORPO REVISADO (markdown simples):\\n' + body + '\\n\\nGere JSON com shape exato: { slug (kebab-case derivado do título), pillar: \"' + pillar + '\", title: <título acima>, description (140-160 chars com geo-modifier em Recife), keywords (string CSV de 5-8 termos), h1: <título acima>, lead: <lead acima>, eyebrow: \"BLOG · ' + pillar.toUpperCase() + '\", breadcrumbLabel (curto), about (procedimento/condição), excerpt (80-200 chars), sections (array {id slug-style, h2, blocks: [{type, ...}]}), faqs (array {q, a} 4-6 itens extraídos do corpo), author: {name: \"Dra. Jane Erika Frazão Okazaki\", crm: \"CRM-PE 19872\", rqe: \"RQE 17633\", photo: \"/assets/team/jane.webp\", bio: \"Médica geriatra do Centro Clínico Okazaki, responsável pela revisão clínica do conteúdo deste blog.\"}, publishedAt: ISO atual, updatedAt: ISO atual }. Block types disponíveis: p (parágrafo), h3 (sub-subtítulo), ul (lista de itens string[]), callout (destaque informativo), warning (alerta), inline-cta (CTA WhatsApp text + label), link (href + label). Inclua ao menos 1 link interno para /' + pillar + '. PRESERVE O CONTEÚDO MÉDICO LITERAL — apenas reorganize.';\nreturn { json: { draft_id, system: SYSTEM, user: USER } };"
+      }
+    },
+    {
+      "id": "432c7860-71e3-4889-b363-125c71f4d158",
+      "name": "Anthropic Claude Sonnet",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        720,
+        300
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "anthropicApi",
+        "sendHeaders": true,
+        "specifyHeaders": "keypair",
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ model: \"claude-sonnet-4-5\", max_tokens: 16000, system: $json.system, messages: [{ role: \"user\", content: $json.user }], tools: [{ name: \"emit_post\", description: \"Emite o post BlogPost estruturado e validado.\", input_schema: { type: \"object\", properties: { slug: { type: \"string\" }, pillar: { type: \"string\" }, title: { type: \"string\" }, description: { type: \"string\" }, keywords: { type: \"string\" }, h1: { type: \"string\" }, lead: { type: \"string\" }, eyebrow: { type: \"string\" }, breadcrumbLabel: { type: \"string\" }, about: { type: \"string\" }, excerpt: { type: \"string\" }, sections: { type: \"array\" }, faqs: { type: \"array\" }, author: { type: \"object\" }, publishedAt: { type: \"string\" }, updatedAt: { type: \"string\" } }, required: [\"slug\",\"pillar\",\"title\",\"description\",\"keywords\",\"h1\",\"lead\",\"eyebrow\",\"breadcrumbLabel\",\"about\",\"excerpt\",\"sections\",\"faqs\",\"author\"] } }], tool_choice: { type: \"tool\", name: \"emit_post\" } }) }}",
+        "options": {
+          "timeout": 300000
+        }
+      },
+      "credentials": {
+        "anthropicApi": {
+          "id": "LrxhJlhaR4wnSx31",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "id": "4e9ce440-f625-44a6-93d9-70c9ec78b240",
+      "name": "Parse + Validar",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        300
+      ],
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "language": "javaScript",
+        "jsCode": "const draft_id = $('Montar Prompt Reestruturação').item.json.draft_id;\nconst raw = $input.item.json;\nconst tu = (raw.content || []).find(c => c.type === 'tool_use');\nif (!tu || !tu.input) throw new Error('Sem tool_use block. stop_reason=' + (raw.stop_reason || '?'));\nconst parsed = tu.input;\nconst req = ['slug','pillar','title','description','keywords','h1','lead','eyebrow','breadcrumbLabel','about','excerpt','sections','faqs','author'];\nconst miss = req.filter(k => !(k in parsed));\nif (miss.length) throw new Error('Faltam: ' + miss.join(','));\nif (!parsed.publishedAt) parsed.publishedAt = new Date().toISOString();\nparsed.updatedAt = new Date().toISOString();\nconst kw = typeof parsed.keywords === 'string' ? parsed.keywords.split(',').map(k => k.trim()) : parsed.keywords;\nconst wc = JSON.stringify(parsed).split(/\\s+/).length;\nreturn { json: { draft_id, slug: parsed.slug, title: parsed.title, meta_description: parsed.description, keywords: kw, content_json: parsed, word_count: wc } };"
+      }
+    },
+    {
+      "id": "8000ab1b-b8ad-48ca-942f-bea33a3c485b",
+      "name": "UPDATE blog_drafts",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1200,
+        300
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE blog_drafts SET slug=$1, title=$2, meta_description=$3, keywords=$4::text[], content_json=$5::jsonb, word_count=$6, updated_at=NOW() WHERE id=$7 RETURNING id, slug, title, pillar;",
+        "options": {
+          "queryReplacement": "={{ [$json.slug, $json.title, $json.meta_description, \"{\" + $json.keywords.map(k => \"\\\"\" + k.replace(/\"/g,\"\\\\\\\"\") + \"\\\"\").join(\",\") + \"}\", JSON.stringify($json.content_json), $json.word_count, $json.draft_id] }}"
+        }
+      },
+      "credentials": {
+        "postgres": {
+          "id": "OrMhexleB5Cyk2m2",
+          "name": "Supabase Blog Postgres"
+        }
+      }
+    },
+    {
+      "id": "56496085-cbd9-4f0e-87f9-6cd3dcc2640c",
+      "name": "Resposta",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1440,
+        300
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, draft_id: $json.id, slug: $json.slug, title: $json.title }) }}",
+        "options": {
+          "responseCode": 200
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Reestruturar": {
+      "main": [
+        [
+          {
+            "node": "Montar Prompt Reestruturação",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Montar Prompt Reestruturação": {
+      "main": [
+        [
+          {
+            "node": "Anthropic Claude Sonnet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Claude Sonnet": {
+      "main": [
+        [
+          {
+            "node": "Parse + Validar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse + Validar": {
+      "main": [
+        [
+          {
+            "node": "UPDATE blog_drafts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UPDATE blog_drafts": {
+      "main": [
+        [
+          {
+            "node": "Resposta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false,
+    "callerPolicy": "workflowsFromSameOwner"
+  }
+}
