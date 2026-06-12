@@ -39,8 +39,30 @@
 **Causa:** Semântica n8n: 0 items de saída = downstream skip. Mock-harness não pega (testa só o jsCode, não a cadeia).
 **Regra:** Todo nó Postgres SELECT no MEIO de uma cadeia n8n precisa de `alwaysOutputData: true` + o consumidor filtrar o item vazio (`.filter(r => r && r.campo)`). SELECT que é fim de cadeia ou cujo skip é desejado (ex: SELECT logs do Extrair) não precisa.
 
+## 2026-06-11 · Autoria do post era fixa "Dra. Jane" independentemente de quem aprovava
+
+**Erro:** o autor exibido no post (`post.author`) saía sempre "Dra. Jane" porque o nome é gerado pela IA (hardcoded no prompt do Gerador) e gravado em `content.author`. A aprovação no editor gravava `reviewer_user_id` mas **nunca** sobrescrevia o autor. `reviewer_user_id` era escrito e nunca lido para fim de exibição.
+**Causa:** campo de identidade (autor) baked-in na geração, não derivado de quem aprovou. Choke point de publicação (Publicador) só copiava `content.author` pro `.post.ts`.
+**Fix:** mapa `blog_reviewers` (chave **email**) + função `SECURITY DEFINER` `reviewer_author_for_user(uuid)` que resolve `reviewer_user_id → email → autor`. Publicador sobrescreve `content.author` no publish; fallback = autor da IA.
+**Regras:**
+- **Chave por email, não user_id**, quando precisa semear perfil ANTES da conta existir (magic-link `signInWithOtp` auto-cria no 1º login, `shouldCreateUser` default true). Some o ovo-galinha.
+- Função que lê schema `auth` a partir do n8n: usar **`SECURITY DEFINER`** — não depende do privilégio do papel da conexão e ignora RLS do owner. `SET search_path` explícito.
+- Identidade exibida (autor/aprovador) deve ser **derivada no choke point de saída** (Publicador), não baked-in na geração. Um único ponto de override cobre Gerador + Regenerar + Reestruturar.
+- Sem service_role no keychain → **não** raw-insert em `auth.users` (frágil: precisa identities, hash). Usar self-signup magic-link, que é o mesmo fluxo dos usuários existentes.
+
 ## 2026-06-10 · Repetição de temas no gerador
 
 **Erro:** Hepatologia gerava só esteatose; gastro só "quando procurar". Dedup era por slug exato (variantes do mesmo tema passavam) + sorteio sempre no top-3 do ranking SEO (temas vizinhos saíam em sequência).
 **Fix:** tema-chave = 2 primeiros tokens do slug; tema só repete quando pool do pilar esgota; sorteio uniforme nos candidatos sobreviventes; janela recent_topics 30→100.
 **Regra:** dedup de conteúdo gerado deve ser por TEMA (chave semântica), não por string exata. Ranking fixo + janela curta = clusters de repetição.
+
+## 2026-06-11 · "Falha ao reestruturar: Unexpected end of JSON input" ao aprovar
+
+**Sintoma:** Editor não aprovava/agendava post. Erro client: `Failed to execute 'json' on 'Response': Unexpected end of JSON input`. 8/8 execuções recentes do `Blog · Reestruturar Draft` = error.
+**Causa raiz (evidência crua da execução):** nó `Parse + Validar` fazia `JSON.parse()` no texto que a IA escreveu à mão. `stop_reason: end_turn` (NÃO truncou) — a IA emitiu aspas não-escapadas dentro de uma string JSON: `"text": "...o intestino deverá estar "limpo", e as evacuações..."`. O `"limpo"` fechava a string cedo → `SyntaxError: Expected ',' or '}' ... position 16015`. Workflow morria antes do nó `Resposta` → client recebia body inválido/vazio.
+**Fix (causa raiz, não sintoma):** trocar geração de JSON-como-texto por **Anthropic tool use**. Anthropic node ganhou `tools:[{name:"emit_post", input_schema:{...}}]` + `tool_choice:{type:"tool",name:"emit_post"}`, removido o prefill `assistant:"{"`. `Parse + Validar` agora lê `content.find(c=>c.type==='tool_use').input` (já é objeto) — `JSON.parse` eliminado. API garante JSON válido e escapado.
+**Verificado runtime:** draft temp com o trecho `"limpo"` → webhook HTTP 200 `{ok:true,...}`, execução `success`, content_json com sections+faqs. Temp deletado.
+**Regra:** NUNCA pedir pra LLM escrever JSON grande como texto e dar `JSON.parse`. Conteúdo rico (aspas, quebras de linha) quebra escape intermitentemente. Usar tool use / structured output — a API serializa o JSON. Vale pra qualquer node IA→JSON.
+**Resolvido (mesma classe, mesmo dia):** `blog-regenerar` ("Pedir nova versão", id `7UwTdI8qLmb5F4JL`) e `blog-gerador-semanal` (id `41A8liy2qNm9zqpR`) tinham o MESMO padrão (JSON.parse em texto IA + prefill `{`). Migrados pro mesmo tool use (mantido `cache_control` no system; validações de slug/description/sections preservadas no Parse). Regenerar verificado runtime (webhook HTTP 200, exec success — a IA gerou título com `"Limpo"` e o JSON saiu válido/escapado). Gerador (schedule, sem webhook, dispara Telegram no grupo) verificado via mock-harness do Parse 4/4 + reaproveita o Anthropic body idêntico ao regenerar já testado na API real. Backups em `_backup/*.LIVE-2026-06-11.json`.
+**Gotcha n8n PUT:** `settings.binaryMode` é rejeitado pela API (`request/body/settings must NOT have additional properties`). `availableInMCP` e `callerPolicy` passam. Remover `binaryMode` antes do PUT (workflows sem binário → impacto nulo).
+**Gotcha Vercel API:** `GET /v9/projects/{id}/env?decrypt=true` (lista) devolve valor ENCRIPTADO (len ~1176). Pra plaintext usar single-env `GET /v9/projects/{id}/env/{envId}` (devolve `value` decriptado).

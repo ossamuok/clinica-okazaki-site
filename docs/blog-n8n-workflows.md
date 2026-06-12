@@ -175,6 +175,24 @@ Sistema que faz o Gerador aprender o estilo da clínica. Guia não-técnico: `do
 - Backups pré-mudança: `n8n-workflows/_backup/2026-06-07-*.json` (rollback = PUT do backup).
 - **SELECT no meio de cadeia precisa `alwaysOutputData: true`** — 0 linhas = 0 items = downstream não roda (gerador pararia silencioso). Consumidor filtra item vazio.
 
+## ✍️ Autoria por revisor que aprovou (2026-06-11)
+
+**Problema:** o autor exibido no fim do post (`post.author` em `BlogPost.tsx` → "Revisão: …" + bloco AuthorBio) era **fixo "Dra. Jane Erika Frazão Okazaki"** — hardcoded no prompt do Gerador (`autoria Dra. Jane Erika…`). Quem aprovasse no editor não aparecia; sempre saía Jane.
+
+**Causa:** `content.author` é gerado pela IA na criação do draft. A aprovação grava `blog_drafts.reviewer_user_id`, mas **nada** sobrescrevia `content.author`. O Publicador escrevia o autor da IA direto no `.post.ts`.
+
+**Fix (choke point único = Publicador):**
+- **Tabela `public.blog_reviewers`** (migration `20260611_blog_reviewers.sql`): chave **email** (não user_id) → `name, crm, rqe, photo, bio`. Chave por email permite semear **antes** da conta existir (magic-link auto-cria no 1º login). RLS: `authenticated` SELECT.
+- **Função `public.reviewer_author_for_user(uuid) → jsonb`** `SECURITY DEFINER`: resolve `reviewer_user_id → auth.users.email → blog_reviewers` e devolve o BlogAuthor (`jsonb_strip_nulls`). DEFINER contorna privilégio do papel n8n sobre o schema `auth` e ignora RLS. Retorna `NULL` se não houver perfil.
+- **Publicador `SELECT draft completo`**: adicionado `public.reviewer_author_for_user(d.reviewer_user_id) AS reviewer_author`.
+- **Publicador `Gerar .post.ts + Validar`**: `if (d.reviewer_author && d.reviewer_author.name) content.author = d.reviewer_author;` — **fallback** mantém o autor da IA (Jane) se não houver perfil. Commit message usa `content.author.name`.
+
+**Revisores semeados:** `erikafrazao@gmail.com` → Dra. Jane Erika Frazão Okazaki; `anabiasacerdote@gmail.com` → Dra. Ana Beatriz Sacerdote (CRM-PE 19243 · RQE 3381 · `/assets/team/anabeatriz.webp`). Quem aprovar **sem** perfil em `blog_reviewers` (ex: `admin@`, `ossamuok@`) sai como Jane (default da IA).
+
+**Cadastrar novo revisor:** `INSERT INTO blog_reviewers (email,name,crm,rqe,photo,bio) …` + a pessoa loga 1× por magic-link (conta auto-criada). Sem service_role / sem mexer em `auth.users`.
+
+**Validação:** mock-harness 8/8 (override quando perfil presente; mantém Jane quando null/undefined/malformado). Função testada via SQL (Jane → autor; UUID inexistente / sem-perfil → null). Backup pré-edição: `n8n-workflows/_backup/2026-06-11-publicador-pre-reviewer.json`.
+
 ## 💡 Sugestões de temas + anti-repetição (2026-06-10)
 
 - **Tabela `blog_topic_suggestions`** (migration `20260610_blog_topic_suggestions.sql`): pillar, topic_text, status (pending|used|archived), RLS authenticated. Editor insere; Gerador consome.

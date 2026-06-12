@@ -66,6 +66,15 @@ Página **Temas** no editor (`editor.clinicaokazaki.com/temas`): escolha o pilar
 
 O gerador agora evita repetir o mesmo assunto dentro do pilar (ex: vários posts de esteatose em hepatologia). Um tema só volta a aparecer quando todos os outros temas do pilar já tiverem saído (~4 meses de espaçamento).
 
+## Quem aprovou aparece no post (novo — 2026-06-11)
+
+Antes, todo post mostrava no rodapé "Revisão: Dra. Jane Erika Frazão Okazaki", não importava quem aprovasse. Agora **aparece automaticamente o nome de quem aprovou** o rascunho no editor — com a foto, CRM e RQE corretos.
+
+- Já está cadastrada: **Dra. Ana Beatriz Sacerdote** (Gastroenterologia · Hepatologia). Quando ela aprovar um post, o rodapé mostra o nome dela.
+- **Como ela entra:** acessa `editor.clinicaokazaki.com`, digita o email `anabiasacerdote@gmail.com` e clica no link mágico que chega no email. A conta é criada sozinha no primeiro acesso.
+- Quem aprovar sem cadastro de autoria continua saindo como Dra. Jane (padrão).
+- **Cadastrar outro revisor no futuro:** peça à equipe técnica para adicionar email + dados na tabela `blog_reviewers`. Depois a pessoa só loga uma vez.
+
 ## Onde isso vive (pra equipe técnica)
 
 Ver `docs/blog-n8n-workflows.md` (seções "Aprendizado — 2026-06-07" e "Sugestões de temas — 2026-06-10") para os workflows, tabelas e IDs.
