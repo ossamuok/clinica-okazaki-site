@@ -138,7 +138,7 @@ export function Header() {
       </div>
 
       {open ? (
-        <div className="lg:hidden fixed inset-x-0 bottom-0 top-24 md:top-28 z-30 bg-paper border-t border-line animate-fade-up overflow-y-auto">
+        <div className="lg:hidden fixed inset-x-0 bottom-0 top-24 md:top-28 z-50 bg-paper border-t border-line animate-fade-up overflow-y-auto">
           <div className="container-page py-8 flex flex-col gap-1">
             {HEADER_LINKS.map((link) => (
               <a
