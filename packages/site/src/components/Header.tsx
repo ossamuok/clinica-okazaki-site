@@ -97,7 +97,7 @@ export function Header() {
         <div className="hidden lg:flex items-center gap-3">
           <a
             href={PHONE_LINK}
-            className="text-sm text-ink-soft hover:text-teal-deep flex items-center gap-1.5"
+            className="text-sm text-ink-soft hover:text-teal-deep flex items-center gap-1.5 whitespace-nowrap"
           >
             <Phone className="h-3.5 w-3.5" aria-hidden />
             {PHONE_DISPLAY}
@@ -138,7 +138,7 @@ export function Header() {
       </div>
 
       {open ? (
-        <div className="lg:hidden fixed inset-0 top-20 z-40 bg-paper/98 backdrop-blur-md border-t border-line animate-fade-up">
+        <div className="lg:hidden fixed inset-x-0 bottom-0 top-24 md:top-28 z-30 bg-paper border-t border-line animate-fade-up overflow-y-auto">
           <div className="container-page py-8 flex flex-col gap-1">
             {HEADER_LINKS.map((link) => (
               <a
