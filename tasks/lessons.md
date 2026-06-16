@@ -66,3 +66,13 @@
 **Resolvido (mesma classe, mesmo dia):** `blog-regenerar` ("Pedir nova versão", id `7UwTdI8qLmb5F4JL`) e `blog-gerador-semanal` (id `41A8liy2qNm9zqpR`) tinham o MESMO padrão (JSON.parse em texto IA + prefill `{`). Migrados pro mesmo tool use (mantido `cache_control` no system; validações de slug/description/sections preservadas no Parse). Regenerar verificado runtime (webhook HTTP 200, exec success — a IA gerou título com `"Limpo"` e o JSON saiu válido/escapado). Gerador (schedule, sem webhook, dispara Telegram no grupo) verificado via mock-harness do Parse 4/4 + reaproveita o Anthropic body idêntico ao regenerar já testado na API real. Backups em `_backup/*.LIVE-2026-06-11.json`.
 **Gotcha n8n PUT:** `settings.binaryMode` é rejeitado pela API (`request/body/settings must NOT have additional properties`). `availableInMCP` e `callerPolicy` passam. Remover `binaryMode` antes do PUT (workflows sem binário → impacto nulo).
 **Gotcha Vercel API:** `GET /v9/projects/{id}/env?decrypt=true` (lista) devolve valor ENCRIPTADO (len ~1176). Pra plaintext usar single-env `GET /v9/projects/{id}/env/{envId}` (devolve `value` decriptado).
+
+## 2026-06-16 · Menu mobile invisível — `backdrop-filter` no header (3 tentativas erradas)
+
+**Sintoma:** após adicionar link Blog, menu mobile abria (estado `open` ok, botão X funcionava) mas o painel ficava **invisível** — hero aparecia atrás.
+**Tentativas erradas (retrabalho):** mexi em `z-index` 3× (z-40→z-30→z-50) e em `bg`/offset, achando que era empilhamento. Nada mudou — porque o painel tinha **altura ~0** o tempo todo.
+**Causa raiz:** o `<header>` tem `backdrop-blur` (`backdrop-filter`). `filter`/`backdrop-filter`/`transform` num elemento o tornam **containing block** dos descendentes `position: fixed`. O overlay do menu era filho do header → `fixed inset-x-0 top-24 bottom-0` passou a ser relativo à caixa do header (~96px), não à viewport → `top:96px` + `bottom:0` dentro de 96px = altura 0 = invisível. (A versão `inset-0 top-20` dava sliver de 16px = "ilegível".)
+**Fix:** renderizar o overlay como **irmão** do `<header>` (dentro de fragment), fora de qualquer ancestral com filter/transform. `fixed` volta a ser relativo à viewport. Confirmado no celular.
+**Regras:**
+- Overlay/drawer/modal `position: fixed` **nunca** deve ficar dentro de um ancestral com `transform`, `filter`, `backdrop-filter`, `perspective` ou `will-change` — esses criam containing block e quebram o `fixed`. Renderizar no topo (portal) ou como irmão fora do ancestral.
+- **Debug de "elemento não aparece": cheque a CAIXA COMPUTADA (width/height/top no devtools) ANTES de mexer em z-index.** Altura 0 ≠ problema de empilhamento. Mudei z-index 3× sem inspecionar a caixa — custou 3 deploys. Hipótese → medir → corrigir, não chutar.
