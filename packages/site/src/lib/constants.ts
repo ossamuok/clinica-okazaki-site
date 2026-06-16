@@ -527,6 +527,7 @@ export const HEADER_LINKS: NavLink[] = [
   { label: "Unidades", href: "/#unidades" },
   { label: "Avaliações", href: "/#avaliacoes" },
   { label: "Equipe", href: "/#equipe" },
+  { label: "Blog", href: "/blog" },
   { label: "Dúvidas", href: "/#duvidas" },
 ];
 
