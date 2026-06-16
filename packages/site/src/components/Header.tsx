@@ -52,6 +52,7 @@ export function Header() {
   }, [open]);
 
   return (
+    <>
     <header
       className={`fixed top-0 inset-x-0 z-40 transition-all ${
         scrolled
@@ -136,6 +137,7 @@ export function Header() {
           )}
         </button>
       </div>
+    </header>
 
       {open ? (
         <div className="lg:hidden fixed inset-x-0 bottom-0 top-24 md:top-28 z-50 bg-paper border-t border-line animate-fade-up overflow-y-auto">
@@ -180,6 +182,6 @@ export function Header() {
           </div>
         </div>
       ) : null}
-    </header>
+    </>
   );
 }
