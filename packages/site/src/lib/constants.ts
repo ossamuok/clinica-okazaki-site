@@ -63,7 +63,7 @@ export const UNITS: Unit[] = [
     district: "Derby · Recife",
     phones: ["(81) 3221-4795", "(81) 3132-2972"],
     mobile: "(81) 99954-0570",
-    mapsUrl: "https://maps.app.goo.gl/jxM9VbSXHzOttaN6R",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Centro+Cl%C3%ADnico+Okazaki+Derby+Recife&query_place_id=ChIJbZH_Ud0YqwcRkygns3Y5sVM",
     mapsEmbed:
       "https://www.google.com/maps?q=Empresarial+Renato+Dias+Av+Gov+Agamenon+Magalhaes+4318+Recife&output=embed",
     geo: { lat: -8.0504, lng: -34.8997 },
@@ -77,7 +77,7 @@ export const UNITS: Unit[] = [
     district: "Boa Viagem · Recife",
     phones: ["(81) 2129-1405", "(81) 2129-1406"],
     mobile: "(81) 99954-0262",
-    mapsUrl: "https://maps.app.goo.gl/dq7LZaFR5F98UQHEn",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Centro+Cl%C3%ADnico+Okazaki+Boa+Viagem+Recife",
     mapsEmbed:
       "https://www.google.com/maps?q=Boa+Viagem+Medical+Center+Rua+Visconde+de+Jequitinhonha+1144+Recife&output=embed",
     geo: { lat: -8.1177, lng: -34.8978 },
