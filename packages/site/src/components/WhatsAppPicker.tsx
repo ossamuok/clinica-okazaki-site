@@ -98,18 +98,23 @@ function PickerModal({ onClose }: { onClose: () => void }) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={onClose}
-              className="flex items-center justify-between gap-3 bg-[#25d366] text-white rounded-full pl-5 pr-4 py-3.5 hover:brightness-110 transition-all shadow-md"
+              className="group flex items-center justify-between gap-3 bg-teal text-white rounded-full pl-5 pr-4 py-3.5 shadow-sm hover:bg-teal-deep hover:-translate-y-px active:translate-y-0 transition-all"
             >
               <span className="flex items-center gap-3 min-w-0">
                 <MessageCircle className="h-5 w-5 shrink-0" aria-hidden />
                 <span className="text-left min-w-0">
                   <span className="block text-sm font-semibold leading-tight">{u.name}</span>
                   {u.mobile && (
-                    <span className="block text-xs opacity-90 mt-0.5">{u.mobile}</span>
+                    <span className="block text-xs text-white/80 mt-0.5">{u.mobile}</span>
                   )}
                 </span>
               </span>
-              <span aria-hidden className="text-lg leading-none">→</span>
+              <span
+                aria-hidden
+                className="text-lg leading-none transition-transform group-hover:translate-x-0.5"
+              >
+                →
+              </span>
             </a>
           ))}
         </div>
