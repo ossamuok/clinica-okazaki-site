@@ -1,6 +1,7 @@
 import { motion, type Variants } from "framer-motion";
 import { MessageCircle, ArrowRight } from "lucide-react";
-import { CLINIC_AGE, PHONE_DISPLAY, WHATSAPP_URL } from "../lib/constants";
+import { CLINIC_AGE, PHONE_DISPLAY } from "../lib/constants";
+import { useWhatsAppPicker } from "../components/WhatsAppPicker";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -16,6 +17,7 @@ const fadeUp: Variants = {
 };
 
 export function Hero() {
+  const { open: openWhatsApp } = useWhatsAppPicker();
   return (
     <section className="relative pt-32 md:pt-40 pb-20 md:pb-28 overflow-hidden hero-gradient">
       <div className="absolute inset-0 dot-pattern opacity-70" aria-hidden />
@@ -100,15 +102,14 @@ export function Hero() {
           variants={fadeUp}
           className="mt-10 flex flex-wrap items-center gap-3"
         >
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={openWhatsApp}
             className="btn-primary"
           >
             <MessageCircle className="h-4 w-4" aria-hidden />
             Agendar pelo WhatsApp
-          </a>
+          </button>
           <a href="#servicos" className="btn-outline">
             Conhecer serviços
             <ArrowRight className="h-4 w-4" aria-hidden />

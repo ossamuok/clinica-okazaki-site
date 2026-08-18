@@ -48,10 +48,14 @@ export type Unit = {
   district: string;
   phones: string[];
   mobile?: string;
+  whatsappNumber: string;
+  whatsappUrl: string;
   mapsUrl: string;
   mapsEmbed: string;
   geo: { lat: number; lng: number };
 };
+
+const WHATSAPP_TEXT = encodeURIComponent("Olá, gostaria de agendar um exame");
 
 export const UNITS: Unit[] = [
   {
@@ -63,6 +67,8 @@ export const UNITS: Unit[] = [
     district: "Derby · Recife",
     phones: ["(81) 3221-4795", "(81) 3132-2972"],
     mobile: "(81) 99954-0570",
+    whatsappNumber: "5581999540570",
+    whatsappUrl: "https://api.whatsapp.com/send?phone=5581999540570&text=" + WHATSAPP_TEXT,
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Centro+Cl%C3%ADnico+Okazaki+Derby+Recife&query_place_id=ChIJbZH_Ud0YqwcRkygns3Y5sVM",
     mapsEmbed:
       "https://www.google.com/maps?q=Empresarial+Renato+Dias+Av+Gov+Agamenon+Magalhaes+4318+Recife&output=embed",
@@ -77,6 +83,8 @@ export const UNITS: Unit[] = [
     district: "Boa Viagem · Recife",
     phones: ["(81) 2129-1405", "(81) 2129-1406"],
     mobile: "(81) 99954-0262",
+    whatsappNumber: "5581999540262",
+    whatsappUrl: "https://api.whatsapp.com/send?phone=5581999540262&text=" + WHATSAPP_TEXT,
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Centro+Cl%C3%ADnico+Okazaki+Boa+Viagem+Recife",
     mapsEmbed:
       "https://www.google.com/maps?q=Boa+Viagem+Medical+Center+Rua+Visconde+de+Jequitinhonha+1144+Recife&output=embed",

@@ -5,6 +5,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { MotionConfig } from "framer-motion";
 import "./index.css";
 import App from "./App";
+import { WhatsAppPickerProvider } from "./components/WhatsAppPicker";
 
 const rootEl = document.getElementById("root")!;
 const AppTree = (
@@ -12,7 +13,9 @@ const AppTree = (
     <HelmetProvider>
       <BrowserRouter>
         <MotionConfig reducedMotion="user">
-          <App />
+          <WhatsAppPickerProvider>
+            <App />
+          </WhatsAppPickerProvider>
         </MotionConfig>
       </BrowserRouter>
     </HelmetProvider>

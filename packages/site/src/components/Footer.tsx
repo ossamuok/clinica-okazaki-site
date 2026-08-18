@@ -24,11 +24,12 @@ import {
   PHONE_LINK,
   SITE,
   UNITS,
-  WHATSAPP_URL,
 } from "../lib/constants";
+import { useWhatsAppPicker } from "./WhatsAppPicker";
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const { open: openWhatsApp } = useWhatsAppPicker();
   return (
     <footer className="bg-ink text-paper">
       <div className="container-page py-8 md:py-10">
@@ -78,15 +79,14 @@ export function Footer() {
             <p className="text-xs text-paper/75">{HOURS.weekdays}</p>
             <p className="text-xs text-paper/75">{HOURS.saturday}</p>
             <div className="mt-3 flex items-center gap-3">
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={openWhatsApp}
                 className="inline-flex items-center gap-1.5 text-xs font-medium text-teal border border-teal/30 rounded-full px-3 py-1.5 hover:bg-teal-wash/10 transition-colors"
               >
                 <MessageCircle className="h-3 w-3" aria-hidden />
                 WhatsApp
-              </a>
+              </button>
               <a
                 href={PHONE_LINK}
                 className="inline-flex items-center gap-1.5 text-xs text-paper/70 hover:text-paper"

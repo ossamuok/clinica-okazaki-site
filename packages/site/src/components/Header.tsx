@@ -6,8 +6,8 @@ import {
   PHONE_DISPLAY,
   PHONE_LINK,
   SITE,
-  WHATSAPP_URL,
 } from "../lib/constants";
+import { useWhatsAppPicker } from "./WhatsAppPicker";
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -32,6 +32,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { open: openWhatsApp } = useWhatsAppPicker();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -112,15 +113,14 @@ export function Header() {
           >
             <InstagramIcon className="h-4 w-4" />
           </a>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={openWhatsApp}
             className="btn-primary text-sm px-5 py-2.5"
           >
             <MessageCircle className="h-4 w-4" aria-hidden />
             Agendar
-          </a>
+          </button>
         </div>
 
         <button
@@ -153,15 +153,17 @@ export function Header() {
               </a>
             ))}
             <div className="mt-8 flex flex-col gap-3">
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  openWhatsApp();
+                }}
                 className="btn-primary w-full justify-center"
               >
                 <MessageCircle className="h-4 w-4" aria-hidden />
                 Agendar pelo WhatsApp
-              </a>
+              </button>
               <a
                 href={PHONE_LINK}
                 className="btn-outline w-full justify-center"

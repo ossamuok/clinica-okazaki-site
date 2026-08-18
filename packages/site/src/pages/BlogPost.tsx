@@ -11,7 +11,8 @@ import {
   faqPageSchema,
   medicalWebPageSchema,
 } from "../lib/schemas";
-import { SITE, WHATSAPP_URL } from "../lib/constants";
+import { SITE } from "../lib/constants";
+import { useWhatsAppPicker } from "../components/WhatsAppPicker";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { WhatsAppFloat } from "../components/WhatsAppFloat";
@@ -42,6 +43,7 @@ export default function BlogPost() {
   const initial = getPostBySlug(slug);
   const [post, setPost] = useState<BlogPostType | undefined>(initial);
   const [loading, setLoading] = useState(initial === undefined);
+  const { open: openWhatsApp } = useWhatsAppPicker();
 
   useEffect(() => {
     if (initial) {
@@ -164,7 +166,7 @@ export default function BlogPost() {
                     <BlockRenderer
                       key={i}
                       block={block}
-                      config={{ ctaUrl: WHATSAPP_URL }}
+                      config={{ onCta: openWhatsApp }}
                     />
                   ))}
                 </section>

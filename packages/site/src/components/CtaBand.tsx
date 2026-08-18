@@ -1,5 +1,6 @@
 import { Phone, MessageCircle } from "lucide-react";
-import { PHONE_DISPLAY, PHONE_LINK, WHATSAPP_URL } from "../lib/constants";
+import { PHONE_DISPLAY, PHONE_LINK } from "../lib/constants";
+import { useWhatsAppPicker } from "./WhatsAppPicker";
 
 type Props = {
   eyebrow?: string;
@@ -12,6 +13,7 @@ export function CtaBand({
   title = "Seu cuidado digestivo começa com um passo simples",
   subtitle = "Converse com nossa equipe e agende seu exame ou consulta em uma das duas unidades em Recife.",
 }: Props) {
+  const { open: openWhatsApp } = useWhatsAppPicker();
   return (
     <section className="section">
       <div className="container-page">
@@ -26,15 +28,14 @@ export function CtaBand({
             {subtitle}
           </p>
           <div className="mt-6 flex flex-wrap gap-3 justify-center">
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={openWhatsApp}
               className="inline-flex items-center justify-center gap-2 bg-white text-teal-ink font-semibold rounded-full px-7 py-3.5 hover:bg-cream transition-colors"
             >
               <MessageCircle className="h-4 w-4" aria-hidden />
               Agendar pelo WhatsApp
-            </a>
+            </button>
             <a
               href={PHONE_LINK}
               className="inline-flex items-center justify-center gap-2 border border-white/40 text-white font-medium rounded-full px-7 py-3.5 hover:bg-white/10 transition-colors"

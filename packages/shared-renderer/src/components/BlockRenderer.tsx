@@ -2,8 +2,10 @@ import { ArrowUpRight, Info, AlertTriangle } from "lucide-react";
 import type { Block } from "../types";
 
 export type BlockRendererConfig = {
-  /** URL do botão "Agendar" do bloco inline-cta. Tipicamente WHATSAPP_URL. */
-  ctaUrl: string;
+  /** URL do botão "Agendar" do bloco inline-cta. Tipicamente WHATSAPP_URL. Ignorado se onCta for definido. */
+  ctaUrl?: string;
+  /** Handler alternativo — quando definido, o CTA vira um botão que dispara este callback (ex.: abrir picker de unidade WhatsApp). */
+  onCta?: () => void;
 };
 
 export function BlockRenderer({
@@ -52,15 +54,26 @@ export function BlockRenderer({
           <p className="!mb-0 text-ink font-medium text-lg max-w-xl">
             {block.text}
           </p>
-          <a
-            href={config.ctaUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary shrink-0"
-          >
-            {block.label ?? "Agendar"}
-            <ArrowUpRight className="h-4 w-4" aria-hidden />
-          </a>
+          {config.onCta ? (
+            <button
+              type="button"
+              onClick={config.onCta}
+              className="btn-primary shrink-0"
+            >
+              {block.label ?? "Agendar"}
+              <ArrowUpRight className="h-4 w-4" aria-hidden />
+            </button>
+          ) : (
+            <a
+              href={config.ctaUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary shrink-0"
+            >
+              {block.label ?? "Agendar"}
+              <ArrowUpRight className="h-4 w-4" aria-hidden />
+            </a>
+          )}
         </div>
       );
     case "video":

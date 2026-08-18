@@ -8,7 +8,7 @@ import {
   Play,
 } from "lucide-react";
 import { SectionTitle } from "../components/SectionTitle";
-import { HOURS, UNITS, WHATSAPP_URL } from "../lib/constants";
+import { HOURS, UNITS } from "../lib/constants";
 import type { Unit } from "../lib/constants";
 
 function LazyMap({ unit }: { unit: Unit }) {
@@ -96,7 +96,7 @@ export function Units() {
                 </div>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <a
-                    href={WHATSAPP_URL}
+                    href={unit.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-primary text-sm"

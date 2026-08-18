@@ -9,7 +9,8 @@ import {
   howToSchema,
   medicalWebPageSchema,
 } from "../lib/schemas";
-import { SITE, WHATSAPP_URL } from "../lib/constants";
+import { SITE } from "../lib/constants";
+import { useWhatsAppPicker } from "../components/WhatsAppPicker";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { WhatsAppFloat } from "../components/WhatsAppFloat";
@@ -23,6 +24,7 @@ type Props = { content: PageContent };
 export function SubpageLayout({ content }: Props) {
   const path = `/${content.slug}`;
   const url = `${SITE.url}${path}`;
+  const { open: openWhatsApp } = useWhatsAppPicker();
 
   const schemas = [
     medicalWebPageSchema({
@@ -104,7 +106,7 @@ export function SubpageLayout({ content }: Props) {
                     <BlockRenderer
                       key={i}
                       block={block}
-                      config={{ ctaUrl: WHATSAPP_URL }}
+                      config={{ onCta: openWhatsApp }}
                     />
                   ))}
                 </section>
