@@ -345,8 +345,14 @@ export const TEAM: Doctor[] = [
   },
   {
     name: "Dra. Marília Novaes",
-    specialty: "Endoscopia Digestiva",
+    specialty: "Endoscopia Digestiva · Gastroenterologia",
     crm: "CRM-PE 21897",
+    rqe: "9981 / 4870",
+    photo: "/assets/team/marilia.webp",
+    formation: [
+      { label: "Endoscopia Digestiva", institution: "Hospital Sírio Libanês" },
+      { label: "Gastroenterologia", institution: "HC-UFPE" },
+    ],
   },
   {
     name: "Dr. Milson Brasileiro",
