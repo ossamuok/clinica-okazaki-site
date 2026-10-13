@@ -44,22 +44,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const cityRaw = req.headers['x-vercel-ip-city'] as string | undefined;
     const city = cityRaw ? decodeURIComponent(cityRaw) : null;
 
-    // fire-and-forget: não bloqueia o redirect
-    void supabase
-      .from('qr_scans')
-      .insert({
-        campaign_id: campaign.id,
-        campaign_slug: slug,
-        user_agent: ua,
-        ip_address: ip,
-        device_type: deviceType,
-        referrer,
-        country,
-        city,
-      })
-      .then((r: { error: unknown }) => {
-        if (r.error) console.error('[qr] insert error', r.error);
-      });
+    // await obrigatório: Vercel congela a função após a resposta e descarta inserts pendentes
+    const { error: insertError } = await supabase.from('qr_scans').insert({
+      campaign_id: campaign.id,
+      campaign_slug: slug,
+      user_agent: ua,
+      ip_address: ip,
+      device_type: deviceType,
+      referrer,
+      country,
+      city,
+    });
+    if (insertError) console.error('[qr] insert error', insertError);
 
     return res.redirect(302, campaign.destination_url);
   } catch (err) {

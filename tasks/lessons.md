@@ -76,3 +76,10 @@
 **Regras:**
 - Overlay/drawer/modal `position: fixed` **nunca** deve ficar dentro de um ancestral com `transform`, `filter`, `backdrop-filter`, `perspective` ou `will-change` — esses criam containing block e quebram o `fixed`. Renderizar no topo (portal) ou como irmão fora do ancestral.
 - **Debug de "elemento não aparece": cheque a CAIXA COMPUTADA (width/height/top no devtools) ANTES de mexer em z-index.** Altura 0 ≠ problema de empilhamento. Mudei z-index 3× sem inspecionar a caixa — custou 3 deploys. Hipótese → medir → corrigir, não chutar.
+
+## 2026-10-13 · QR tracking parou de gravar scans (insert fire-and-forget na Vercel)
+
+**Sintoma:** `qr_scans` sem nenhum registro desde 15/07/2026 (campanha `clube17` ativa). Redirect `/q/clube17` seguia funcionando (302 → WhatsApp).
+**Causa raiz:** `api/q.ts` fazia `void supabase.from('qr_scans').insert(...)` e retornava o redirect logo em seguida. A Vercel congela a função quando a resposta é enviada → o POST pendente é descartado. Logs Supabase confirmaram: chegava `GET qr_campaigns`, nunca `POST qr_scans`. Antes funcionava às vezes (race), então a contagem histórica também está **subestimada**.
+**Fix:** `await` no insert antes do `res.redirect` (custa ~50–100ms no redirect).
+**Regra:** em serverless (Vercel/Lambda) **nunca** deixar I/O pendente depois de enviar a resposta. Usar `await` ou `waitUntil` (`@vercel/functions`). "Fire-and-forget" = dado perdido.
