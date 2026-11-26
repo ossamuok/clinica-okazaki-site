@@ -378,6 +378,6 @@ export const post = {
   ],
   "updatedAt": "2026-10-15T12:00:01.029Z",
   "description": "SIBO (supercrescimento bacteriano): sintomas, teste respiratório, tratamento e dieta FODMAP. Avaliação gastroenterológica especializada em Recife.",
-  "publishedAt": "2025-06-10T09:00:00-03:00",
+  "publishedAt": "2026-10-15T12:00:01.029Z",
   "breadcrumbLabel": "SIBO"
 } satisfies BlogPost;

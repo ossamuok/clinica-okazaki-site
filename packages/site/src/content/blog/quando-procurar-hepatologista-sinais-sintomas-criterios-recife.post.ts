@@ -410,6 +410,6 @@ export const post = {
   ],
   "updatedAt": "2026-11-16T11:15:00.331Z",
   "description": "Saiba quando procurar um hepatologista em Recife: sinais de alerta, exames alterados, fatores de risco e critérios para avaliação especializada em doenças do fígado.",
-  "publishedAt": "2025-01-10T10:00:00-03:00",
+  "publishedAt": "2026-11-16T11:15:00.331Z",
   "breadcrumbLabel": "Quando Procurar Hepatologista"
 } satisfies BlogPost;

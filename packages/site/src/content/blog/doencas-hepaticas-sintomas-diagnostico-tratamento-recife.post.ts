@@ -476,6 +476,6 @@ export const post = {
   ],
   "updatedAt": "2026-05-25T12:00:00.896Z",
   "description": "Conheça os principais sintomas, diagnóstico e tratamentos das doenças hepáticas. Atendimento especializado em hepatologia no Recife. Agende sua consulta.",
-  "publishedAt": "2025-05-15T10:00:00-03:00",
+  "publishedAt": "2026-05-25T12:00:00.896Z",
   "breadcrumbLabel": "Doenças Hepáticas"
 } satisfies BlogPost;

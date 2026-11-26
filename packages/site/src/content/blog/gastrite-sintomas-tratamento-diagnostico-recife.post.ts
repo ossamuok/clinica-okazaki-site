@@ -380,6 +380,6 @@ export const post = {
   ],
   "updatedAt": "2026-07-28T14:45:00.260Z",
   "description": "Gastrite tem tratamento especializado em Recife. Conheça sintomas, diagnóstico por endoscopia, tratamento do H. pylori e quando procurar gastroenterologista.",
-  "publishedAt": "2025-06-10T10:00:00-03:00",
+  "publishedAt": "2026-07-28T14:45:00.000Z",
   "breadcrumbLabel": "Gastrite"
 } satisfies BlogPost;

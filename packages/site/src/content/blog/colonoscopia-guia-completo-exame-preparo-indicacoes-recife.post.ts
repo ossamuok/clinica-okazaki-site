@@ -437,6 +437,6 @@ export const post = {
   ],
   "updatedAt": "2026-05-18T12:00:02.781Z",
   "description": "Guia completo sobre colonoscopia em Recife: como é feito o exame, preparo intestinal passo a passo, indicações, riscos e quando repetir. Tire todas suas dúvidas.",
-  "publishedAt": "2025-05-15T10:00:00-03:00",
+  "publishedAt": "2026-05-18T12:00:02.781Z",
   "breadcrumbLabel": "Guia Completo de Colonoscopia"
 } satisfies BlogPost;

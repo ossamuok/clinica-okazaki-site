@@ -483,6 +483,6 @@ export const post = {
   ],
   "updatedAt": "2026-08-17T12:00:01.957Z",
   "description": "Consulta gastroenterológica particular em Recife: acesso rápido, avaliação personalizada e exames integrados. Saiba quando procurar e como escolher o especialista.",
-  "publishedAt": "2025-06-10T10:00:00-03:00",
+  "publishedAt": "2026-08-17T12:00:01.957Z",
   "breadcrumbLabel": "Consulta Gastro Particular"
 } satisfies BlogPost;

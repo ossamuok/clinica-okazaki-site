@@ -526,6 +526,6 @@ export const post = {
   ],
   "updatedAt": "2026-10-13T12:30:01.179Z",
   "description": "Fragilidade no idoso é síndrome geriátrica com critérios diagnósticos claros. Conheça sinais, avaliação e tratamento com geriatra em Recife - Clínica Okazaki.",
-  "publishedAt": "2025-06-10T10:00:00-03:00",
+  "publishedAt": "2026-10-13T12:30:01.000Z",
   "breadcrumbLabel": "Fragilidade no Idoso"
 } satisfies BlogPost;

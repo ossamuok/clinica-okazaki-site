@@ -350,6 +350,6 @@ export const post = {
   ],
   "updatedAt": "2026-05-06T15:00:00.313Z",
   "description": "Entenda como a avaliação geriátrica abrangente pode fazer diferença na saúde e bem-estar do idoso. Cuidados especializados em geriatria em Recife.",
-  "publishedAt": "2025-05-15T10:00:00-03:00",
+  "publishedAt": "2026-05-06T15:00:00.313Z",
   "breadcrumbLabel": "Cuidados com a Saúde do Idoso"
 } satisfies BlogPost;

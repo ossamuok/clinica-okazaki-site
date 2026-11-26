@@ -350,6 +350,6 @@ export const post = {
   ],
   "updatedAt": "2026-04-30T12:00:00.860Z",
   "description": "Guia completo sobre endoscopia digestiva alta em Recife: preparo, procedimento, cuidados e quando fazer. Equipe especializada e tecnologia de ponta na Clínica Okazaki.",
-  "publishedAt": "2025-05-20T10:30:00-03:00",
+  "publishedAt": "2026-04-30T12:00:00.860Z",
   "breadcrumbLabel": "Endoscopia Digestiva Alta"
 } satisfies BlogPost;

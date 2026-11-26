@@ -424,6 +424,6 @@ export const post = {
   ],
   "updatedAt": "2026-06-30T14:15:00.313Z",
   "description": "Saiba quando a dor de barriga exige avaliação médica em Recife. Sinais de alerta, causas comuns e critérios para procurar gastroenterologista na Clínica Okazaki.",
-  "publishedAt": "2025-01-10T10:00:00-03:00",
+  "publishedAt": "2026-06-30T14:15:00.000Z",
   "breadcrumbLabel": "Dor de Barriga"
 } satisfies BlogPost;

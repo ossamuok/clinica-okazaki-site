@@ -405,6 +405,6 @@ export const post = {
   ],
   "updatedAt": "2026-05-09T20:40:28.000Z",
   "description": "Hepatologia em Recife: diagnóstico e tratamento de doenças do fígado, hepatites, cirrose e esteatose hepática. Atendimento especializado na Clínica Okazaki.",
-  "publishedAt": "2025-05-20T10:00:00-03:00",
+  "publishedAt": "2026-05-09T20:40:28.000Z",
   "breadcrumbLabel": "Hepatologia em Recife"
 } satisfies BlogPost;

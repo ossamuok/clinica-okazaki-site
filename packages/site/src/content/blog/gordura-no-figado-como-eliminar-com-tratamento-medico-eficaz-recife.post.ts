@@ -314,6 +314,6 @@ export const post = {
   ],
   "updatedAt": "2026-06-16T13:15:00.284Z",
   "description": "Esteatose hepática ou gordura no fígado: estratégias validadas para reverter o acúmulo de gordura hepática com tratamento médico especializado em Recife.",
-  "publishedAt": "2025-06-10T10:00:00-03:00",
+  "publishedAt": "2026-06-16T13:15:00.284Z",
   "breadcrumbLabel": "Gordura no Fígado"
 } satisfies BlogPost;

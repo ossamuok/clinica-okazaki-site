@@ -443,6 +443,6 @@ export const post = {
   ],
   "updatedAt": "2026-09-24T12:00:02.065Z",
   "description": "Osteoporose aumenta risco de fraturas na terceira idade. Conheça fatores de risco, rastreamento e medidas preventivas para manter a saúde óssea em Recife.",
-  "publishedAt": "2025-06-10T09:00:00-03:00",
+  "publishedAt": "2026-09-24T12:00:02.000Z",
   "breadcrumbLabel": "Osteoporose em Idosos"
 } satisfies BlogPost;

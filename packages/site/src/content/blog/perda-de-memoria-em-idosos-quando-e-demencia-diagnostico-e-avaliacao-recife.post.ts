@@ -462,6 +462,6 @@ export const post = {
   ],
   "updatedAt": "2026-08-18T12:00:04.385Z",
   "description": "Saiba quando a perda de memória indica demência, critérios diagnósticos, exames e avaliação geriátrica especializada em Recife. Guia completo.",
-  "publishedAt": "2025-01-10T10:00:00-03:00",
+  "publishedAt": "2026-08-18T12:00:04.385Z",
   "breadcrumbLabel": "Perda de Memória"
 } satisfies BlogPost;

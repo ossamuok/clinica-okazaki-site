@@ -302,6 +302,6 @@ export const post = {
   ],
   "updatedAt": "2026-05-21T10:00:00.743Z",
   "description": "Guia completo para escolher gastroenterologista qualificado em Recife. Critérios técnicos, procedimentos endoscópicos e quando procurar o especialista.",
-  "publishedAt": "2025-05-15T10:30:00-03:00",
+  "publishedAt": "2026-05-21T10:00:00.743Z",
   "breadcrumbLabel": "Escolher Gastroenterologista"
 } satisfies BlogPost;

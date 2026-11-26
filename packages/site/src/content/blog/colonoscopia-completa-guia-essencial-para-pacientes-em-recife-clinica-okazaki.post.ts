@@ -364,6 +364,6 @@ export const post = {
   ],
   "updatedAt": "2026-05-09T20:40:28.000Z",
   "description": "Guia completo sobre colonoscopia em Recife: preparo, procedimento, recuperação e prevenção do câncer colorretal. Agende na Clínica Okazaki com especialistas.",
-  "publishedAt": "2025-05-20T10:00:00-03:00",
+  "publishedAt": "2026-05-09T20:30:00.000Z",
   "breadcrumbLabel": "Guia Completo de Colonoscopia"
 } satisfies BlogPost;

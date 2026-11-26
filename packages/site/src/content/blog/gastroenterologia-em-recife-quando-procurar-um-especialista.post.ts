@@ -349,6 +349,6 @@ export const post = {
   ],
   "updatedAt": "2026-04-27T19:51:25.910Z",
   "description": "Descubra quando procurar um gastroenterologista em Recife, principais sintomas, exames e tratamentos oferecidos pela Clínica Okazaki para sua saúde digestiva.",
-  "publishedAt": "2025-05-20T10:00:00-03:00",
+  "publishedAt": "2026-04-27T19:51:25.910Z",
   "breadcrumbLabel": "Quando Procurar um Gastroenterologista"
 } satisfies BlogPost;

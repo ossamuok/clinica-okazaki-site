@@ -547,6 +547,6 @@ export const post = {
   ],
   "updatedAt": "2026-09-25T12:30:00.436Z",
   "description": "Sangue nas fezes pode indicar desde hemorroidas até condições graves. Entenda as causas, quando procurar um médico em Recife e como é feito o diagnóstico.",
-  "publishedAt": "2025-06-10T10:00:00-03:00",
+  "publishedAt": "2026-09-25T12:30:00.000Z",
   "breadcrumbLabel": "Sangue nas Fezes"
 } satisfies BlogPost;

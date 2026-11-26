@@ -458,6 +458,6 @@ export const post = {
   ],
   "updatedAt": "2026-07-13T12:00:01.129Z",
   "description": "Depressão em idosos apresenta sintomas atípicos. Conheça sinais clínicos, critérios diagnósticos e importância da avaliação geriátrica em Recife.",
-  "publishedAt": "2025-01-16T10:00:00-03:00",
+  "publishedAt": "2026-07-13T12:00:01.000Z",
   "breadcrumbLabel": "Depressão em Idosos"
 } satisfies BlogPost;

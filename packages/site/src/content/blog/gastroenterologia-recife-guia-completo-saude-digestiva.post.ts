@@ -403,6 +403,6 @@ export const post = {
   ],
   "updatedAt": "2026-05-05T12:30:00.199Z",
   "description": "Gastroenterologia em Recife: especialistas da Clínica Okazaki oferecem diagnóstico e tratamento completo de doenças digestivas com tecnologia avançada.",
-  "publishedAt": "2025-05-15T10:00:00-03:00",
+  "publishedAt": "2026-05-05T12:30:00.000Z",
   "breadcrumbLabel": "Gastroenterologia Completo"
 } satisfies BlogPost;
