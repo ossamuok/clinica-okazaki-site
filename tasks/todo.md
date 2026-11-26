@@ -1,3 +1,23 @@
+# Todo — Publicador grava data errada no post (2026-11-26)
+
+Pedido: posts saem com data que não é a da publicação. Verificar e corrigir.
+
+## Diagnóstico (confirmado em dados)
+- 22/22 posts em `main` com `publishedAt` em 2025 (ex.: `2025-05-15T10:00:00-03:00`); publicação real = 2026 (`blog_publish_queue.published_at` e data do commit batem entre si).
+- `publishedAt` nasce no Gerador, escrito pela IA (data inventada). Publicador (`WTKgkMiaL74BmJbG`, nó `Gerar .post.ts + Validar`) só sobrescreve `updatedAt`.
+- Efeito: data errada no card do blog, ordem do índice (`content/blog/index.ts` ordena por `publishedAt`) e `datePublished` do JSON-LD.
+
+## Plano
+- [x] 1. Backup do workflow vivo em `n8n-workflows/_backup/`
+- [x] 2. Teste que falha: `n8n-workflows/lib/publicador.test.js` roda o jsCode do nó e exige `publishedAt` = momento da publicação
+- [x] 3. Fix no nó: `publishedAt = updatedAt = agora` → PUT no n8n → reexportar JSON local
+- [x] 4. Backfill dos 22 posts: `publishedAt` = data do commit que adicionou o arquivo
+- [x] 5. Build do site + docs + lessons + commit/push (conferência no ar: ver relato da sessão)
+
+Fora do escopo: republicação de post já publicado (editor não tem esse fluxo; se passar a ter, preservar a 1ª `published_at` da fila).
+
+---
+
 # Todo — Sugestão de temas + anti-repetição
 
 Pedido (2026-06-10): (1) sugerir temas pros posts via página no editor; (2) acabar com repetição de tema dentro do pilar (ex: hepatologia = só esteatose).

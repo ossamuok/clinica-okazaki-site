@@ -83,3 +83,13 @@
 **Causa raiz:** `api/q.ts` fazia `void supabase.from('qr_scans').insert(...)` e retornava o redirect logo em seguida. A Vercel congela a função quando a resposta é enviada → o POST pendente é descartado. Logs Supabase confirmaram: chegava `GET qr_campaigns`, nunca `POST qr_scans`. Antes funcionava às vezes (race), então a contagem histórica também está **subestimada**.
 **Fix:** `await` no insert antes do `res.redirect` (custa ~50–100ms no redirect).
 **Regra:** em serverless (Vercel/Lambda) **nunca** deixar I/O pendente depois de enviar a resposta. Usar `await` ou `waitUntil` (`@vercel/functions`). "Fire-and-forget" = dado perdido.
+
+## 2026-11-26 · Posts publicados com data errada (`publishedAt` inventado pela IA)
+
+**Sintoma:** card do blog, ordem do índice e `datePublished` do JSON-LD mostravam datas de 2025 em posts publicados em 2026. 22/22 posts afetados.
+**Causa raiz:** `publishedAt` é campo do JSON que a IA escreve no Gerador (schema pede "publishedAt ISO") → data inventada. O Publicador (`WTKgkMiaL74BmJbG`, nó `Gerar .post.ts + Validar`) só sobrescrevia `updatedAt`; `publishedAt` passava direto pro `.post.ts`.
+**Fix:** no nó, `content.publishedAt = content.updatedAt = new Date().toISOString()`. Backfill dos 22 posts: `publishedAt = min(data do commit que adicionou o arquivo, updatedAt)` (o `min` evita `dateModified` < `datePublished`). Teste: `node --test n8n-workflows/lib/publicador.test.js` roda o jsCode exportado do nó.
+**Regras:**
+- Campo factual do sistema (datas, ids, autoria, status) **nunca** vem da IA. Quem executa a ação grava o valor no momento da ação. Se o schema obriga a IA a preencher, o choke point (Publicador) sobrescreve.
+- Ao sobrescrever um campo "de sistema" num nó, conferir os campos irmãos da mesma natureza (`updatedAt` era sobrescrito, `publishedAt` não).
+- Export do workflow via API muda a ordem das chaves a cada versão do n8n: reordenar pelas chaves do arquivo antigo antes de salvar, senão o diff de 1 linha vira 450.

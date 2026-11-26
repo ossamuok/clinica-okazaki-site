@@ -40,7 +40,7 @@ URLs:
 2. Postgres `Lock + Claim Draft` — CTE `FOR UPDATE SKIP LOCKED` + cap 1/dia BRT, marca `attempt_started_at` + incrementa `attempt_count`
 3. If `Tem entry?` — sai se nada disponível
 4. Postgres `SELECT draft completo` — JOIN drafts + queue
-5. Code `Gerar .post.ts + Validar` — valida shape, atualiza `updatedAt`, gera arquivo TS com `satisfies BlogPost` (texto puro, sem base64)
+5. Code `Gerar .post.ts + Validar` — valida shape, grava `publishedAt` = `updatedAt` = momento da publicação (o `publishedAt` do draft é inventado pela IA no Gerador e é descartado aqui), gera arquivo TS com `satisfies BlogPost` (texto puro, sem base64)
 6. **GitHub** node nativo `GitHub Commit (file.edit)` — `resource: file, operation: edit` em `ossamuok/clinica-okazaki-site` branch `main`. Modo `onError: continueErrorOutput` — bifurca em sucesso/erro nativo
    - **success** → POST IndexNow (HTTP — sem nó nativo) → UPDATE `published_at` + `github_commit_sha` + drafts.status='published' → Telegram `Telegram: Publicado OK` (botão "Ver post ao vivo")
    - **error** → UPDATE `last_error` na queue → Telegram `Telegram: Falha publicação` (botão "Abrir rascunho")
